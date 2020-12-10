@@ -8,6 +8,7 @@ date:       2013-09-20
 description: "As some of you will know I am a huge fan of MyBatis. I have used it in a lot of projects and it never failed me. I like how you are in control of the SQL and the flexibility this brings by mapping result sets to classes instead of mapping tables to classes."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
+showtoc: false
 tags:
 - Mybatis
 

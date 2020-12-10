@@ -8,6 +8,7 @@ date:       2016-12-02
 description: "In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
+showtoc: false
 tags:
     - AWS
 

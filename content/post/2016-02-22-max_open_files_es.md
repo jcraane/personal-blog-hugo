@@ -8,6 +8,7 @@ date:       2016-12-02
 description: "In this post I am going to show how to increase the max open files for Elastic Search on OSX."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
+showtoc: false
 tags:
 - ElasticSearch
 

@@ -8,6 +8,7 @@ date:       2009-02-23
 description: "Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
+showtoc: false
 tags:
 - Machine learning
 
