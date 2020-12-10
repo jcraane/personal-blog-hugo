@@ -9,10 +9,10 @@ description: "In this tutorial we create a Lambda function which retrieves this 
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
 tags:
-- AWS, DynamoDB
+- AWS
 
 categories: [ AWS ]
-URL: "/2016/12/12/aws_dynamo_db/"
+URL: "/2016/12/12/aws_dynamo_db2/"
 ---
 
 todo: add part 1 link
