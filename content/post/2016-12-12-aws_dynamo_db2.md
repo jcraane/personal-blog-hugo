@@ -15,11 +15,6 @@ tags:
 categories: [ AWS ]
 URL: "/2016/12/12/aws_dynamo_db2/"
 ---
-
-todo: add part 1 link
-
-[source code](https://github.com/jcraane/LambdaDynamoDBApiGateway)
-
 In the previous tutorial I showed you how to use AWS Lambda and API Gateway to insert items in a DynamoDB table. The example implemented a function which stored the location of the user. In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway.
 
 **Create a DynamoDB Global Secondary Index**
@@ -122,3 +117,7 @@ The deviceId is passed in as a query parameter in the URL and must be mapped as 
 
 Make sure you delete your resources when you are done with the tutorial to prevent unwanted billing.
 
+**Resources**
+
+- [Part 1](/2016/12/02/aws_dynamo_db1/)
+- [source code](https://github.com/jcraane/LambdaDynamoDBApiGateway)

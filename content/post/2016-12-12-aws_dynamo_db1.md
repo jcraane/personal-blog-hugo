@@ -158,3 +158,4 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
 - [AWS Lambda](https://aws.amazon.com/lambda/)
 - [AWS DynamoDB](https://aws.amazon.com/dynamodb/)
 - [AWS Api Gateway](https://aws.amazon.com/api-gateway/)
+- [Part 2](/2016/12/12/aws_dynamo_db2/)
