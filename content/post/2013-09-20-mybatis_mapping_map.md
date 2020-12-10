@@ -13,7 +13,7 @@ tags:
 - Mybatis
 
 categories: []
-URL: "/2020/12/10/kotlin_null/"
+URL: "/2013/09/20/mybatis_mapping_map/"
 ---
 
 As some of you will know I am a huge fan of MyBatis. I have used it in a lot of projects and it never failed me. I like how you are in control of the SQL and the flexibility this brings by mapping result sets to classes instead of mapping tables to classes.
