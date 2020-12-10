@@ -4,7 +4,9 @@ Since 2012 I have been designing and developing backend and mobile applications 
 
 I am always looking to try out new things to find out how these can be used to advance new and existing solutions.
 
-Feel free to connect via [Github](https://github.com/jcraane).
+Feel free to connect via [Github](https://github.com/jcraane). 
+
+My CV can be found [here](/pdf/CVJamieCraane.pdf)
 
 ## Talks and Publications
 
