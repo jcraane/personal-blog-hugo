@@ -2,7 +2,7 @@
 layout:     post
 
 title:      "Introduction to genetic algorithms"
-subtitle:   "ntroduction to Genetic Algorithms with JGAP"
+subtitle:   "Introduction to Genetic Algorithms with JGAP"
 author: Jamie Craane
 date:       2009-02-23
 description: "Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project."
@@ -12,7 +12,7 @@ tags:
 - Machine learning
 
 categories: [ Machine learning ]
-URL: "/2020/12/10/kotlin_null/"
+URL: "/2009/02/23/ga_introduction/"
 ---
 Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project. As mentioned on the project's site "JGAP (pronounced "jay-gap") is a Genetic Algorithms and Genetic Programming component provided as a Java framework.". For a newcomer I found it difficult to get a good overview about all the concepts introduced in genetic algorithms. Before diving into JGAP, I think it is essential that these concepts are well understood. This post is an introduction to genetic algorithms (GA) with JGAP and is explained with a concrete example. In one of my next posts I will demonstrate solving a problem with genetic programming (GP).
 
