@@ -1,0 +1,8 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "jamiecraane.dev personal blog"
+paginate = 5 #frontpage pagination
+theme = "cleanwhite"
+
+[params]
+    sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
