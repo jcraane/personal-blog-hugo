@@ -1,4 +1,4 @@
-![](/img/zhaohuabing.png) I have been developing software professionally since 2001. Helping customers with solutions that really add value. I like a challenge and continuously keep my knowledge up to date and share it with great enthusiasm to the public and with my team.
+![](/img/profile-picture.jpg) I have been developing software professionally since 2001. Helping customers with solutions that really add value. I like a challenge and continuously keep my knowledge up to date and share it with great enthusiasm to the public and with my team.
 
 Since 2012 I have been designing and developing backend and mobile applications for organisations with user bases of several hundred of thousands to millions of users. From high performance backend systems which run on AWS to native Android apps for consumers.
 

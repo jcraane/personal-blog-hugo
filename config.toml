@@ -37,7 +37,7 @@ home = ["HTML", "RSS", "Algolia"]
   # Sidebar settings
   sidebar_about_description = "Fullstack software engineer, Kotlin Multiplatform Mobile export"
   #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
-  sidebar_avatar = "img/zhaohuabing.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "img/profile-picture.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
   featured_tags = true
   featured_condition_size = 1
@@ -99,9 +99,9 @@ home = ["HTML", "RSS", "Algolia"]
   title = "unsplash"
   href = "https://unsplash.com"
 
-  [[params.addtional_menus]]
-  title =  "BOOKS"
-  href =  "/top/books/"
+  #[[params.addtional_menus]]
+  #title =  "BOOKS"
+  #href =  "/top/books/"
   [[params.addtional_menus]]
   title =  "ABOUT"
   href =  "/top/about/"
