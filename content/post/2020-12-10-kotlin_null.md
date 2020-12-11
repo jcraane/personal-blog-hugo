@@ -1,7 +1,7 @@
 ---
 layout:     post
 
-title:      "Multi variable null check"
+title:      "Kotlin: Multi variable null check"
 subtitle:   "Different ways of checking for not null with multiple variables"
 author: Jamie Craane
 date:       2020-12-10
