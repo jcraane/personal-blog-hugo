@@ -6,7 +6,7 @@ I am always looking to try out new things to find out how these can be used to a
 
 Feel free to connect via [Github](https://github.com/jcraane). 
 
-My CV can be found [here](/pdf/CVJamieCraane.pdf)
+My CV can be found [here](/pdf/CVJamieCraanePublic.pdf)
 
 ## Talks and Publications
 
