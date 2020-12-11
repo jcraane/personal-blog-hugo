@@ -30,7 +30,7 @@ class Person() {
     }
 }
 ```
-When the name or age property is accessed after the above null check we get the following compile error: mart cast to 'String' is impossible, because 'name' is a mutable property that could have been changed by this time.
+When the name or age property is accessed after the above null check we get the following compile error: smart cast to 'String' is impossible, because 'name' is a mutable property that could have been changed by this time.
 
 There are several solutions to this problem which are presented below.
 
