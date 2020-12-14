@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine learning on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/categories/machine-learning/</link>
+    <description>Recent content in Machine learning on Jamie Craane personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Jun 2009 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Melody composition with genetic algorithms</title>
+      <link>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</link>
+      <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</guid>
+      <description>Introduction Several techniques exist to create computer generated musical melodies. One of those techniques is genetic algorithms. Because the diversity of melodies over a specific range of notes is so large, genetic algorithms are a good candidate to help in composing melodies. This article describes how genetic algorithms can be used to compose musical melodies. this is explained following the steps needed to apply a genetic algorithm. These steps are:</description>
+    </item>
+    
+    <item>
+      <title>Introduction to genetic algorithms</title>
+      <link>https://jamiecraane.dev/2009/02/23/ga_introduction/</link>
+      <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2009/02/23/ga_introduction/</guid>
+      <description>Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project. As mentioned on the project&amp;rsquo;s site &amp;ldquo;JGAP (pronounced &amp;ldquo;jay-gap&amp;rdquo;) is a Genetic Algorithms and Genetic Programming component provided as a Java framework.&amp;rdquo;. For a newcomer I found it difficult to get a good overview about all the concepts introduced in genetic algorithms. Before diving into JGAP, I think it is essential that these concepts are well understood.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="AWS tutorial: DynamoDB part 1" />
+    <meta property="og:title" content="AWS tutorial: DynamoDB part 1" />
+    <meta property="twitter:title" content="AWS tutorial: DynamoDB part 1" />
+    
+
+    
+    <meta name="description" content="In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.">
+    <meta property="og:description" content="In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume." />
+    <meta property="twitter:description" content="In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>AWS tutorial: DynamoDB part 1-Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2016/12/02/aws_dynamo_db1/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-header-bokeh.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/aws" title="AWS">
+                            AWS
+                        </a>
+                        
+                    </div>
+                    <h1>AWS tutorial: DynamoDB part 1</h1>
+                    <h2 class="subheading">AWS Lambda/Java, DynamoDB and Api gateway integration </h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            Jamie Craane
+                         
+                        on 
+                        Friday, December 2, 2016
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.</p>
+<p>Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):</p>
+<ul>
+<li>AWS Lambda. AWS Lambda is a compute service that runs developers' code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.</li>
+<li>DynamoDB: Fast and flexible, managed, NoSql database.</li>
+<li>Api Gateway: Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.</li>
+</ul>
+<p>In this example we are going to create a lambda function which tracks the location (latitude and longitude) of a specific mobile device. The data flow looks like this:</p>
+<p>mobile device -&gt; HTTP POST -&gt; Api Gateway -&gt; recordLocation (Lambda function) -&gt; DynamoDb (store location)</p>
+<p><strong>Creating the application</strong>
+Prerequisites:</p>
+<ul>
+<li>IntelliJ Idea is used for this example but any IDE will do. Gradle is used for the build system.</li>
+<li>AWS account to actually deploy and run the example.</li>
+<li>After you are done with the example, delete any AWS resources you have created to prevent unnecessary billing.</li>
+</ul>
+<p>For the implementation of the Lambda function we use the AWS Java SDK.</p>
+<ol>
+<li>In IntelliJ, Select File -&gt; New project and choose Gradle with the Java library. Click Next</li>
+<li>groupId=com.example, artifactId=locationpersister. Click Next.</li>
+<li>Choose a Java 8 IDE and Click Next, click Finish.</li>
+<li>Create the src/main/java folder if it does not exist already.</li>
+<li>Open de build.gradle file and add the following dependencies:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">compile <span style="color:#f1fa8c">&#39;com.amazonaws:aws-lambda-java-core:1.1.0&#39;</span>
+compile <span style="color:#f1fa8c">&#39;com.amazonaws:aws-lambda-java-events:1.1.0&#39;</span>
+</code></pre></div><ol start="6">
+<li>Add the following code to the build.gradle file:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">task <span style="color:#50fa7b">buildZip</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd;font-style:italic">type:</span> Zip<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+   from compileJava
+   from processResources
+   <span style="color:#50fa7b">into</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;lib&#39;</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+       from configurations<span style="color:#ff79c6">.</span><span style="color:#50fa7b">runtime</span>
+   <span style="color:#ff79c6">}</span>
+<span style="color:#ff79c6">}</span>
+
+build<span style="color:#ff79c6">.</span><span style="color:#50fa7b">dependsOn</span> buildZip
+</code></pre></div><p>The above code creates a zip archive when the build task is triggered. The zip file can be uploaded directly to AWS Lambda.</p>
+<ol start="7">
+<li>Create a class com.example.persister.DeviceLocation with the members: lat (double), lng (double) and deviceId (string). This class holds the data that gets submitted to the Lambda function.</li>
+<li>Create a new class com.example.persister.LocationPersisterFunction. This class will hold the implementation of the Lambda function.</li>
+<li>Make the LocationPersisterFunction implement the com.amazonaws.services.lambda.runtime.RequestHandler interface.
+This interface defines the handleRequest function which is executed when the Lambda function is triggered. The handleRequest function takes two parameters: the input (which is of DeviceLocation type and is passed-in when the function is invoked Context object).</li>
+</ol>
+<p><em>Creating the DynamoDb table</em>
+To store the data in DynamoDB we need to create a table.</p>
+<ol>
+<li>Open the AWS console and navigate to the DynamoDB section.</li>
+<li>Click create Table and for the name use: &ldquo;DeviceLocation&rdquo;. Type id (string field) to use as a partition key and do not specify a sort key. Leave everything default and click Create.</li>
+<li>Please note that the table is created in the selected regio. If you click on the table and look at the details you can see the region of the table.
+<em>Create the DeviceLocation class</em>
+The DeviceLocation class holds the input which is passed to the Lambda function.</li>
+<li>Create a new class named DeviceLocation with the following fields: id (string), lat (double) and lng (double)</li>
+<li>Make sure the class contains both setters and getters. The setters are used by AWS Lambda to populate this object based on the passed in JSON when calling the Lambda function.
+<em>Implementing the Lambda function</em></li>
+<li>Open the LocationPersisterFunction</li>
+<li>Add the following code to the body of the handleRequest method:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">   <span style="color:#8be9fd;font-style:italic">final</span> AmazonDynamoDBClient client <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AmazonDynamoDBClient<span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> EnvironmentVariableCredentialsProvider<span style="color:#ff79c6">());</span>
+   client<span style="color:#ff79c6">.</span><span style="color:#50fa7b">withRegion</span><span style="color:#ff79c6">(</span>Regions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">EU_WEST_1</span><span style="color:#ff79c6">);</span> <span style="color:#6272a4">// specify the region you created the table in.
+</span><span style="color:#6272a4"></span>   DynamoDB dynamoDB <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DynamoDB<span style="color:#ff79c6">(</span>client<span style="color:#ff79c6">);</span>
+   Table table <span style="color:#ff79c6">=</span> dynamoDB<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getTable</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;DeviceLocation&#34;</span><span style="color:#ff79c6">);</span>
+   <span style="color:#8be9fd;font-style:italic">final</span> Item item <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Item<span style="color:#ff79c6">()</span>
+   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withPrimaryKey</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;id&#34;</span><span style="color:#ff79c6">,</span> UUID<span style="color:#ff79c6">.</span><span style="color:#50fa7b">randomUUID</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">toString</span><span style="color:#ff79c6">())</span> <span style="color:#6272a4">// Every item gets a unique id
+</span><span style="color:#6272a4"></span>   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withString</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;deviceId&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getDeviceId</span><span style="color:#ff79c6">())</span>
+   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withDouble</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;lat&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getLat</span><span style="color:#ff79c6">())</span>
+   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withDouble</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;lng&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getLng</span><span style="color:#ff79c6">());</span>
+   table<span style="color:#ff79c6">.</span><span style="color:#50fa7b">putItem</span><span style="color:#ff79c6">(</span>item<span style="color:#ff79c6">);</span>
+   <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</code></pre></div><ol start="3">
+<li>Make sure you change the region to match the region you created the table in.</li>
+<li>The above code gets a reference to the DynamoDB DeviceLocation table, creates an item and persist it.</li>
+<li>Execute the gradle build task to create a zip-archive or our code.</li>
+<li>Now that the implementation is complete we are ready to create our AWS Lambda function.
+<em>Creating out Lambda function</em></li>
+<li>Open the AWS console and navigate to the Lambda section.</li>
+<li>Select Blank function and click next (we do not create a trigger at this stage).</li>
+<li>As name choose: persistDeviceLocation and select Java 8 as the runtime</li>
+<li>Upload the /build/distributions/locationpersister-1.0-SNAPSHOT.zip file</li>
+<li>In the Handler field specify the fully qualified classname which implements our handler: com.example.persister.LocationPersisterFunction</li>
+<li>In the Role field select to create a custom role. The create role form is opened. Use lambda_location_persister as the Role name and click allow. The role is created and selected in the Existing Role field. See the screenshot &ldquo;lambda_role&rdquo;</li>
+<li>Leave everything default and click Next</li>
+<li>Click Create function
+
+  <img src="/img/posts/dynamodb-create-table.png" alt="img.png">
+
+</li>
+</ol>
+<p><em>Testing the function in de AWS console</em></p>
+<p>After the function is created we are going to test is using the AWS console.</p>
+<ol>
+<li>Click Test</li>
+<li>A dialog opens where you can specify the data sent to the Lambda function. Use the following testdata:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<span style="color:#ff79c6">&#34;deviceId&#34;</span>: <span style="color:#f1fa8c">&#34;deviceId&#34;</span>,
+<span style="color:#ff79c6">&#34;lat&#34;</span>: <span style="color:#bd93f9">52.5</span>,
+<span style="color:#ff79c6">&#34;lng&#34;</span>: <span style="color:#bd93f9">5.5</span>
+}
+</code></pre></div><ol start="3">
+<li>You can modify the testdata at any time by clicking Actions -&gt; configure test event</li>
+<li>When done, click Test</li>
+<li>If everything went according to plan you should get an error message which states the following: Status Code: 400; Error Code: AccessDeniedException</li>
+<li>This is correct until this point. Although we created a custom role, we did not gave this role permissions to access our DynamoDB table.
+<em>Add DynamoDB permissions to our role</em></li>
+<li>Open the AWS console and navigate to the IAM section.</li>
+<li>Click on Roles</li>
+<li>Click on the lambda_location_persister to open it.</li>
+<li>Click Attach Policy</li>
+<li>In the filter field search for DynamoDB</li>
+<li>Select the AmazonDynamoDBFullAccess policy and click Attach</li>
+<li>Navigate back to AWS Lambda and test the function again. The function should be succesfull.</li>
+<li>Navigate to DynamoDB and select the DeviceLocation table and click on items. You should see one item added to the table.
+9 If you get a Status Code: 400; Error Code: ResourceNotFoundException error, check the region you specified in the Lambda implementation corresponds to the region of the DynamoDB table.</li>
+</ol>
+<p>Creating the API Gateway
+The API Gateway is used to create an HTTP endpoint which is the trigger for the Lambda function. Applications can communicate with this endpoint over HTTP.</p>
+<ol>
+<li>Open de AWS console and navigate to API Gateway.</li>
+<li>Create a new API. As the name use: LocationPersisterApi</li>
+<li>Click Create API</li>
+<li>Select Actions -&gt; and click Create Resource, see screenshot_create_resource</li>
+<li>As resource name use: devicelocation, and click Create Resource</li>
+<li>Select Actions -&gt; and click Create Method and select POST.</li>
+<li>In the method details select as Integration Type: Lambda Function, Lambda Region (the region you created the Lambda Function in, and as Lambda Function: persistDeviceLocation (the name of the Lambda function))</li>
+<li>Click Save and then OK</li>
+<li>Click Test and paste a test message in the body. This can be the same message as used in the Test section of the Lambda function. After the body is filled-in, click Test. If everything is OK you should see a HTTP 200 status code.</li>
+<li>Select Actions -&gt; Deploy API and select [New Stage]. Specify prod as the stage name.</li>
+<li>Click Deploy. Your API will be deployed so that it can be accessed from the outside world.</li>
+<li>Navigate to the prod stage, expand the resources and select the POST method. Copy the URL after the &lsquo;Invoke URL&rsquo; text in, for example, Postman. Execute an HTTP post with a test-message body. You should see a HTTP 200 status code (success).</li>
+<li>If you now open the DynamoDB tables and list the items you should see several items added to the table.
+
+  <img src="/img/posts/dynamodb-items.png" alt="img.png">
+
+
+<strong>Conclusion</strong>
+AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in the cloud without having to provision entire servers or more full-fledged managed services like elastic beanstalk. This post showed you how to use those AWS services to create A Lambda function which uses DynamoDB and make it available using API gateway.
+<strong>Resources</strong></li>
+</ol>
+<ul>
+<li>The full source code of the example project can be found on <a href="https://github.com/jcraane/LambdaDynamoDBApiGateway">Github</a>.</li>
+<li><a href="https://aws.amazon.com/lambda/">AWS Lambda</a></li>
+<li><a href="https://aws.amazon.com/dynamodb/">AWS DynamoDB</a></li>
+<li><a href="https://aws.amazon.com/api-gateway/">AWS Api Gateway</a></li>
+<li><a href="/2016/12/12/aws_dynamo_db2/">Part 2</a></li>
+</ul>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/02/22/max_open_files_es/" data-toggle="tooltip" data-placement="top" title="Elastic Search max open files">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/12/12/aws_dynamo_db2/" data-toggle="tooltip" data-placement="top" title="AWS tutorial: DynamoDB part 2">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2020
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
