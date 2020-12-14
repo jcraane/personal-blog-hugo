@@ -6,7 +6,7 @@ subtitle:   "Retrieve items from DynamoDB using Lambda and API Gateway"
 author: Jamie Craane
 date:       2016-12-12
 description: "In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway."
-#image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
+image: "/img/reflections.jpg"
 published: true
 showtoc: false
 tags:
