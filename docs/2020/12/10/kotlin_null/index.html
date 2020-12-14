@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Kotlin: Multi variable null check" />
+    <meta property="og:title" content="Kotlin: Multi variable null check" />
+    <meta property="twitter:title" content="Kotlin: Multi variable null check" />
+    
+
+    
+    <meta name="description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin.">
+    <meta property="og:description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin." />
+    <meta property="twitter:description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Kotlin: Multi variable null check-Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2020/12/10/kotlin_null/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-header-bokeh.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                    </div>
+                    <h1>Kotlin: Multi variable null check</h1>
+                    <h2 class="subheading">Different ways of checking for not null with multiple variables</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            Jamie Craane
+                         
+                        on 
+                        Thursday, December 10, 2020
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.</p>
+<p>Consider the following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span>() {
+    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
+    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
+
+    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
+        <span style="color:#ff79c6">if</span> (name <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> age <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+            name.length <span style="color:#6272a4">// Compile error since smart-cast is not possible
+</span><span style="color:#6272a4"></span>        }
+    }
+}
+</code></pre></div><p>When the name or age property is accessed after the above null check we get the following compile error: smart cast to &lsquo;String&rsquo; is impossible, because &lsquo;name&rsquo; is a mutable property that could have been changed by this time.</p>
+<p>There are several solutions to this problem which are presented below.</p>
+<p><strong>Assign variables to immutable val</strong></p>
+<p>In this variant the mutable variables are assigned to immutable val. This wat the compiler is able to execute the smart cast:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
+    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
+    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
+
+    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
+        <span style="color:#ff79c6">val</span> n = name
+        <span style="color:#ff79c6">val</span> a = age
+        <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> n <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+            n.length <span style="color:#6272a4">// Smart cast is possible
+</span><span style="color:#6272a4"></span>        }
+    }
+}
+</code></pre></div><p><strong>Use destructuring to assign the variables to a val</strong></p>
+<p>In the example the destructuring capabilities of Kotlin are used to make assigment of multiple variables at once easier. The null-check itself is the same:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
+    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
+    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
+
+    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
+        <span style="color:#ff79c6">val</span> (n, a) = name to age
+        <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> n <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+            n.length
+        }
+    }
+}
+</code></pre></div><p>In the above example the to keyword is used to create a pair which is destructured into n and a. If there are more than two variables the listOf() method can be used to destructure up to 5 variables (because a list defines component1 to component5 functions) as in the following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">val</span> (a, b, c, d, e) = kotlin.collections.listOf(<span style="color:#f1fa8c">&#34;a&#34;</span>, <span style="color:#f1fa8c">&#34;b&#34;</span>, <span style="color:#f1fa8c">&#34;c&#34;</span>, <span style="color:#f1fa8c">&#34;d&#34;</span>, <span style="color:#f1fa8c">&#34;e&#34;</span>)
+</code></pre></div><p><strong>Use a specialized function</strong></p>
+<p>The following example uses a function to check the passed-in variables for not-null and executes the block of both variables are not null:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#6272a4">/**
+</span><span style="color:#6272a4"> * Executes block if all supplied params are not null.
+</span><span style="color:#6272a4"> *
+</span><span style="color:#6272a4"> * @param a First param
+</span><span style="color:#6272a4"> * @param b Second param
+</span><span style="color:#6272a4"> * @param block The block to execute of all of the supplied params are not null.
+</span><span style="color:#6272a4"> */</span>
+<span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">A</span>, <span style="color:#50fa7b">B</span>, <span style="color:#50fa7b">RESULT</span>&gt; <span style="color:#50fa7b">doIfNotNull</span>(a: A?, b: B?, block: (A, B) <span style="color:#ff79c6">-&gt;</span> RESULT): RESULT? {
+    <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> b <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+        <span style="color:#ff79c6">return</span> block(a, b)
+    }
+
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>
+}
+</code></pre></div><p>The above function can be used like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
+    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
+    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
+
+    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
+        doIfNotNull(name, age) { n, a <span style="color:#ff79c6">-&gt;</span> n.length}
+    }
+}
+</code></pre></div><p>For a more in-depth discussion see <a href="https://discuss.kotlinlang.org/t/kotlin-null-check-for-multiple-nullable-vars/1946">https://discuss.kotlinlang.org/t/kotlin-null-check-for-multiple-nullable-vars/1946</a></p>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/12/12/aws_dynamo_db2/" data-toggle="tooltip" data-placement="top" title="AWS tutorial: DynamoDB part 2">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2020
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>

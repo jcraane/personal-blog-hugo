@@ -1,4 +1,5 @@
 baseurl = "https://jamiecraane.dev"
+publishDir = "docs/"
 title = "Jamie Craane personal blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"

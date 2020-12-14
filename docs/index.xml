@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/</link>
+    <description>Recent content on Jamie Craane personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin: Multi variable null check</title>
+      <link>https://jamiecraane.dev/2020/12/10/kotlin_null/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2020/12/10/kotlin_null/</guid>
+      <description>Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.
+Consider the following example:
+class Person() { var name: String? = null var age: Int? = null fun doSomething() { if (name !</description>
+    </item>
+    
+    <item>
+      <title>AWS tutorial: DynamoDB part 2</title>
+      <link>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</guid>
+      <description>In the previous tutorial I showed you how to use AWS Lambda and API Gateway to insert items in a DynamoDB table. The example implemented a function which stored the location of the user. In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway.
+Create a DynamoDB Global Secondary Index
+The DeviceLocation DynamoDB table uses the id as partition key.</description>
+    </item>
+    
+    <item>
+      <title>AWS tutorial: DynamoDB part 1</title>
+      <link>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</guid>
+      <description>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.
+Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):
+ AWS Lambda. AWS Lambda is a compute service that runs developers&#39; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.</description>
+    </item>
+    
+    <item>
+      <title>Elastic Search max open files</title>
+      <link>https://jamiecraane.dev/2016/02/22/max_open_files_es/</link>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2016/02/22/max_open_files_es/</guid>
+      <description>Elastic Search, Logstash and Kibana (ELK) is an end-to-end stack which provides realtime analytics for almost any type of structured or unstructured data.
+When importing large amounts of data using Logstash to Elastic Search (ES), the chances are that ES hit the limits of the maximum files it can open. This limit is seen as an error in the ES logs with the following description: (Too many open files)
+To deal with this you can increase the maximum files ES (or any process) may open using the following steps:</description>
+    </item>
+    
+    <item>
+      <title>IntelliJ structral search and replace</title>
+      <link>https://jamiecraane.dev/2014/02/08/intellij_structural/</link>
+      <pubDate>Sat, 08 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2014/02/08/intellij_structural/</guid>
+      <description>Sometimes you run into a situation where you want to refactor some code but cannot use the regular refactorings. For example, take the following code:
+jQuery(&amp;#34;body&amp;#34;).on(&amp;#34;change&amp;#34;, &amp;#34;#fontSelector&amp;#34;, &amp;#34;change&amp;#34;, function () { var selectedFont = jQuery(&amp;#34;#fontSelector&amp;#34;).val(); layoutDesigner.selectFont(selectedFont); }); I wanted to replace the above code with the following:
+jQuery(&amp;#34;#fontSelector&amp;#34;).off(&amp;#34;change&amp;#34;); jQuery(&amp;#34;#fontSelector&amp;#34;).on(&amp;#34;change&amp;#34;, function () { var selectedFont = jQuery(&amp;#34;#fontSelector&amp;#34;).val(); layoutDesigner.selectFont(selectedFont); }); Sure, I could rewrite this manually. But this takes a long time with dozens of such event handling constructs, all with different selectors, events and functions.</description>
+    </item>
+    
+    <item>
+      <title>MyBatis</title>
+      <link>https://jamiecraane.dev/2013/09/20/mybatis_mapping_map/</link>
+      <pubDate>Fri, 20 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2013/09/20/mybatis_mapping_map/</guid>
+      <description>As some of you will know I am a huge fan of MyBatis. I have used it in a lot of projects and it never failed me. I like how you are in control of the SQL and the flexibility this brings by mapping result sets to classes instead of mapping tables to classes.
+Recently I wanted to map some columns from a table to actual typed properties of an object, and some columns to a property of type Map within that same object.</description>
+    </item>
+    
+    <item>
+      <title>Melody composition with genetic algorithms</title>
+      <link>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</link>
+      <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</guid>
+      <description>Introduction Several techniques exist to create computer generated musical melodies. One of those techniques is genetic algorithms. Because the diversity of melodies over a specific range of notes is so large, genetic algorithms are a good candidate to help in composing melodies. This article describes how genetic algorithms can be used to compose musical melodies. this is explained following the steps needed to apply a genetic algorithm. These steps are:</description>
+    </item>
+    
+    <item>
+      <title>Introduction to genetic algorithms</title>
+      <link>https://jamiecraane.dev/2009/02/23/ga_introduction/</link>
+      <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2009/02/23/ga_introduction/</guid>
+      <description>Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project. As mentioned on the project&amp;rsquo;s site &amp;ldquo;JGAP (pronounced &amp;ldquo;jay-gap&amp;rdquo;) is a Genetic Algorithms and Genetic Programming component provided as a Java framework.&amp;rdquo;. For a newcomer I found it difficult to get a good overview about all the concepts introduced in genetic algorithms. Before diving into JGAP, I think it is essential that these concepts are well understood.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jamiecraane.dev/search/placeholder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/search/placeholder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jamiecraane.dev/top/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/top/about/</guid>
+      <description>I have been developing software professionally since 2001. Helping customers with solutions that really add value. I like a challenge and continuously keep my knowledge up to date and share it with great enthusiasm to the public and with my team.
+Since 2012 I have been designing and developing backend and mobile applications for organisations with user bases of several hundred of thousands to millions of users. From high performance backend systems which run on AWS to native Android apps for consumers.</description>
+    </item>
+    
+  </channel>
+</rss>
