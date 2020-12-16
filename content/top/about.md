@@ -8,6 +8,8 @@ Feel free to connect via [Github](https://github.com/jcraane).
 
 My CV can be found [here](/pdf/CVJamieCraanePublic.pdf)
 
+Link to [old blog](http://jcraane.blogspot.com/)
+
 ## Talks and Publications
 
 * [Innovative apps in public transport, J-Fall 2015](https://www.youtube.com/watch?v=5hh8rzGg1AI)
