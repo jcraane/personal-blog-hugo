@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="IntelliJ" />
-    <meta property="og:title" content="IntelliJ" />
-    <meta property="twitter:title" content="IntelliJ" />
+    <meta name="title" content="IntelliJ find and replace using regular expressions" />
+    <meta property="og:title" content="IntelliJ find and replace using regular expressions" />
+    <meta property="twitter:title" content="IntelliJ find and replace using regular expressions" />
     
 
     
-    <meta name="description" content="Personal blog of Jamie Craane about fullstack software development">
-    <meta property="og:description" content="Personal blog of Jamie Craane about fullstack software development" />
-    <meta property="twitter:description" content="Personal blog of Jamie Craane about fullstack software development" />
+    <meta name="description" content="This post provides some example of using regular expressions with IntelliJ find and replace function.">
+    <meta property="og:description" content="This post provides some example of using regular expressions with IntelliJ find and replace function." />
+    <meta property="twitter:description" content="This post provides some example of using regular expressions with IntelliJ find and replace function." />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>IntelliJ-Jamie Craane blog</title>
+    <title>IntelliJ find and replace using regular expressions-Jamie Craane blog</title>
 
-    <link rel="canonical" href="/tags/intellij/">
+    <link rel="canonical" href="/2020/12/16/intellij_replace_regex/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -156,14 +156,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-header-bokeh.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/intellij" title="IntelliJ">
+                            IntelliJ
+                        </a>
+                        
+                    </div>
+                    <h1>IntelliJ find and replace using regular expressions</h1>
+                    <h2 class="subheading">IntelliJ: Examples of replacing text using Intellij find/replace with regular expressions</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            Jamie Craane
+                         
+                        on 
+                        Wednesday, December 16, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -172,213 +195,105 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
 
-<div class="post-preview">
-    <a href="https://jamiecraane.dev/2020/12/16/intellij_replace_regex/">
-        <h2 class="post-title">
-            IntelliJ find and replace using regular expressions
-        </h2>
-	
-        <h3 class="post-subtitle">
-            IntelliJ: Examples of replacing text using Intellij find/replace with regular expressions
-        </h3>
-	
-        <div class="post-content-preview">
-	
-            This post provides some example of using regular expressions with IntelliJ find and replace function.
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by Jamie Craane Wednesday, December 16, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://jamiecraane.dev/2014/02/08/intellij_structural/">
-        <h2 class="post-title">
-            IntelliJ structural search and replace
-        </h2>
-	
-        <h3 class="post-subtitle">
-            IntelliJ: the power of structural search and replace
-        </h3>
-	
-        <div class="post-content-preview">
-	
-            Sometimes you run into a situation where you want to refactor some code bu
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by Jamie Craane Saturday, February 8, 2014
-    
-    
-    </p>
-
-</div>
-<hr>
-
+<article>
+    <div class="container">
+        <div class="row">
 
             
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-                
-            
-                
-            
-                
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-                
-            
-                
-            
-                
-                    <a href="/tags/machine-learning" title="machine-learning">
-                        machine-learning
-                    </a>
-                
-            
-                
-            
-        </div>
-    </section>
-    
+                <p>IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the <a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">docs</a> or examples to find out how they work.</p>
+<p>find/replace regex (and also regular find/replace) works particulary well when lots of replacements need to be made.</p>
+<p>This post gives some examples to show the possibilties using regex with find and replace. Use these as-is or as inspiration to create your own. Every example comes with a short description of its usage.</p>
+<h3 id="turning-a-date-string-into-an-object">Turning a date string into an object</h3>
+<p>Consider the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">val date <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;2020-12-16&#34;</span>
+</code></pre></div><p>and we want to replace this with the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">val date <span style="color:#ff79c6">=</span> LocalDate<span style="color:#ff79c6">(</span>2020<span style="color:#ff79c6">,</span> 12<span style="color:#ff79c6">,</span> 16<span style="color:#ff79c6">)</span>
+</code></pre></div><p>We can use the following find/replace regex. The find regex finds the pattern 2020-10-10. The year is matched using (\d{4}) which matches exactly four digits and groups them because the \d{4} is put between parenthesis. We can use this group in the replace fiel. Note that $1 references the first group. $0 matches the entire regular expression.</p>
+<p>The replace plattern replaces it with LocalDate and uses the capturing groups from the find regex to fill in the year, month and day.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8be9fd;font-style:italic">Find:</span> \<span style="color:#f1fa8c">&#34;(\d{4})-(\d{2})-(\d{2})\&#34;</span>
+<span style="color:#8be9fd;font-style:italic">Replace:</span> LocalDate<span style="color:#ff79c6">(</span>$1<span style="color:#ff79c6">,</span> $2<span style="color:#ff79c6">,</span> $3<span style="color:#ff79c6">)</span>
+</code></pre></div><p>Please note that the above regex makes no distinction betwee 0 and 02. 02 needs the be replaced or else LocalDate(2020, 02, 12) will fail to compile.</p>
+<p><strong>Resources</strong></p>
+<ul>
+<li><a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html</a></li>
+<li><a href="/2014/02/08/intellij_structural/">Structural search and replace</a></li>
+</ul>
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               <li>
-                   <a href='/tags/intellij/index.xml' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/10/kotlin_null/" data-toggle="tooltip" data-placement="top" title="Kotlin: Multi variable null check">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
                 </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
@@ -390,7 +305,7 @@
                 <ul class="list-inline text-center">
                    
                    <li>
-                       <a href='/tags/intellij/index.xml' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
                            <span class="fa-stack fa-lg">
                                <i class="fa fa-circle fa-stack-2x"></i>
                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>

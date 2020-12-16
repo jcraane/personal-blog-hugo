@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/intellij/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IntelliJ find and replace using regular expressions</title>
-      <link>https://jamiecraane.dev/2020/16/12/intellij_replace_regex/</link>
+      <link>https://jamiecraane.dev/2020/12/16/intellij_replace_regex/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://jamiecraane.dev/2020/16/12/intellij_replace_regex/</guid>
+      <guid>https://jamiecraane.dev/2020/12/16/intellij_replace_regex/</guid>
       <description>IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the docs or examples to find out how they work.
 find/replace regex (and also regular find/replace) works particulary well when lots of replacements need to be made.</description>
     </item>

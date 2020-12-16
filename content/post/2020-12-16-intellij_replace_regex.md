@@ -13,7 +13,7 @@ tags:
 - IntelliJ
 
 categories: [ IntelliJ ]
-URL: "/2020/16/12/intellij_replace_regex/" 
+URL: "/2020/12/16/intellij_replace_regex/" 
 ---
 IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the [docs](https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html) or examples to find out how they work.
 
