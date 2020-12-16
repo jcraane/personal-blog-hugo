@@ -1,11 +1,11 @@
 ---
 layout:     post
 
-title:      "IntelliJ replace with regex"
-subtitle:   "IntelliJ: Examples of replacing text using Intellij find/replace witg regex"
+title:      "IntelliJ find and replace using regular expressions"
+subtitle:   "IntelliJ: Examples of replacing text using Intellij find/replace with regular expressions"
 author: Jamie Craane
 date:       2020-12-16
-description: "Sometimes you run into a situation where you want to refactor some code bu"
+description: "This post provides some example of using regular expressions with IntelliJ find and replace function."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
 published: true
 showtoc: false
