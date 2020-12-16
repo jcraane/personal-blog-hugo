@@ -208,18 +208,18 @@
 
                 
                 <p>IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the <a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">docs</a> or examples to find out how they work.</p>
-<p>find/replace regex (and also regular find/replace) works particulary well when lots of replacements need to be made.</p>
-<p>This post gives some examples to show the possibilties using regex with find and replace. Use these as-is or as inspiration to create your own. Every example comes with a short description of its usage.</p>
+<p>find/replace regex (and also regular find/replace) works particularly well when lots of replacements need to be made.</p>
+<p>This post gives some examples to show the possibilities using regex with find and replace. Use these as-is or as inspiration to create your own. Every example comes with a short description of its usage.</p>
 <h3 id="turning-a-date-string-into-an-object">Turning a date string into an object</h3>
 <p>Consider the following code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">val date <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;2020-12-16&#34;</span>
 </code></pre></div><p>and we want to replace this with the following code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">val date <span style="color:#ff79c6">=</span> LocalDate<span style="color:#ff79c6">(</span>2020<span style="color:#ff79c6">,</span> 12<span style="color:#ff79c6">,</span> 16<span style="color:#ff79c6">)</span>
-</code></pre></div><p>We can use the following find/replace regex. The find regex finds the pattern 2020-10-10. The year is matched using (\d{4}) which matches exactly four digits and groups them because the \d{4} is put between parenthesis. We can use this group in the replace fiel. Note that $1 references the first group. $0 matches the entire regular expression.</p>
-<p>The replace plattern replaces it with LocalDate and uses the capturing groups from the find regex to fill in the year, month and day.</p>
+</code></pre></div><p>We can use the following find/replace regex. The find regex finds the pattern 2020-10-10. The year is matched using (\d{4}) which matches exactly four digits and groups them because the \d{4} is put between parenthesis. We can use this group in the replace field. Note that $1 references the first group. $0 matches the entire regular expression.</p>
+<p>The replacement pattern replaces it with LocalDate and uses the capturing groups from the find regex to fill in the year, month and day.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8be9fd;font-style:italic">Find:</span> \<span style="color:#f1fa8c">&#34;(\d{4})-(\d{2})-(\d{2})\&#34;</span>
 <span style="color:#8be9fd;font-style:italic">Replace:</span> LocalDate<span style="color:#ff79c6">(</span>$1<span style="color:#ff79c6">,</span> $2<span style="color:#ff79c6">,</span> $3<span style="color:#ff79c6">)</span>
-</code></pre></div><p>Please note that the above regex makes no distinction betwee 0 and 02. 02 needs the be replaced or else LocalDate(2020, 02, 12) will fail to compile.</p>
+</code></pre></div><p>Please note that the above regex makes no distinction between 0 and 02. 02 needs to be replaced or else LocalDate(2020, 02, 12) will fail to compile.</p>
 <p><strong>Resources</strong></p>
 <ul>
 <li><a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html</a></li>

@@ -17,9 +17,9 @@ URL: "/2020/12/16/intellij_replace_regex/"
 ---
 IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the [docs](https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html) or examples to find out how they work.
 
-find/replace regex (and also regular find/replace) works particulary well when lots of replacements need to be made. 
+find/replace regex (and also regular find/replace) works particularly well when lots of replacements need to be made. 
 
-This post gives some examples to show the possibilties using regex with find and replace. Use these as-is or as inspiration to create your own. Every example comes with a short description of its usage.
+This post gives some examples to show the possibilities using regex with find and replace. Use these as-is or as inspiration to create your own. Every example comes with a short description of its usage.
  
 ### Turning a date string into an object
 
@@ -36,16 +36,16 @@ and we want to replace this with the following code:
 val date = LocalDate(2020, 12, 16)
 ```
 
-We can use the following find/replace regex. The find regex finds the pattern 2020-10-10. The year is matched using (\d{4}) which matches exactly four digits and groups them because the \d{4} is put between parenthesis. We can use this group in the replace fiel. Note that $1 references the first group. $0 matches the entire regular expression.
+We can use the following find/replace regex. The find regex finds the pattern 2020-10-10. The year is matched using (\d{4}) which matches exactly four digits and groups them because the \d{4} is put between parenthesis. We can use this group in the replace field. Note that $1 references the first group. $0 matches the entire regular expression.
 
-The replace plattern replaces it with LocalDate and uses the capturing groups from the find regex to fill in the year, month and day.
+The replacement pattern replaces it with LocalDate and uses the capturing groups from the find regex to fill in the year, month and day.
 
 ```java
 Find: \"(\d{4})-(\d{2})-(\d{2})\"
 Replace: LocalDate($1, $2, $3)
 ```
 
-Please note that the above regex makes no distinction betwee 0 and 02. 02 needs the be replaced or else LocalDate(2020, 02, 12) will fail to compile.
+Please note that the above regex makes no distinction between 0 and 02. 02 needs to be replaced or else LocalDate(2020, 02, 12) will fail to compile.
 
 **Resources**
 - https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html
