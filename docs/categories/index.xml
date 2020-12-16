@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IntelliJ</title>
+      <link>https://jamiecraane.dev/categories/intellij/</link>
+      <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/categories/intellij/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Kotlin</title>
       <link>https://jamiecraane.dev/categories/kotlin/</link>
@@ -22,15 +31,6 @@
       <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://jamiecraane.dev/categories/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IntelliJ</title>
-      <link>https://jamiecraane.dev/categories/intellij/</link>
-      <pubDate>Sat, 08 Feb 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/intellij/</guid>
       <description></description>
     </item>
     
