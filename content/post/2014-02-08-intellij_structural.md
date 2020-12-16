@@ -1,7 +1,7 @@
 ---
 layout:     post
 
-title:      "IntelliJ structral search and replace"
+title:      "IntelliJ structural search and replace"
 subtitle:   "IntelliJ: the power of structural search and replace"
 author: Jamie Craane
 date:       2014-02-08
