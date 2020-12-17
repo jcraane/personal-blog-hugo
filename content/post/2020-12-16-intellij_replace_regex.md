@@ -25,14 +25,14 @@ This post gives some examples to show the possibilities using regex with find an
 
 Consider the following code:
 
-```java
+```kotlin
 val date = "2020-12-16"
 ```
 
 and we want to replace this with the following code:
 
 
-```java
+```kotlin
 val date = LocalDate(2020, 12, 16)
 ```
 
@@ -50,3 +50,40 @@ Please note that the above regex makes no distinction between 0 and 02. 02 needs
 **Resources**
 - https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html
 - [Structural search and replace](/2014/02/08/intellij_structural/)
+
+### Replace url with setUrl in Gradle build script
+
+Consider the following code:
+
+```kotlin
+repositories {
+    google()
+    jcenter()
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+    maven { url = uri("http://kotlin.bintray.com/kotlin-eap") }
+    maven { url = uri("http://kotlin.bintray.com/kotlin-dev") }
+    maven { url = uri("https://kotlin.bintray.com/kotlinx") }
+    maven { url = uri("https://dl.bintray.com/jetbrains/kotlin-native-dependencies") }
+}
+```
+
+If we want to replace url = url("") with setUrl("") we can use the following regex for this:
+
+```java
+Find: url = uri\((.*?\))
+Replace: setUrl($1
+```
+
+The resulting replacements look like this:
+
+```kotlin
+repositories {
+        google()
+        jcenter()
+        maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { setUrl("http://kotlin.bintray.com/kotlin-eap") }
+        maven { setUrl("http://kotlin.bintray.com/kotlin-dev") }
+        maven { setUrl("https://kotlin.bintray.com/kotlinx") }
+        maven { setUrl("https://dl.bintray.com/jetbrains/kotlin-native-dependencies") }
+    }
+```
