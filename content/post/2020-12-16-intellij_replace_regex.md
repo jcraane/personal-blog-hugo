@@ -47,10 +47,6 @@ Replace: LocalDate($1, $2, $3)
 
 Please note that the above regex makes no distinction between 0 and 02. 02 needs to be replaced or else LocalDate(2020, 02, 12) will fail to compile.
 
-**Resources**
-- https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html
-- [Structural search and replace](/2014/02/08/intellij_structural/)
-
 ### Replace url with setUrl in Gradle build script
 
 Consider the following code:
@@ -87,3 +83,7 @@ repositories {
         maven { setUrl("https://dl.bintray.com/jetbrains/kotlin-native-dependencies") }
     }
 ```
+
+**Resources**
+- https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html
+- [Structural search and replace](/2014/02/08/intellij_structural/)

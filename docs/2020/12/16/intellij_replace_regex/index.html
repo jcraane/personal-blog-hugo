@@ -220,11 +220,6 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8be9fd;font-style:italic">Find:</span> \<span style="color:#f1fa8c">&#34;(\d{4})-(\d{2})-(\d{2})\&#34;</span>
 <span style="color:#8be9fd;font-style:italic">Replace:</span> LocalDate<span style="color:#ff79c6">(</span>$1<span style="color:#ff79c6">,</span> $2<span style="color:#ff79c6">,</span> $3<span style="color:#ff79c6">)</span>
 </code></pre></div><p>Please note that the above regex makes no distinction between 0 and 02. 02 needs to be replaced or else LocalDate(2020, 02, 12) will fail to compile.</p>
-<p><strong>Resources</strong></p>
-<ul>
-<li><a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html</a></li>
-<li><a href="/2014/02/08/intellij_structural/">Structural search and replace</a></li>
-</ul>
 <h3 id="replace-url-with-seturl-in-gradle-build-script">Replace url with setUrl in Gradle build script</h3>
 <p>Consider the following code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">repositories {
@@ -249,7 +244,12 @@
         maven { setUrl(<span style="color:#f1fa8c">&#34;https://kotlin.bintray.com/kotlinx&#34;</span>) }
         maven { setUrl(<span style="color:#f1fa8c">&#34;https://dl.bintray.com/jetbrains/kotlin-native-dependencies&#34;</span>) }
     }
-</code></pre></div>
+</code></pre></div><p><strong>Resources</strong></p>
+<ul>
+<li><a href="https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html">https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html</a></li>
+<li><a href="/2014/02/08/intellij_structural/">Structural search and replace</a></li>
+</ul>
+
 
                 
 
