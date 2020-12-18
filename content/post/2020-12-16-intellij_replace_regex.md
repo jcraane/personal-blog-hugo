@@ -88,3 +88,6 @@ repositories {
 - https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html
 - https://www.jetbrains.com/help/idea/regular-expression-syntax-reference.html#regex-syntax-reference  
 - [Structural search and replace](/2014/02/08/intellij_structural/)
+- [Online regexp tester](https://regexr.com/)
+
+
