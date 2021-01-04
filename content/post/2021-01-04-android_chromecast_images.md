@@ -38,5 +38,45 @@ cast_app_id=<YOUR_GOOGLE_CAST_SDK_APP_ID>
 
 ## Implementing the application
 
-**Adding support for Chromecast SKD**
+**Adding support for Chromecast SDK**
 
+The first step is to include the correct dependencies for the cast SDK:
+
+```kotlin
+implementation("androidx.mediarouter:mediarouter:1.0.0")
+implementation("com.google.android.gms:play-services-cast-framework:17.0.0")
+```
+
+The sample app uses all default cast functionality. This section provides a brief overview of the steps to add cast support to an Android app.
+
+The first step is to register an implementation of the CastOptions interface to the manifest. This initializes the CastContext singleton. The cast application id is required when initializing the cast context. Below is the implementation of the CastOptions interface in the sample app:
+
+```java
+public class CastOptionsProvider implements OptionsProvider {
+
+    public CastOptions getCastOptions(Context context) {
+        return new CastOptions.Builder()
+                .setReceiverApplicationId(context.getString(R.string.cast_app_id))
+                .setCastMediaOptions(new CastMediaOptions.Builder().build())
+                .build();
+    }
+
+    @Override
+    public List<SessionProvider> getAdditionalSessionProviders(Context context) {
+        return null;
+    }
+
+}
+```
+
+The following line registers this implementation in the manifest:
+
+```xml
+<meta-data
+   android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+   android:value="nl.jcraane.simpleimagecast.cast.CastOptionsProvider" />
+```
+
+# Resources
+- [Google Cast SDK Developer Console](https://cast.google.com/publish/#/overview)
+- [Cast-enable an Android app](https://codelabs.developers.google.com/codelabs/cast-videos-android/#0)
