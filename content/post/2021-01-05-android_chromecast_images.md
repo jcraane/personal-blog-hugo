@@ -5,7 +5,7 @@ title:      "Casting images with Chromecast"
 subtitle:   "Android: example of how to cast images using the Chromecast SDK"
 author: Jamie Craane
 date: 2021-01-05       
-description: "This post provides some example of using regular expressions with IntelliJ find and replace function."
+description: "This post show how to add basic support for casting images to a cast enabled receiver."
 image: "/img/cast-background.jpg"
 published: true
 showtoc: false
