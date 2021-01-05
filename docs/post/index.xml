@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Casting images with Chromecast</title>
+      <link>https://jamiecraane.dev/2021/01/05/android_chromecast_images/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2021/01/05/android_chromecast_images/</guid>
+      <description>Full source code can be found here: https://github.com/jcraane/android-simple-image-cast
+By adding Chromecast support to media rich apps like photo- and video players, users can display content to Chromecast enabled devices. This greatly enhances the user experience of those apps.
+This post demonstrates how to integrate the Chromecast SDK to add cast support for casting images. The app displays a list of publicly available images using an image carousel. When the user scrolls through those images, the images are cast to a connected receiver.</description>
+    </item>
+    
     <item>
       <title>IntelliJ find and replace using regular expressions</title>
       <link>https://jamiecraane.dev/2020/12/16/intellij_replace_regex/</link>
