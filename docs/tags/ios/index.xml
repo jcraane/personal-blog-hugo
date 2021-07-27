@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iOS on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/tags/ios/</link>
+    <description>Recent content in iOS on Jamie Craane personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sharing localized string resources and images between iOS and Android in Kotlin Multiplatform Mobile</title>
+      <link>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</link>
+      <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</guid>
+      <description>Introduction With Kotlin Multiplatform Mobile (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMP does mandate that certain type of code to be shared, it is up to you. It also does not mandate any particular architecture.
+Although KMM enables sharing of code between platforms it does not provide the ability to share string resources and images out-of-the box between iOS and Android.</description>
+    </item>
+    
+  </channel>
+</rss>
