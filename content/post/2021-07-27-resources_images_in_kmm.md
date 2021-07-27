@@ -1,8 +1,8 @@
 ---
 layout:     post
 
-title:      "Sharing localized string resources and images between iOS and Android in Kotlin Multiplatform Mobile"
-subtitle:   ""
+title:      "Localized resources and images in KMM"
+subtitle:   "Sharing localized string resources and images between iOS and Android in Kotlin Multiplatform Mobile"
 author: Jamie Craane
 date: 2021-07-27       
 description: "This post show how to add share localized resources and images between iOS and Android in KMM project."
