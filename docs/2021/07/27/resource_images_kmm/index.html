@@ -167,7 +167,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/kmm.png')
+        background-image: url('/img/kmm-header.png')
     }
 </style>
 <header class="intro-header">
@@ -224,14 +224,14 @@
 
                 
                 <h2 id="introduction">Introduction</h2>
-<p>With <a href="https://kotlinlang.org/lp/mobile/">Kotlin Multiplatform Mobile</a> (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMP does mandate that certain type of code to be shared, it is up to you. It also does not mandate any particular architecture.</p>
-<p>Although KMM enables sharing of code between platforms it does not provide the ability to share string resources and images out-of-the box between iOS and Android. This post describes one possible option to do exactly this.</p>
-<p>This post describes how to achieve both sharing of localized resources and images between platforms using the Gradle plugins kmm-resources and kmm-images. Both plugins are written by <a href="https://github.com/jcraane">me</a> and <a href="https://github.com/lammertw">Lammert Westerhoff</a>`</p>
-<p>We decided to create two separate plugins to make it easy to use one or other ot both. This also allows us to keep the two implementations and life cycles separate which eases maintenance. We also did not decide to create a framework for this. Those plugins are not opinionated to a given architecture such as MVI or MVVM. They can be used in whatever the architecture the apps use.</p>
+<p><a href="https://kotlinlang.org/lp/mobile/">Kotlin Multiplatform Mobile</a> (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.</p>
+<p>Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.</p>
+<p>This post describes how to achieve both sharing of localized resources and images between platforms using the Gradle plugins kmm-resources and kmm-images. Both plugins are written by <a href="https://github.com/jcraane">me</a> and <a href="https://github.com/lammertw">Lammert Westerhoff</a>.</p>
+<p>We decided to create two separate plugins to make it easy to use one or the other or both. This also allows us to keep the two implementations and life cycles separate which eases maintenance. We also did not decide to create a framework for this. Those plugins are not opinionated to a given architecture such as MVI or MVVM. They can be used in whatever architecture the apps use.</p>
 <h2 id="sharing-localized-string-resources-between-ios-and-android-and-web-and-shared-code">Sharing localized string resources between iOS and Android (and web) and shared code</h2>
 <p>One of the goals in sharing localized resources across platforms is that those resources can be used across platforms. Not only in those platforms itself (iOS and Android) but also within the code of the shared module. This creates the possibility to create view models in shared code which determine what localized resources to show in the view.</p>
-<p>String resources (for example: dialog titles, button labels, toast messages etc) are by default not shared in a KMM project. The benefit of sharing those resources is consistent text labels across all platforms using those resources. This means less duplication, fewer bugs because of that duplication and a more consistent experience across platforms.</p>
-<p>The challenge in using localized resources on different platforms is the different approaches each platform has regarding those localization resources. Android is using resource xml files, iOS uses asset catalogs, and the web can for example use property files. For this to work we created the kmm-resources Gradle plugin.</p>
+<p>String resources (for example: dialog titles, button labels, toast messages etc) are by default not shared in a KMM project. The benefit of sharing those resources is: consistent text labels across all platforms using those resources. This means less duplication, fewer bugs because of that duplication and a more consistent experience across platforms.</p>
+<p>The challenge in using localized resources on different platforms are the different approaches each platform has regarding those localized resources. Android is using resource xml files, iOS uses asset catalogs, and the web can for example use property files. For this to work we created the kmm-resources Gradle plugin.</p>
 <p>With the kmm-resources plugin you can define localized resources in the code of the shared module. At the moment yaml is used for this. The kmm-resources plugin then generates the code, so those resources can be used across all platforms, including the shared module. Below is a small example without going into too much detail (extensive documentation can be found on the project page of the <a href="https://github.com/jcraane/kmm-resources">KMM Resources</a> plugin itself, including lots of examples.</p>
 <p>With the kmm-resources plugin configured in your shared module add a yaml file containing the resources:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ff79c6">greetings</span>:
@@ -249,14 +249,14 @@
 <li>png</li>
 <li>vector images (pdf)</li>
 </ul>
-<p>Images are placed in a folder of choice in the shared module. jpg images are scaled according to the device capabilities. pdf images are converted to Android drawables on the Android platform (iOS uses pdf&rsquo;s as-is). At the moment the plugin relies on some external tools todo the image conversion. This might change in a future version.</p>
+<p>Images are placed in a folder of choice in the shared module. jpg images are scaled according to the device capabilities. pdf images are converted to Android drawables on the Android platform (iOS uses pdf&rsquo;s as-is). At the moment the plugin relies on some external tools to do the image conversion. This might change in a future version.</p>
 <p>A small example is given below:</p>
 <p>Consider the following images in the shared module:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">shared
     images
         icon.pdf
         piano.jpg
-</code></pre></div><p>After configuring the kmm-images plugin, which is hooked into the prebuild and compileKoltin* tasks, the images can be used in shared code:</p>
+</code></pre></div><p>After configuring the kmm-images plugin, which is hooked into the prebuild and compileKotlin* tasks, the images can be used in shared code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MainViewModel</span> {
     <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">createViewState</span>() = MainViewState(
         title = <span style="color:#f1fa8c">&#34;My Main Screen&#34;</span>,
