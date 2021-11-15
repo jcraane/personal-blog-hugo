@@ -4,7 +4,7 @@ layout:     post
 title:      "KMM adoption strategies"
 subtitle:   "Several strategies exist when adopting Kotlin Multiplatform Mobile"
 author: Jamie Craane
-date: 2021-07-27       
+date: 2021-15-11       
 description: "This post describes various strategies that can be used whena adopting KMM for native Android and iOS development."
 image: "/img/beach.jpg"
 published: true
@@ -15,7 +15,7 @@ tags:
 - KMM
 
 categories: [ KMM ]
-URL: "/2021/07/27/kmm_adoption_strategies/"
+URL: "/2021/1/15/kmm_adoption_strategies/"
 ---
 # KMM adoption strategies
 
@@ -94,7 +94,7 @@ Several factors might influence the choice of development platform for which is 
 ## Conclusion
 Development with Kotlin Multiplatform Mobile has several advantages compared to develop two (Android and iOS) apps in isolation. With KMM code is shared across platforms which means faster time to market, less bugs, more consistent apps and a faster time to market.
 
-There are several strategies to start with and adopt KMM. KMM can be integrated in existing apps or used in the development of completely new apps.
+There are several strategies to start with and adopt KMM. It can be integrated in existing apps or used in the development of completely new apps.
 
 The takeway is that adopting KMM can be done at every stage in development and is mostly not intrusive. This means that complete or huge rewrites before KMM can be adopted are most of the time not needed. Because of this there are almost always tangible benefits when adopting KMM.
 
