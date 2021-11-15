@@ -7,7 +7,7 @@ author: Jamie Craane
 date: 2021-07-27       
 description: "This post show how to add share localized resources and images between iOS and Android in KMM project."
 image: "/img/kmm-header.png"
-published: false
+published: true
 showtoc: false
 tags:
 - Android
