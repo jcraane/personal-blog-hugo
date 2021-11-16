@@ -6,7 +6,18 @@
     <description>Recent content in iOS on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KMM adoption strategies</title>
+      <link>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</link>
+      <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
+      <description>KMM adoption strategies Introduction Kotlin multiplatform Mobile, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.
+There are several advantages of sharing code between platforms:
+ Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication  KMM gives the flexibility to decide what code is shared.</description>
+    </item>
+    
     <item>
       <title>Localized resources and images in KMM</title>
       <link>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</link>
