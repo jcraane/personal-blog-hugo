@@ -46,11 +46,11 @@ There are several strategies you can choose from when adopting KMM. A couple of 
 - I have existing business logic written in Kotlin, how can I Leverage that in my native iOS and Android apps?
 
 ### 1 Integrate KMM in an existing app
-Adopting KMM does not mean rewriting the Android and iOS apps from scratch. It can be integrated gradually into an existing codebase at different levels. Most of the time, starting with the business logic (level 1) makes the most sense since this type of code is usually independent of platform **specific libraries**.
+Adopting KMM does not mean rewriting the Android and iOS apps from scratch. It can be integrated gradually into an existing codebase at different levels. Most of the time, starting with the business logic makes the most sense since this type of code is usually independent of platform **specific libraries**.
 
-Depending on the networking and serialization library used, the next step is moving the networkingand serialization code to the shared code. If for example [ktor](https://ktor.io/) and [Kotlin serialization](https://github.com/Kotlin/kotlinx.serialization) are used, this should be straightforward because they both are multiplatform libraries.
+Depending on the networking and serialization library used, the next step is moving the networking and serialization code to the shared code. If for example [ktor](https://ktor.io/) and [Kotlin serialization](https://github.com/Kotlin/kotlinx.serialization) are used, this should be straightforward because they both are multiplatform libraries.
 
-If on the other hand the networking code does not use a multiplatform library yet, it must be adapted on multiplaform libraries. Begin by migrating some trivial use cases, for example a simple GET request to retrieve some data and move that to the shared code.
+If on the other hand the networking code does not use a multiplatform library yet, it must be adapted to multiplaform libraries. Begin by migrating some trivial use cases, for example a simple GET request to retrieve some data and move that to the shared code.
 
 After some code is moved or migrated to the shared library, it is a good upportunity to integrate it in the apps. For Android this is straightforward because the shared library is just exposed as an Android library within the IDE. It is just Kotlin code after all.
 
@@ -82,7 +82,7 @@ This has both pros and cons. The advantage is that the learnings from the develo
 
 The disadvantage might be the slight delay in the start of the development of the second platform. Delaying development of the second platform does not neccesarily mean postponing development till the first platform is feature complete. Development of the second platform can start for example when the first (or couple) of features are implemented.
 
-Several factors might influence the choice of development platform for which is developed first. Think of an existing user base for example from the website. Experience of the team or a general preference towards one specific platform. No hard rules exist here.
+Several factors might influence the choice of development platform for which is developed first. Think of an existing user base for example from the website, experience of the team or a general preference towards one specific platform. No hard rules exist here.
 
 ## Conclusion
 Development with Kotlin Multiplatform Mobile has several advantages compared to develop two (Android and iOS) apps in isolation. With KMM code is shared across platforms which means faster time to market, less bugs, more consistent apps and a faster time to market.
