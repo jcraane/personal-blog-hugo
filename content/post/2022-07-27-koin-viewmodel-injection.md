@@ -21,15 +21,14 @@ URL: "/2022/07/27/koin_viewmodel_injection/"
 ## Context
 
 A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle
-of another component, usually a fragment or an activity. To create maintainable code, the ViewModel delegates to other objects. When using
-coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a
-ViewModel this usually is the viewModelScope. When the ViewModel is cleared, the viewModelScope is cancelled.
+of another component, usually a fragment or an activity. To create maintainable code without becomaing the ViewModel to large, the ViewModel delegates to other objects. When using
+coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope. When the ViewModel is cleared, the viewModelScope is cancelled.
 
-The above scenario works in the case all dependent objects can mark all async functions as suspended. This might not always be the case., Those dependent objects might also be used elsewhere or coming from a library. In this case it might make sense to pass a coroutine scope when initializing those objects. This post describes several methods (also ones which do not work as expected) to accomplish this.
+The above scenario works in the case all dependent objects can mark all required functions as suspended. This might not always be the case. Those dependent objects might also be used elsewhere or coming from a library. In this case it might make sense to pass a coroutine scope when initializing those objects. This post describes several methods (also ones which do not work as expected) to accomplish this.
 
 ### Application scenario
 
-To test all scenario's I created a minimal application with the following scenario (the basis of the application is the navigator sample from Android Studio).
+To test all scenario's I created a minimal application with the following scenario (the basis of the application is the navigator sample from Android Studio). The different scenarios are implemented in separate branches. The link to the source code can be found in the introduction of each scenario.
 
 The app defines three tabs: home, dashboard and notifications. The app consists of a MainActivity and three fragments, one for each tab. The notifications tab contains a button which launches the MainActivity again (pressing back finishes this instance of the MainActivity). The view models are scoped to the fragments.
 
@@ -37,11 +36,11 @@ The button in the home fragment calls the RandomGenerator which generates a rand
 
 The diagram visualizes this specific flow:
 
-![img.jpg](/img/posts/koin-injection-app-flow.jpg)
+![img.png](/img/posts/koin-injection-app-flow.png)
 
 The following class diagram visualizes the structure of the app:
 
-![img.jpg](/img/posts/koin-injection-app-structure.jpg)
+![img.png](/img/posts/koin-injection-app-structure.png)
 
 What do we want to achieve: 
 
@@ -109,13 +108,15 @@ HomeViewModel.generate randomGenerator instance is com.example.myapplication.ui.
 RandomGenerate.generate (androidx.lifecycle.CloseableCoroutineScope@ed7012f) is active: false <-- scope in RandomGenerator is not active
 ```
 
-The last line shows that the scope in RandomGenerator is not active anymore. This is because when we started a new activity, the original HomeFragment was not destroyed (only onDestroyView was called). Since the fragment was not actually destroyed, the HomeViewModel was not cleared. This means when we go back to the HomeFragment (by pressing back in the newly launched activity), the HomeViewModel is retrieved from the ViewModelStore. Because of this the init functions is not called and no new viewModelScope is set. Because we still reference the old one, the scope is not active anymore. Since RandomGenerator is a singleton, the RandomGenerator is a single instance (per koin module).
+The last line shows that the scope in RandomGenerator is not active anymore. This is because when we started a new activity, the original HomeFragment was not destroyed (only onDestroyView was called). Since the fragment was not actually destroyed, the HomeViewModel was not cleared. This means when we go back to the HomeFragment (by pressing back in the newly launched activity), the HomeViewModel is retrieved from the ViewModelStore. Because of this the init function is not called and no new viewModelScope is set. Because we still reference the old one, the scope is not active anymore. Since RandomGenerator is a singleton, the RandomGenerator is a single instance (per koin module).
 
 This is probably not the desired behavior. To make this scenario work, one option is to use a factory for RandomGenerator. This means that every time an instance is obtained, a new instance is created. If this is not an issue, this is an option. If the RandomGenerator is used in more places and is stateless (besides the viewModelScope) this option wastes resources.
 
 Because of the issues above a better solution is to not depend on a lateinit var but pass in the scope as an argument to the constructor.
 
 ## Use Koin parameters
+
+Source code: https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_parameters
 
 In this scenario we are going to utilize [Koin Parameters](https://insert-koin.io/docs/reference/koin-core/injection-parameters/) to inject the viewModelScope in the RandomGenerator. Parameters are injected into the object when an instance of the object (RandomGenerator in our case) is obtained.
 
@@ -138,17 +139,17 @@ val randomGenerator: RandomGenerator by inject() {
 Here you can see the viewModelScope is injected in the RandomGenerator. Each time the instance is resolved, the viewModelScope is injected. But remember, RandomGenerator is still a single so let's find out if this solution works as expected. The output of the same scenario can be seen below:
 
 ```text
-inject androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- viewModelScope is injected using params
-scope is active true
-Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970
+HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- viewModelScope is injected using params
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970
 
-inject androidx.lifecycle.CloseableCoroutineScope@57d6159 <-- new activity is launched, a new viewModelScope is injected
-scope is active true
-Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- 2. But, we still have the same instance of RandomGenerator which references the original viewModelScope
+HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@57d6159 <-- new activity is launched, a new viewModelScope is injected
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- 2. But, we still have the same instance of RandomGenerator which references the original viewModelScope
 
-onCleared called <-- back press
-scope is active true
-Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- same RandomGenerator with a reference to the original viewModelScope
+HomeViewModel.onCleared called <-- back press
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 <-- same RandomGenerator with a reference to the original viewModelScope
 ```
 
 Although this scenario works, it is not what we want since in step 2, the RandomGenerator is still the same instance (single) with the reference to the original viewModelScope. Although it seems as if a new viewModelScope was injected, there is not an actual new instance of RandomGenerator created since it is defined as a single.
@@ -157,4 +158,76 @@ This mitigation is the same as in the previous scenario, use factory for RandomG
 
 ## Use a custom scope
 
-todo
+Source code: https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_customscope
+
+You can think of a [scope](https://insert-koin.io/docs/reference/koin-core/scopes/) of a window in which a certain object exists. What we want to achieve is scope the RandomGenerator to the lifecycle of the ViewModel (between the creation till the 
+onCleared is called). Koin supports two ways of defining custom scopes: String Qualified Scope and Type Qualitied Scope. In our case the Type Qualitied Scope is used.
+
+The following code defines the scope in the Koin module:
+
+```kotlin
+scope<HomeViewModel> {
+    scoped { parametersHolder ->
+        RandomGenerator(parametersHolder.get())
+    }
+}
+```
+
+The RandomGenerator is defined as a scoped component in the scope of HomeViewModel. To actually use this scope in the viewmodel see the following code:
+
+```kotlin
+class HomeViewModel : ViewModel(), KoinScopeComponent {
+    override val scope: Scope by lazy { createScope(this) }
+
+    val randomGenerator: RandomGenerator by inject {
+        println("injection: inject $viewModelScope")
+        parametersOf(viewModelScope)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        scope.close()
+        println("injection: onCleared called")
+    }
+}
+```
+
+The scope is created with the createScope function as soon as an instance of the HomeViewModel is created. The by inject uses this custom scope.
+The scope is closed in the onCleared of the HomeViewModel. When we run the application we see the following output:
+
+```text
+HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@44334e9
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@f095bc9 scope = androidx.lifecycle.CloseableCoroutineScope@44334e9 <-- New instance of RandomGenerator 
+
+HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@de1c11e <-- New HomeViewModel with new viewModelScope
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@c96e9a9 scope = androidx.lifecycle.CloseableCoroutineScope@de1c11e <-- New instance of RandomGenerator with new scope
+HomeViewModel.onCleared called <-- scope is closed
+
+RandomGenerator scope is active true
+RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@f095bc9 scope = androidx.lifecycle.CloseableCoroutineScope@44334e9 <-- Original RandomGenerator with viewModelScope belonging to initial HomeViewModel
+```
+
+To test the HomeViewModel see [Koin Testing](https://insert-koin.io/docs/reference/koin-test/testing/) which describes how to inject objects into tests.
+
+The advantage of this solution is that the lifecycle of the RandomGenerator aligns with the lifecycle of the view model. It is slightly more complex to implement but I think this is worth the tradeoff.
+
+## Recap              
+
+There are cases in which an Android view model needs an object which requires a coroutine scope. There are several ways to initialize the coroutine scope from the view model on the dependent object. This
+posts described three ways (non-exhaustive) todo this. 
+
+1. Using a lateinit var and initialize
+2. Using Koin parameters without custom scope
+3. Using Koin parameters with a custom scope
+
+For every scenario the implementation is described as well as the pro's and con's. Option 1 is simple to implement with the tradeoff that it is easy to forget things or make mistakes. Option 2 utilizes Koin parameters and can only be used if factory bean definition can be used. Option 3 utilizes a custom scope to scope the dependent object to the life cycle of the view model. My preference would be option 3 since it makes it explicit that the dependent object and the view model share a similar life cycle.
+
+## Things to consider
+
+- When passing the viewModelScope to dependent components, those components should not close this scope themselves
+- If possible, use components with suspending functions which are called from the view model. The view model is then responsible for launching a coroutine using the viewModelScope
+- Beware that a single in Koin is not actual a Singleton in the JVM but a singleton within the same Koin module. It best to keep those stateless
+- When defining a single with parameters and that single is injected in multiple places, you always get the same instance even if the injected parameters change. The parameter is injected the first time the instance is retrieved
+- If possible it is best to pass all parameters in a ViewModel in the constructor and don't use setter injection at all
