@@ -18,6 +18,8 @@ categories: [ PROCESS ]
 URL: "/2022/07/27/koin_viewmodel_injection/"
 ---
 
+Image credit: Dall-E 'Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.'
+
 ## Context
 
 A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle
