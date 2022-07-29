@@ -6,7 +6,7 @@ subtitle:   "Inject objects into Android ViewModel which depend on a CoroutineSc
 author: Jamie Craane
 date: 2022-07-27    
 description: "This post describes various methods to use dependent objects in an Android ViewModel which depend on the viewModelScope."
-image: "/img/beach.jpg"
+image: "/img/robotFactory.jpg"
 published: true
 showtoc: false
 tags:
