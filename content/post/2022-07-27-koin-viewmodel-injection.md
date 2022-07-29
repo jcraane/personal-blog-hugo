@@ -21,7 +21,7 @@ URL: "/2022/07/27/koin_viewmodel_injection/"
 ## Context
 
 A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle
-of another component, usually a fragment or an activity. To create maintainable code without becomaing the ViewModel to large, the ViewModel delegates to other objects. When using
+of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects. When using
 coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope. When the ViewModel is cleared, the viewModelScope is cancelled.
 
 The above scenario works in the case all dependent objects can mark all required functions as suspended. This might not always be the case. Those dependent objects might also be used elsewhere or coming from a library. In this case it might make sense to pass a coroutine scope when initializing those objects. This post describes several methods (also ones which do not work as expected) to accomplish this.
