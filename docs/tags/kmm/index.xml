@@ -6,7 +6,27 @@
     <description>Recent content in KMM on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/kmm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/kmm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Koin ViewModel Injection</title>
+      <link>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</guid>
+      <description>Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becomaing the ViewModel to large, the ViewModel delegates to other objects. When using coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope.</description>
+    </item>
+    
+    <item>
+      <title>Code re-usability</title>
+      <link>https://jamiecraane.dev/2022/06/16/code_reusability/</link>
+      <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2022/06/16/code_reusability/</guid>
+      <description>Re-usability within software development means to reuse (part of) a solution in different products with the aim of:
+faster time to market lower costs less chance of introducing issues be able to use shared knowledge Re-usability at different abstraction levels Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:
+Infrastructure Using infrastructure to distribute software.</description>
+    </item>
+    
     <item>
       <title>KMM adoption strategies</title>
       <link>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</link>
@@ -15,7 +35,7 @@
       <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
       <description>KMM adoption strategies Introduction Kotlin multiplatform Mobile, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.
 There are several advantages of sharing code between platforms:
- Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication  KMM gives the flexibility to decide what code is shared.</description>
+Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication KMM gives the flexibility to decide what code is shared.</description>
     </item>
     
     <item>

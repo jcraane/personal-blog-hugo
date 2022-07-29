@@ -26,7 +26,7 @@ The DeviceLocation DynamoDB table uses the id as partition key.</description>
       <guid>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</guid>
       <description>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.
 Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):
- AWS Lambda. AWS Lambda is a compute service that runs developers&#39; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.</description>
+AWS Lambda. AWS Lambda is a compute service that runs developers&amp;rsquo; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.</description>
     </item>
     
   </channel>

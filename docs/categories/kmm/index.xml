@@ -15,7 +15,7 @@
       <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
       <description>KMM adoption strategies Introduction Kotlin multiplatform Mobile, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.
 There are several advantages of sharing code between platforms:
- Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication  KMM gives the flexibility to decide what code is shared.</description>
+Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication KMM gives the flexibility to decide what code is shared.</description>
     </item>
     
     <item>

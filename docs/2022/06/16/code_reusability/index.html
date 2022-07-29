@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Code re-usability" />
+    <meta property="og:title" content="Code re-usability" />
+    <meta property="twitter:title" content="Code re-usability" />
+    
+
+    
+    <meta name="description" content="This post describes various strategies on how to approach reusability in software products.">
+    <meta property="og:description" content="This post describes various strategies on how to approach reusability in software products." />
+    <meta property="twitter:description" content="This post describes various strategies on how to approach reusability in software products." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Code re-usability | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2022/06/16/code_reusability/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/beach.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/android" title="Android">
+                            Android
+                        </a>
+                        
+                        <a class="tag" href="/tags/ios" title="iOS">
+                            iOS
+                        </a>
+                        
+                        <a class="tag" href="/tags/kmm" title="KMM">
+                            KMM
+                        </a>
+                        
+                    </div>
+                    <h1>Code re-usability</h1>
+                    <h2 class="subheading">Code re-usability enabled faster time to market when done right</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Monday, November 15, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>Re-usability within software development means to reuse (part of) a solution in different products with the aim of:</p>
+<ol>
+<li>faster time to market</li>
+<li>lower costs</li>
+<li>less chance of introducing issues</li>
+<li>be able to use shared knowledge</li>
+</ol>
+<h2 id="re-usability-at-different-abstraction-levels">Re-usability at different abstraction levels</h2>
+<p>Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:</p>
+<p><strong>Infrastructure</strong>
+Using infrastructure to distribute software. This can be a cloud solution, but also an app store, for example.</p>
+<p><strong>Reuse at API level</strong>
+APIs are the interface of an organization or service to the outside world. A good API abstracts the underlying business logic so that this underlying service can be easily integrated into existing services (apps, websites, btb, etc.). This is usually where the most opportunities in the organization lie. Too often there is too much business logic in consuming systems which results in:</p>
+<ul>
+<li>longer time to marker</li>
+<li>too complex logic in client systems</li>
+<li>duplicated logic and therefore a chance of inconsistencies and a higher number of issues</li>
+<li>more difficult to transfer</li>
+</ul>
+<p><strong>Reusability at SDK level</strong>.
+As an example within app development, one should think of the Android and Apple SDKs. By making use of this, a large part is extracted for the developer: think of the mechanism for building UIs, push notifications, location based services etc.</p>
+<p><strong>Reusability on libraries and frameworks</strong>.
+Libraries and frameworks can be open source or close source (or both). By using libraries, solutions for existing problems are re-used instead of development from scratch. When adopting/evaluating a library you should ask yourself a couple of question to find out of the library does indeed provide the required value. Some actions/questions might be:</p>
+<ul>
+<li>Does the library solve the problem at hand (is it actually useful/)</li>
+<li>Checkout source code (does it not do anything tricky that might be a risk/liability)</li>
+<li>Does it have automated tests? Are they useful?</li>
+<li>How many open severe issues are there? Any open breaking bugs, crashes, edge cases)?</li>
+<li>Issues vs. data last maintained and commit activity.</li>
+<li>Tooling complexity of the things that make the library work</li>
+</ul>
+<p>Commercial third party solutions  may require their own process to determine whether the solution provides added value.</p>
+<p>Examples of open source libraries: Retrofit, Kotlin serialization, Ktor, Acompanist, SqlDelight
+Examples of third party solutions: Notificare, Mapbox</p>
+<p><strong>Reusability across platforms</strong>.
+Today, several solutions exist to achieve cross-platform mobile development re-usability. For example when native app development is chosen: Kotlin Multiplatform Mobile is an option. See <a href="https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/">https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</a> for more information.</p>
+<p><strong>Reusability based on recommendations</strong>.
+This includes architecture patterns and the toolset provided by platform SDKs or third party solutions. Think of MVVM architecture (which is the preferred architecture at the moment). Whether the solution from the platform or a third-party library is the best depends on many factors and outside the scope of this article.</p>
+<p><strong>Reusability in custom software</strong>.
+Here we have arrived at the lowest level where the actual specific solution of the problem is implemented. Re-use at this level is possible but is not an end in itself. The time it takes to make reusable components usually does not outweigh the benefits one gets. Of course, this does not mean that reuse does not take place at this level at all.</p>
+<p><strong>Reuse within a single codebase</strong>:
+Reuse within a single codebase is on an as-needed basis. A simple rule usually suffices: apply reuse when a certain piece of code is used more than twice. When using logic for the third time, sufficient knowledge is available to make this logic reusable (this also prevents over-engineering, among other things).</p>
+<p><strong>Reuse within different code bases within an organization</strong>:
+Sometimes it happens that there are defined pieces of functionality that can be reused. Think of an authentication flow or a specific analytics solution that has been chosen. Furthermore, reuse at this level does not serve an end in itself, but can best be completed according to need.</p>
+
+
+                
+
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2022
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

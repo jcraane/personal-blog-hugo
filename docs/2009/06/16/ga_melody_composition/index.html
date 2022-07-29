@@ -34,34 +34,33 @@
     <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Melody composition with genetic algorithms-Jamie Craane blog</title>
+    <title>Melody composition with genetic algorithms | Jamie Craane blog</title>
 
     <link rel="canonical" href="/2009/06/16/ga_melody_composition/">
 
-    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
-	
+    
+    
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
 
     
     <link rel="stylesheet" href="/css/zanshang.css">
+
     
-    
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
 
     
     
 
-    
     
     <script src="/js/jquery.min.js"></script>
-    
+
     
     <script src="/js/bootstrap.min.js"></script>
-    
+
     
     <script src="/js/hux-blog.min.js"></script>
 
@@ -72,7 +71,9 @@
 
 
 
+
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
     <div class="container-fluid">
         
         <div class="navbar-header page-scroll">
@@ -91,7 +92,7 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="/">All Posts</a>
                     </li>
                     
                         
@@ -117,6 +118,10 @@
                         
                         <li>
                             <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
                         </li>
                         
                     
@@ -170,7 +175,9 @@
         background-image: url('/img/piano.jpg')
     }
 </style>
-<header class="intro-header">
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -185,15 +192,17 @@
                     <h1>Melody composition with genetic algorithms</h1>
                     <h2 class="subheading">Creating musical pleasant melodies using genetic algorithms</h2>
                     <span class="meta">
-                        Posted by 
                         
-                            Jamie Craane
-                         
-                        on 
-                        Tuesday, June 16, 2009
-                        
-                        
-                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Tuesday, June 16, 2009
+                            
+                            
+                            
+                            
                     </span>
                 </div>
             </div>
@@ -210,7 +219,7 @@
 
             
             <div class="
-                col-lg-11 col-lg-offset-1
+                col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
@@ -346,31 +355,31 @@ Before the genetic algorithm can do it&rsquo;s work, the genetical representatio
 </tbody>
 </table>
 <p>The duration applies to both notes and rests. See the following code for the creation of the initial population of chromosomes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Configuration<span style="color:#ff79c6">.</span><span style="color:#50fa7b">reset</span><span style="color:#ff79c6">();</span>
-Configuration gaConf <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DefaultConfiguration<span style="color:#ff79c6">();</span>
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">resetProperty</span><span style="color:#ff79c6">(</span>Configuration<span style="color:#ff79c6">.</span><span style="color:#50fa7b">PROPERTY_FITEVAL_INST</span><span style="color:#ff79c6">);</span>
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setFitnessEvaluator</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> DeltaFitnessEvaluator<span style="color:#ff79c6">());</span>
-
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setPreservFittestIndividual</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">true</span><span style="color:#ff79c6">);</span>
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setKeepPopulationSizeConstant</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
-
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setPopulationSize</span><span style="color:#ff79c6">(</span>40<span style="color:#ff79c6">);</span>
-CompositeGene gene <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> CompositeGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">);</span>
-<span style="color:#6272a4">// Add the pitch gene
-</span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 0<span style="color:#ff79c6">,</span> 12<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
-<span style="color:#6272a4">// Add the octave gene
-</span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 1<span style="color:#ff79c6">,</span> 7<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
-<span style="color:#6272a4">// Add the length (from 3 - 5 is from quarter to sixteenth)
-</span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 1<span style="color:#ff79c6">,</span> 5<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
-
-<span style="color:#6272a4">// A size of 16 represent 16 notes
-</span><span style="color:#6272a4"></span>IChromosome sampleChromosome <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Chromosome<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> gene<span style="color:#ff79c6">,</span> 16<span style="color:#ff79c6">);</span>
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setSampleChromosome</span><span style="color:#ff79c6">(</span>sampleChromosome<span style="color:#ff79c6">);</span>
-
-gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setFitnessFunction</span><span style="color:#ff79c6">(</span>melodyFitnessFunction<span style="color:#ff79c6">);</span>
-
-<span style="color:#ff79c6">return</span> Genotype<span style="color:#ff79c6">.</span><span style="color:#50fa7b">randomInitialGenotype</span><span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">);</span>
-</code></pre></div><p>##Determine the fitness function
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Configuration<span style="color:#ff79c6">.</span><span style="color:#50fa7b">reset</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>Configuration gaConf <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DefaultConfiguration<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">resetProperty</span><span style="color:#ff79c6">(</span>Configuration<span style="color:#ff79c6">.</span><span style="color:#50fa7b">PROPERTY_FITEVAL_INST</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setFitnessEvaluator</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> DeltaFitnessEvaluator<span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setPreservFittestIndividual</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">true</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setKeepPopulationSizeConstant</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setPopulationSize</span><span style="color:#ff79c6">(</span>40<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>CompositeGene gene <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> CompositeGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Add the pitch gene
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 0<span style="color:#ff79c6">,</span> 12<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Add the octave gene
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 1<span style="color:#ff79c6">,</span> 7<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Add the length (from 3 - 5 is from quarter to sixteenth)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>gene<span style="color:#ff79c6">.</span><span style="color:#50fa7b">addGene</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> IntegerGene<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> 1<span style="color:#ff79c6">,</span> 5<span style="color:#ff79c6">),</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// A size of 16 represent 16 notes
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>IChromosome sampleChromosome <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Chromosome<span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">,</span> gene<span style="color:#ff79c6">,</span> 16<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setSampleChromosome</span><span style="color:#ff79c6">(</span>sampleChromosome<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gaConf<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setFitnessFunction</span><span style="color:#ff79c6">(</span>melodyFitnessFunction<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span> Genotype<span style="color:#ff79c6">.</span><span style="color:#50fa7b">randomInitialGenotype</span><span style="color:#ff79c6">(</span>gaConf<span style="color:#ff79c6">);</span>
+</span></span></code></pre></div><p>##Determine the fitness function
 The fitness function determines how good a specific melody is, relative to other melodies. The fitness function is the most complicated part of this problem since the fitness of a melody is subjective. Because of this nature, two approaches for fitness determination are presented.</p>
 <p><strong>Computer generated fitness</strong></p>
 <p>The computer generated fitness is purely based on certain algorithms to measure the fitness of a melody. Since there are a lot of different parameters, the fitness function combines the fitness value of several different strategies which can be easily added to the fitness function. Some of these parameters, but not limited to, are:</p>
@@ -415,29 +424,29 @@ The fitness function determines how good a specific melody is, relative to other
 <li>ContourStrategy. Strategy which calculates if a given melody has a specific contour in the pitch of the individual notes.</li>
 </ul>
 <p>Below is the implementation of the ScaleStrategy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ScaleStrategy</span> <span style="color:#8be9fd;font-style:italic">extends</span> AbstractMelodyFitnessStrategy <span style="color:#ff79c6">{</span>
-  <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">int</span> ERROR_COUNT_WHEN_NOTE_NOT_ON_SCALE <span style="color:#ff79c6">=</span> 1<span style="color:#ff79c6">;</span>
-
-  @Override
-  <span style="color:#6272a4">// The more difference between current note and note in scale the higher the error count
-</span><span style="color:#6272a4"></span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">calculateErrors</span><span style="color:#ff79c6">(</span>IChromosome melody<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-     <span style="color:#8be9fd">double</span> errors <span style="color:#ff79c6">=</span> 0<span style="color:#ff79c6">.</span><span style="color:#50fa7b">0D</span><span style="color:#ff79c6">;</span>
-     <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>Gene gene <span style="color:#ff79c6">:</span> melody<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getGenes</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-        Note note <span style="color:#ff79c6">=</span> GeneNoteFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">fromGene</span><span style="color:#ff79c6">((</span>CompositeGene<span style="color:#ff79c6">)</span> gene<span style="color:#ff79c6">);</span>
-        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>Pitch<span style="color:#ff79c6">.</span><span style="color:#50fa7b">REST</span> <span style="color:#ff79c6">!=</span> note<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getPitch</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">!</span><span style="color:#8be9fd;font-style:italic">super</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">scale</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">contains</span><span style="color:#ff79c6">(</span>note<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getPitch</span><span style="color:#ff79c6">()))</span> <span style="color:#ff79c6">{</span>
-           errors <span style="color:#ff79c6">+=</span> ERROR_COUNT_WHEN_NOTE_NOT_ON_SCALE<span style="color:#ff79c6">;</span>
-        <span style="color:#ff79c6">}</span>
-     <span style="color:#ff79c6">}</span>
-
-     <span style="color:#6272a4">// Adhering to a given scale is quite important so square the result
-</span><span style="color:#6272a4"></span>     <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">(</span>errors <span style="color:#ff79c6">*</span> errors<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">*</span> 10<span style="color:#ff79c6">;</span>
-  <span style="color:#ff79c6">}</span>
-
-  <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-     <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;[ScaleStrategy[scale: &#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">scale</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;]]&#34;</span><span style="color:#ff79c6">;</span>
-  <span style="color:#ff79c6">}</span>
-<span style="color:#ff79c6">}</span>
-</code></pre></div><p><strong>A different approach</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ScaleStrategy</span> <span style="color:#8be9fd;font-style:italic">extends</span> AbstractMelodyFitnessStrategy <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">int</span> ERROR_COUNT_WHEN_NOTE_NOT_ON_SCALE <span style="color:#ff79c6">=</span> 1<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  @Override
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// The more difference between current note and note in scale the higher the error count
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">calculateErrors</span><span style="color:#ff79c6">(</span>IChromosome melody<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#8be9fd">double</span> errors <span style="color:#ff79c6">=</span> 0<span style="color:#ff79c6">.</span><span style="color:#50fa7b">0D</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>Gene gene <span style="color:#ff79c6">:</span> melody<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getGenes</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        Note note <span style="color:#ff79c6">=</span> GeneNoteFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">fromGene</span><span style="color:#ff79c6">((</span>CompositeGene<span style="color:#ff79c6">)</span> gene<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>Pitch<span style="color:#ff79c6">.</span><span style="color:#50fa7b">REST</span> <span style="color:#ff79c6">!=</span> note<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getPitch</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">!</span><span style="color:#8be9fd;font-style:italic">super</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">scale</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">contains</span><span style="color:#ff79c6">(</span>note<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getPitch</span><span style="color:#ff79c6">()))</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>           errors <span style="color:#ff79c6">+=</span> ERROR_COUNT_WHEN_NOTE_NOT_ON_SCALE<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#6272a4">// Adhering to a given scale is quite important so square the result
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>     <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">(</span>errors <span style="color:#ff79c6">*</span> errors<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">*</span> 10<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;[ScaleStrategy[scale: &#34;</span> <span style="color:#ff79c6">+</span> <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">scale</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;]]&#34;</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p><strong>A different approach</strong></p>
 <p>The above paragraph describes how the fitness of a melody can be computed based on the knowledge of music theory. Instead of using music theory to compute the fitness of a melody, a different approach can be used. This approach looks at the melody as audio data, an array of bytes, instead as a sequence of notes. From this audio data, different information can be extracted. For example, by using a Fast Fourier Transform (FFT), the audio data can be viewed in the frequency domain. By analyzing existing melodies using FFT, an algorithm can be constructed which measures the fitness of generated melodies based on this knowledge. A future version of the application may use the technique described here.</p>
 <p><strong>Human intervention based fitness</strong></p>
 <p>Since melodies are very subjective it is hard to come up with a computer based mechanism to measure how good a specific melody is. Another approach which can be used is a human based intervention fitness function. In this approach the user is represented with a fixed set of melodies generated by the genetic algorithm. The user selects two or three melodies which participate in the next evolution. Although this approach is not implemented in the current version, expect a future release to use this approach.
@@ -460,12 +469,13 @@ Although the melodies generated by this program are nowhere near hit melodies, t
 <p><strong>Resources</strong></p>
 <ul>
 <li><a href="https://github.com/jcraane/melodycomposition_genetic">https://github.com/jcraane/melodycomposition_genetic</a></li>
-<li><a href="http://www.musictheory.net">www.musictheory.net</a></li>
+<li><a href="https://www.musictheory.net">www.musictheory.net</a></li>
 </ul>
 
 
                 
 
+                
                 <hr>
                 <ul class="pager">
                     
@@ -481,16 +491,20 @@ Although the melodies generated by this program are nowhere near hit melodies, t
                     </li>
                     
                 </ul>
+                
 
                 
-<div id="disqus-comment"></div>
 
 
 
             </div>
+
+            
+            
+
             
             <div class="
-                col-lg-11 col-lg-offset-1
+                col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
 
@@ -564,78 +578,77 @@ Although the melodies generated by this program are nowhere near hit melodies, t
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                   
-                   <li>
-                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
-                           <span class="fa-stack fa-lg">
-                               <i class="fa fa-circle fa-stack-2x"></i>
-                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                           </span>
-                       </a>
-                   </li>
-                   
-                    
+                <ul class="list-inline text-center">                  
                     
                     
                     <li>
                         <a href="https://www.twitter.com/jcraane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                     
                     
                     
-
                     
 
-		    
+		            
                     
                     
                     <li>
                         <a target="_blank" href="https://github.com/jcraane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-		    
+		            
                     
                     
                     
                     <li>
                         <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-		    
+		           
                     
                     
                     <li>
                         <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-            
                     
                     
                     
+                    
+                    
             
             
             
-                </ul>
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2021
+                    Copyright &copy; Jamie Craane personal blog 2022
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -653,7 +666,7 @@ Although the melodies generated by this program are nowhere near hit melodies, t
 
 
 <script>
-    function async(u, c) {
+    function loadAsync(u, c) {
       var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
@@ -671,7 +684,7 @@ Although the melodies generated by this program are nowhere near hit melodies, t
 <script>
     
     if($('#tag_cloud').length !== 0){
-        async("/js/jquery.tagcloud.js",function(){
+        loadAsync("/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -683,7 +696,7 @@ Although the melodies generated by this program are nowhere near hit melodies, t
 
 
 <script>
-    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
@@ -704,6 +717,14 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
 
 
 

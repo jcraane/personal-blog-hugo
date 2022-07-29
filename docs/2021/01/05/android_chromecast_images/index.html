@@ -34,34 +34,33 @@
     <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Casting images with Chromecast-Jamie Craane blog</title>
+    <title>Casting images with Chromecast | Jamie Craane blog</title>
 
     <link rel="canonical" href="/2021/01/05/android_chromecast_images/">
 
-    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
-	
+    
+    
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
 
     
     <link rel="stylesheet" href="/css/zanshang.css">
+
     
-    
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
 
     
     
 
-    
     
     <script src="/js/jquery.min.js"></script>
-    
+
     
     <script src="/js/bootstrap.min.js"></script>
-    
+
     
     <script src="/js/hux-blog.min.js"></script>
 
@@ -72,7 +71,9 @@
 
 
 
+
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
     <div class="container-fluid">
         
         <div class="navbar-header page-scroll">
@@ -91,7 +92,7 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="/">All Posts</a>
                     </li>
                     
                         
@@ -117,6 +118,10 @@
                         
                         <li>
                             <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
                         </li>
                         
                     
@@ -170,7 +175,9 @@
         background-image: url('/img/cast-background.jpg')
     }
 </style>
-<header class="intro-header">
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -189,15 +196,17 @@
                     <h1>Casting images with Chromecast</h1>
                     <h2 class="subheading">Android: example of how to cast images using the Chromecast SDK</h2>
                     <span class="meta">
-                        Posted by 
                         
-                            Jamie Craane
-                         
-                        on 
-                        Tuesday, January 5, 2021
-                        
-                        
-                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Tuesday, January 5, 2021
+                            
+                            
+                            
+                            
                     </span>
                 </div>
             </div>
@@ -214,7 +223,7 @@
 
             
             <div class="
-                col-lg-11 col-lg-offset-1
+                col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
@@ -234,67 +243,67 @@
 <li>To test the application without publishing it, register a Cast Receiver Device. Both receiver and app need to be on the same network.</li>
 <li>Add the applicationId from step 1 to the local.properties file in the root of your project:</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">cast_app_id=&lt;YOUR_GOOGLE_CAST_SDK_APP_ID&gt;
-</code></pre></div><p>The app id is retrieved using a resValue configured in the buildType section of the apps build.gradle.kts file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>cast_app_id=&lt;YOUR_GOOGLE_CAST_SDK_APP_ID&gt;
+</span></span></code></pre></div><p>The app id is retrieved using a resValue configured in the buildType section of the apps build.gradle.kts file.</p>
 <h2 id="implementing-the-application">Implementing the application</h2>
 <p><strong>Adding support for Chromecast SDK</strong></p>
 <p>The first step is to include the dependencies for the cast SDK:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">implementation(<span style="color:#f1fa8c">&#34;androidx.mediarouter:mediarouter:1.0.0&#34;</span>)
-implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-services-cast-framework:17.0.0&#34;</span>)
-</code></pre></div><p>The sample app uses default cast functionality. This section provides a brief overview of the steps required to add cast support to an Android app.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;androidx.mediarouter:mediarouter:1.0.0&#34;</span>)
+</span></span><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-services-cast-framework:17.0.0&#34;</span>)
+</span></span></code></pre></div><p>The sample app uses default cast functionality. This section provides a brief overview of the steps required to add cast support to an Android app.</p>
 <p>The first step is to register an implementation of the CastOptions interface to the manifest. This initializes the CastContext singleton. The cast application id is required when initializing the cast context. Below is the implementation of the CastOptions interface in the sample app:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CastOptionsProvider</span> <span style="color:#8be9fd;font-style:italic">implements</span> OptionsProvider <span style="color:#ff79c6">{</span>
-
-    <span style="color:#8be9fd;font-style:italic">public</span> CastOptions <span style="color:#50fa7b">getCastOptions</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> CastOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">()</span>
-                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setReceiverApplicationId</span><span style="color:#ff79c6">(</span>context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getString</span><span style="color:#ff79c6">(</span>R<span style="color:#ff79c6">.</span><span style="color:#50fa7b">string</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">cast_app_id</span><span style="color:#ff79c6">))</span>
-                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setCastMediaOptions</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> CastMediaOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">())</span>
-                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">();</span>
-    <span style="color:#ff79c6">}</span>
-
-    @Override
-    <span style="color:#8be9fd;font-style:italic">public</span> List<span style="color:#ff79c6">&lt;</span>SessionProvider<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getAdditionalSessionProviders</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
-    <span style="color:#ff79c6">}</span>
-
-<span style="color:#ff79c6">}</span>
-</code></pre></div><p>The following line registers this implementation in the manifest:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#ff79c6">&lt;meta-data</span>
-   <span style="color:#50fa7b">android:name=</span><span style="color:#f1fa8c">&#34;com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME&#34;</span>
-   <span style="color:#50fa7b">android:value=</span><span style="color:#f1fa8c">&#34;nl.jcraane.simpleimagecast.cast.CastOptionsProvider&#34;</span> <span style="color:#ff79c6">/&gt;</span>
-</code></pre></div><p><em>Add the cast button, initialize the cast context and show the introductory overlay</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CastOptionsProvider</span> <span style="color:#8be9fd;font-style:italic">implements</span> OptionsProvider <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> CastOptions <span style="color:#50fa7b">getCastOptions</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> CastOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setReceiverApplicationId</span><span style="color:#ff79c6">(</span>context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getString</span><span style="color:#ff79c6">(</span>R<span style="color:#ff79c6">.</span><span style="color:#50fa7b">string</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">cast_app_id</span><span style="color:#ff79c6">))</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setCastMediaOptions</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> CastMediaOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">())</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> List<span style="color:#ff79c6">&lt;</span>SessionProvider<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getAdditionalSessionProviders</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>The following line registers this implementation in the manifest:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;meta-data</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#50fa7b">android:name=</span><span style="color:#f1fa8c">&#34;com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#50fa7b">android:value=</span><span style="color:#f1fa8c">&#34;nl.jcraane.simpleimagecast.cast.CastOptionsProvider&#34;</span> <span style="color:#ff79c6">/&gt;</span>
+</span></span></code></pre></div><p><em>Add the cast button, initialize the cast context and show the introductory overlay</em></p>
 <p>The next step is adding the cast button and initialize the cast context. Adding the cast button is done by inflating a menu which contains the cast button. The menu is inflated in the onCreateOptionsMenu function where the menu item is assigned to the mediaRouteMenuItem variable in the activity. The menu item is needed when showing the introductory overlay (more on this later).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreateOptionsMenu</span>(menu: Menu?): Boolean {
-        <span style="color:#ff79c6">super</span>.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.browse, menu)
-        mediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(
-            applicationContext,
-            menu,
-            R.id.media_route_menu_item
-        )
-        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>
-    }
-</code></pre></div><p>The cast context is initialized in the onCreate method:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"> mCastContext = CastContext.getSharedInstance(<span style="color:#ff79c6">this</span>)
-</code></pre></div><p>It is good practice when an application integrates cast to show the user a so-called introductory overlay which introduces the user to the cast function pf your app. The cast SDK provides an IntroductoryOverlay for doing just that:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">showIntroductoryOverlay</span>() {
-        <span style="color:#ff79c6">if</span> (mIntroductoryOverlay <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
-            mIntroductoryOverlay<span style="color:#ff79c6">?.</span>remove()
-        }
-        <span style="color:#ff79c6">if</span> (mediaRouteMenuItem <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> mediaRouteMenuItem<span style="color:#ff79c6">?.</span>isVisible() <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">true</span>) {
-            Handler().post {
-                mIntroductoryOverlay = IntroductoryOverlay.Builder(
-                    <span style="color:#ff79c6">this</span>@MainActivity, mediaRouteMenuItem
-                )
-                    .setTitleText(<span style="color:#f1fa8c">&#34;Introducing Cast&#34;</span>)
-                    .setSingleTime()
-                    .setOnOverlayDismissedListener { mIntroductoryOverlay = <span style="color:#ff79c6">null</span> }
-                    .build()
-                mIntroductoryOverlay<span style="color:#ff79c6">?.</span>show()
-            }
-        }
-    }
-</code></pre></div><p>In the above code the menu item (mediaRouteMenuItem) is passed to the IntroductoryOverlay.Builder so the introductory overlay is anchorded to the menu item. The titleText is displayed as text in the overlay and the setSingleTime call makes sure the overlay is only shown once. Below is an example of the introductory overlay in the sample app:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreateOptionsMenu</span>(menu: Menu?): Boolean {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">super</span>.onCreateOptionsMenu(menu)
+</span></span><span style="display:flex;"><span>        menuInflater.inflate(R.menu.browse, menu)
+</span></span><span style="display:flex;"><span>        mediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(
+</span></span><span style="display:flex;"><span>            applicationContext,
+</span></span><span style="display:flex;"><span>            menu,
+</span></span><span style="display:flex;"><span>            R.id.media_route_menu_item
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>The cast context is initialized in the onCreate method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> mCastContext = CastContext.getSharedInstance(<span style="color:#ff79c6">this</span>)
+</span></span></code></pre></div><p>It is good practice when an application integrates cast to show the user a so-called introductory overlay which introduces the user to the cast function pf your app. The cast SDK provides an IntroductoryOverlay for doing just that:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">showIntroductoryOverlay</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (mIntroductoryOverlay <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span>            mIntroductoryOverlay<span style="color:#ff79c6">?.</span>remove()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (mediaRouteMenuItem <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> mediaRouteMenuItem<span style="color:#ff79c6">?.</span>isVisible() <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">true</span>) {
+</span></span><span style="display:flex;"><span>            Handler().post {
+</span></span><span style="display:flex;"><span>                mIntroductoryOverlay = IntroductoryOverlay.Builder(
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">this</span>@MainActivity, mediaRouteMenuItem
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>                    .setTitleText(<span style="color:#f1fa8c">&#34;Introducing Cast&#34;</span>)
+</span></span><span style="display:flex;"><span>                    .setSingleTime()
+</span></span><span style="display:flex;"><span>                    .setOnOverlayDismissedListener { mIntroductoryOverlay = <span style="color:#ff79c6">null</span> }
+</span></span><span style="display:flex;"><span>                    .build()
+</span></span><span style="display:flex;"><span>                mIntroductoryOverlay<span style="color:#ff79c6">?.</span>show()
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>In the above code the menu item (mediaRouteMenuItem) is passed to the IntroductoryOverlay.Builder so the introductory overlay is anchorded to the menu item. The titleText is displayed as text in the overlay and the setSingleTime call makes sure the overlay is only shown once. Below is an example of the introductory overlay in the sample app:</p>
 <p>
   <img src="/img/posts/introducing-cast.png" alt="img.png">
 
@@ -304,30 +313,30 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
 <p>There a are a couple of events which are used to get feedback about the state of the cast session. These are the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastStateListener">CastStateListener</a> and <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/SessionManagerListener">SessionManagerListener</a>. The CastStateListener is used for monitoring the current <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastState">CastState</a>. The aforementioned showIntroductoryOverlay is called in the CastStateListener when the state is not equal to CastState.NO_DEVICES_AVAILABLE.</p>
 <p>The SessionManagerListener is used for events about the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastSession">CastSession</a> itself.</p>
 <p>When the user taps on the cast button, the onApplicationConnected function is called on the SessionManagerListener. This is the place to obtain an instance of the CastSession which is used to cast actual content to a connected receiver.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onApplicationConnected</span>(castSession: CastSession) {
-    mCastSession = castSession
-    castImage(images[currentPosition])
-    supportInvalidateOptionsMenu()
-}
-</code></pre></div><p>When a CastSession is obtained we can cast actual content to the receiver in the form of a URL. In the example app the current image in the image carousel is cast. This is done by adding a listener to the viewpager and cast the current item (URL of the image) to the device. To cast an actual image the following code is used:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">castImage</span>(url: String) {
-   mCastSession<span style="color:#ff79c6">?.</span>remoteMediaClient<span style="color:#ff79c6">?.</span>let { remoteMediaClient <span style="color:#ff79c6">-&gt;</span>
-      remoteMediaClient.load(
-          MediaLoadRequestData.Builder()
-              .setMediaInfo(
-                  MediaInfo.Builder(url)
-                      .setStreamType(MediaInfo.STREAM_TYPE_NONE)
-                      .setContentType(<span style="color:#f1fa8c">&#34;image/png&#34;</span>)
-                      .setMetadata(MediaMetadata(MediaMetadata.MEDIA_TYPE_PHOTO).apply {
-                          putString(MediaMetadata.KEY_TITLE, url)
-                          addImage(WebImage(Uri.parse(url)))
-                      })
-                      .build()
-              ).build()
-      )
-   }
-}
-</code></pre></div><p>Here we use the load function of the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/media/RemoteMediaClient">RemoteMediaClient</a>. Extra metadata is supplied to provide an image and title. This is displayed in the dialog which is displayed when the cast button is pressed, and a cast session is in progress (or in the mini player when casting a video and the integrated mini player is used). See the following example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onApplicationConnected</span>(castSession: CastSession) {
+</span></span><span style="display:flex;"><span>    mCastSession = castSession
+</span></span><span style="display:flex;"><span>    castImage(images[currentPosition])
+</span></span><span style="display:flex;"><span>    supportInvalidateOptionsMenu()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When a CastSession is obtained we can cast actual content to the receiver in the form of a URL. In the example app the current image in the image carousel is cast. This is done by adding a listener to the viewpager and cast the current item (URL of the image) to the device. To cast an actual image the following code is used:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">castImage</span>(url: String) {
+</span></span><span style="display:flex;"><span>   mCastSession<span style="color:#ff79c6">?.</span>remoteMediaClient<span style="color:#ff79c6">?.</span>let { remoteMediaClient <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>      remoteMediaClient.load(
+</span></span><span style="display:flex;"><span>          MediaLoadRequestData.Builder()
+</span></span><span style="display:flex;"><span>              .setMediaInfo(
+</span></span><span style="display:flex;"><span>                  MediaInfo.Builder(url)
+</span></span><span style="display:flex;"><span>                      .setStreamType(MediaInfo.STREAM_TYPE_NONE)
+</span></span><span style="display:flex;"><span>                      .setContentType(<span style="color:#f1fa8c">&#34;image/png&#34;</span>)
+</span></span><span style="display:flex;"><span>                      .setMetadata(MediaMetadata(MediaMetadata.MEDIA_TYPE_PHOTO).apply {
+</span></span><span style="display:flex;"><span>                          putString(MediaMetadata.KEY_TITLE, url)
+</span></span><span style="display:flex;"><span>                          addImage(WebImage(Uri.parse(url)))
+</span></span><span style="display:flex;"><span>                      })
+</span></span><span style="display:flex;"><span>                      .build()
+</span></span><span style="display:flex;"><span>              ).build()
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here we use the load function of the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/media/RemoteMediaClient">RemoteMediaClient</a>. Extra metadata is supplied to provide an image and title. This is displayed in the dialog which is displayed when the cast button is pressed, and a cast session is in progress (or in the mini player when casting a video and the integrated mini player is used). See the following example:</p>
 <p>
   <img src="/img/posts/cast-stop-dialog.jpg" alt="img.png">
 
@@ -345,6 +354,7 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
 
                 
 
+                
                 <hr>
                 <ul class="pager">
                     
@@ -360,16 +370,20 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
                     </li>
                     
                 </ul>
+                
 
                 
-<div id="disqus-comment"></div>
 
 
 
             </div>
+
+            
+            
+
             
             <div class="
-                col-lg-11 col-lg-offset-1
+                col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
 
@@ -443,78 +457,77 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                   
-                   <li>
-                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
-                           <span class="fa-stack fa-lg">
-                               <i class="fa fa-circle fa-stack-2x"></i>
-                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                           </span>
-                       </a>
-                   </li>
-                   
-                    
+                <ul class="list-inline text-center">                  
                     
                     
                     <li>
                         <a href="https://www.twitter.com/jcraane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                     
                     
                     
-
                     
 
-		    
+		            
                     
                     
                     <li>
                         <a target="_blank" href="https://github.com/jcraane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-		    
+		            
                     
                     
                     
                     <li>
                         <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-		    
+		           
                     
                     
                     <li>
                         <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-            
                     
                     
                     
+                    
+                    
             
             
             
-                </ul>
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2021
+                    Copyright &copy; Jamie Craane personal blog 2022
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -532,7 +545,7 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
 
 
 <script>
-    function async(u, c) {
+    function loadAsync(u, c) {
       var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
@@ -550,7 +563,7 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
 <script>
     
     if($('#tag_cloud').length !== 0){
-        async("/js/jquery.tagcloud.js",function(){
+        loadAsync("/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -562,7 +575,7 @@ implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-serv
 
 
 <script>
-    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
@@ -583,6 +596,14 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
 
 
 

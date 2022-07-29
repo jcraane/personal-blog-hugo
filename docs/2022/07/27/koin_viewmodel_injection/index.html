@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Koin ViewModel Injection" />
+    <meta property="og:title" content="Koin ViewModel Injection" />
+    <meta property="twitter:title" content="Koin ViewModel Injection" />
+    
+
+    
+    <meta name="description" content="This post describes various methods to use dependent objects in an Android ViewModel which depend on the viewModelScope.">
+    <meta property="og:description" content="This post describes various methods to use dependent objects in an Android ViewModel which depend on the viewModelScope." />
+    <meta property="twitter:description" content="This post describes various methods to use dependent objects in an Android ViewModel which depend on the viewModelScope." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Koin ViewModel Injection | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2022/07/27/koin_viewmodel_injection/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/beach.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/android" title="Android">
+                            Android
+                        </a>
+                        
+                        <a class="tag" href="/tags/ios" title="iOS">
+                            iOS
+                        </a>
+                        
+                        <a class="tag" href="/tags/kmm" title="KMM">
+                            KMM
+                        </a>
+                        
+                    </div>
+                    <h1>Koin ViewModel Injection</h1>
+                    <h2 class="subheading">Inject objects into Android ViewModel which depend on a CoroutineScope</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Wednesday, July 27, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="context">Context</h2>
+<p>A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle
+of another component, usually a fragment or an activity. To create maintainable code without becomaing the ViewModel to large, the ViewModel delegates to other objects. When using
+coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope. When the ViewModel is cleared, the viewModelScope is cancelled.</p>
+<p>The above scenario works in the case all dependent objects can mark all required functions as suspended. This might not always be the case. Those dependent objects might also be used elsewhere or coming from a library. In this case it might make sense to pass a coroutine scope when initializing those objects. This post describes several methods (also ones which do not work as expected) to accomplish this.</p>
+<h3 id="application-scenario">Application scenario</h3>
+<p>To test all scenario&rsquo;s I created a minimal application with the following scenario (the basis of the application is the navigator sample from Android Studio). The different scenarios are implemented in separate branches. The link to the source code can be found in the introduction of each scenario.</p>
+<p>The app defines three tabs: home, dashboard and notifications. The app consists of a MainActivity and three fragments, one for each tab. The notifications tab contains a button which launches the MainActivity again (pressing back finishes this instance of the MainActivity). The view models are scoped to the fragments.</p>
+<p>The button in the home fragment calls the RandomGenerator which generates a random number and set this in a MutableStateFlow. The flow is collected in the HomeFragment and displayed in a TextView.</p>
+<p>The diagram visualizes this specific flow:</p>
+<p>
+  <img src="/img/posts/koin-injection-app-flow.png" alt="img.png">
+
+</p>
+<p>The following class diagram visualizes the structure of the app:</p>
+<p>
+  <img src="/img/posts/koin-injection-app-structure.png" alt="img.png">
+
+</p>
+<p>What do we want to achieve:</p>
+<p>Dependent components can be injected in an Android ViewModel so the dependent components can safely use the provided
+viewModelScope without worrying about the lifecycle of this scope.</p>
+<p>Println statements are added to appropriate points in the application to visualize what is happening.</p>
+<h2 id="use-a-lateinit-var">Use a lateinit var</h2>
+<p>Source code: <a href="https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/use_lateinit_var_for_viewmodelscope">https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/use_lateinit_var_for_viewmodelscope</a></p>
+<p>Although I am not a strong proponent (although sometimes they have their uses) of a lateinit var, this might be the first thing to come to mind when passing a viewModelScope to a dependent object. The RandomGenerator looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">RandomGenerator</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// This scope is initialized in the init of the HomeViewModel
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">lateinit</span> <span style="color:#ff79c6">var</span> scope: CoroutineScope
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> _randomNumber = MutableStateFlow(Random.nextInt())
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> randomNumber: Flow&lt;Int&gt; = _randomNumber
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">generate</span>() {
+</span></span><span style="display:flex;"><span>        println(<span style="color:#f1fa8c">&#34;injection: RandomGenerate.generate (</span><span style="color:#f1fa8c">$scope</span><span style="color:#f1fa8c">) is active: </span><span style="color:#f1fa8c">${scope.isActive}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        scope.launch {
+</span></span><span style="display:flex;"><span>            delay(<span style="color:#bd93f9">300.</span>milliseconds)
+</span></span><span style="display:flex;"><span>            _randomNumber.<span style="color:#ff79c6">value</span> = Random.nextInt()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this scenario the RandomGenerator is injected into the HomeViewModel and the scope is initialized in the init method of the HomeViewModel. See the below code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HomeViewModel</span> : ViewModel(), KoinComponent {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Code omitted
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> randomGenerator: RandomGenerator <span style="color:#ff79c6">by</span> inject()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">init</span> {
+</span></span><span style="display:flex;"><span>        println(<span style="color:#f1fa8c">&#34;injection: HomeViewModel.init set viewModelScope to </span><span style="color:#f1fa8c">$viewModelScope</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        randomGenerator.scope = viewModelScope
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Code omitted
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>For inject to work in a ViewModel we need to let the ViewModel implements the KoinComponent interface. What is further important to know is that the RandomGenerator is defined as a single in the Koin module.</p>
+<p>If we run the application we see the following output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>HomeViewModel.init set viewModelScope to androidx.lifecycle.CloseableCoroutineScope@67c7b3f &lt;-- viewModelScope is set in init
+</span></span><span style="display:flex;"><span>HomeViewModel.generate randomGenerator instance is com.example.myapplication.ui.home.RandomGenerator@2586393
+</span></span><span style="display:flex;"><span>RandomGenerate.generate (androidx.lifecycle.CloseableCoroutineScope@67c7b3f) is active: true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HomeViewModel.init set viewModelScope to androidx.lifecycle.CloseableCoroutineScope@ed7012f &lt;-- New activity is launched, new viewModelScope is set
+</span></span><span style="display:flex;"><span>HomeViewModel.generate randomGenerator instance is com.example.myapplication.ui.home.RandomGenerator@2586393 &lt;-- still the same RandomGenerator instance
+</span></span><span style="display:flex;"><span>RandomGenerate.generate (androidx.lifecycle.CloseableCoroutineScope@ed7012f) is active: true
+</span></span><span style="display:flex;"><span>HomeViewModel.onCleared &lt;-- Activity is destroyed and view model is cleared (scope @ed7012f is cancelled) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HomeViewModel.generate randomGenerator instance is com.example.myapplication.ui.home.RandomGenerator@2586393 &lt;-- still the same RandomGenerator instance
+</span></span><span style="display:flex;"><span>RandomGenerate.generate (androidx.lifecycle.CloseableCoroutineScope@ed7012f) is active: false &lt;-- scope in RandomGenerator is not active
+</span></span></code></pre></div><p>The last line shows that the scope in RandomGenerator is not active anymore. This is because when we started a new activity, the original HomeFragment was not destroyed (only onDestroyView was called). Since the fragment was not actually destroyed, the HomeViewModel was not cleared. This means when we go back to the HomeFragment (by pressing back in the newly launched activity), the HomeViewModel is retrieved from the ViewModelStore. Because of this the init function is not called and no new viewModelScope is set. Because we still reference the old one, the scope is not active anymore. Since RandomGenerator is a singleton, the RandomGenerator is a single instance (per koin module).</p>
+<p>This is probably not the desired behavior. To make this scenario work, one option is to use a factory for RandomGenerator. This means that every time an instance is obtained, a new instance is created. If this is not an issue, this is an option. If the RandomGenerator is used in more places and is stateless (besides the viewModelScope) this option wastes resources.</p>
+<p>Because of the issues above a better solution is to not depend on a lateinit var but pass in the scope as an argument to the constructor.</p>
+<h2 id="use-koin-parameters">Use Koin parameters</h2>
+<p>Source code: <a href="https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_parameters">https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_parameters</a></p>
+<p>In this scenario we are going to utilize <a href="https://insert-koin.io/docs/reference/koin-core/injection-parameters/">Koin Parameters</a> to inject the viewModelScope in the RandomGenerator. Parameters are injected into the object when an instance of the object (RandomGenerator in our case) is obtained.</p>
+<p>The definition of the RandomGenerator is as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>single { parametersHolder <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>    RandomGenerator(parametersHolder.<span style="color:#ff79c6">get</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As seen in the above definition, the ParametersHolder is passed in which can be used to obtain values during injection time. To actually pass-in those parameters the injection looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">val</span> randomGenerator: RandomGenerator <span style="color:#ff79c6">by</span> inject() {
+</span></span><span style="display:flex;"><span>    println(<span style="color:#f1fa8c">&#34;injection: inject </span><span style="color:#f1fa8c">$viewModelScope</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    parametersOf(viewModelScope)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here you can see the viewModelScope is injected in the RandomGenerator. Each time the instance is resolved, the viewModelScope is injected. But remember, RandomGenerator is still a single so let&rsquo;s find out if this solution works as expected. The output of the same scenario can be seen below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@6ee6970 &lt;-- viewModelScope is injected using params
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@57d6159 &lt;-- new activity is launched, a new viewModelScope is injected
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 &lt;-- 2. But, we still have the same instance of RandomGenerator which references the original viewModelScope
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HomeViewModel.onCleared called &lt;-- back press
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@4ab5fd0 scope = androidx.lifecycle.CloseableCoroutineScope@6ee6970 &lt;-- same RandomGenerator with a reference to the original viewModelScope
+</span></span></code></pre></div><p>Although this scenario works, it is not what we want since in step 2, the RandomGenerator is still the same instance (single) with the reference to the original viewModelScope. Although it seems as if a new viewModelScope was injected, there is not an actual new instance of RandomGenerator created since it is defined as a single.</p>
+<p>This mitigation is the same as in the previous scenario, use factory for RandomGenerator. The reasons to not do this are also the same and so this might not be an appropriate solution.</p>
+<h2 id="use-a-custom-scope">Use a custom scope</h2>
+<p>Source code: <a href="https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_customscope">https://github.com/jcraane/AndroidKoinInjectViewModelScope/tree/koin_inject_viewmodelscope_customscope</a></p>
+<p>You can think of a <a href="https://insert-koin.io/docs/reference/koin-core/scopes/">scope</a> of a window in which a certain object exists. What we want to achieve is scope the RandomGenerator to the lifecycle of the ViewModel (between the creation till the
+onCleared is called). Koin supports two ways of defining custom scopes: String Qualified Scope and Type Qualitied Scope. In our case the Type Qualitied Scope is used.</p>
+<p>The following code defines the scope in the Koin module:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>scope&lt;HomeViewModel&gt; {
+</span></span><span style="display:flex;"><span>    scoped { parametersHolder <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>        RandomGenerator(parametersHolder.<span style="color:#ff79c6">get</span>())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The RandomGenerator is defined as a scoped component in the scope of HomeViewModel. To actually use this scope in the viewmodel see the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HomeViewModel</span> : ViewModel(), KoinScopeComponent {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">val</span> scope: Scope <span style="color:#ff79c6">by</span> lazy { createScope(<span style="color:#ff79c6">this</span>) }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> randomGenerator: RandomGenerator <span style="color:#ff79c6">by</span> inject {
+</span></span><span style="display:flex;"><span>        println(<span style="color:#f1fa8c">&#34;injection: inject </span><span style="color:#f1fa8c">$viewModelScope</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        parametersOf(viewModelScope)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCleared</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">super</span>.onCleared()
+</span></span><span style="display:flex;"><span>        scope.close()
+</span></span><span style="display:flex;"><span>        println(<span style="color:#f1fa8c">&#34;injection: onCleared called&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The scope is created with the createScope function as soon as an instance of the HomeViewModel is created. The by inject uses this custom scope.
+The scope is closed in the onCleared of the HomeViewModel. When we run the application we see the following output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@44334e9
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@f095bc9 scope = androidx.lifecycle.CloseableCoroutineScope@44334e9 &lt;-- New instance of RandomGenerator 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HomeViewModel inject androidx.lifecycle.CloseableCoroutineScope@de1c11e &lt;-- New HomeViewModel with new viewModelScope
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@c96e9a9 scope = androidx.lifecycle.CloseableCoroutineScope@de1c11e &lt;-- New instance of RandomGenerator with new scope
+</span></span><span style="display:flex;"><span>HomeViewModel.onCleared called &lt;-- scope is closed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RandomGenerator scope is active true
+</span></span><span style="display:flex;"><span>RandomGenerator Do something in com.example.myapplication.ui.home.RandomGenerator@f095bc9 scope = androidx.lifecycle.CloseableCoroutineScope@44334e9 &lt;-- Original RandomGenerator with viewModelScope belonging to initial HomeViewModel
+</span></span></code></pre></div><p>To test the HomeViewModel see <a href="https://insert-koin.io/docs/reference/koin-test/testing/">Koin Testing</a> which describes how to inject objects into tests.</p>
+<p>The advantage of this solution is that the lifecycle of the RandomGenerator aligns with the lifecycle of the view model. It is slightly more complex to implement but I think this is worth the tradeoff.</p>
+<h2 id="recap">Recap</h2>
+<p>There are cases in which an Android view model needs an object which requires a coroutine scope. There are several ways to initialize the coroutine scope from the view model on the dependent object. This
+posts described three ways (non-exhaustive) todo this.</p>
+<ol>
+<li>Using a lateinit var and initialize</li>
+<li>Using Koin parameters without custom scope</li>
+<li>Using Koin parameters with a custom scope</li>
+</ol>
+<p>For every scenario the implementation is described as well as the pro&rsquo;s and con&rsquo;s. Option 1 is simple to implement with the tradeoff that it is easy to forget things or make mistakes. Option 2 utilizes Koin parameters and can only be used if factory bean definition can be used. Option 3 utilizes a custom scope to scope the dependent object to the life cycle of the view model. My preference would be option 3 since it makes it explicit that the dependent object and the view model share a similar life cycle.</p>
+<h2 id="things-to-consider">Things to consider</h2>
+<ul>
+<li>When passing the viewModelScope to dependent components, those components should not close this scope themselves</li>
+<li>If possible, use components with suspending functions which are called from the view model. The view model is then responsible for launching a coroutine using the viewModelScope</li>
+<li>Beware that a single in Koin is not actual a Singleton in the JVM but a singleton within the same Koin module. It best to keep those stateless</li>
+<li>When defining a single with parameters and that single is injected in multiple places, you always get the same instance even if the injected parameters change. The parameter is injected the first time the instance is retrieved</li>
+<li>If possible it is best to pass all parameters in a ViewModel in the constructor and don&rsquo;t use setter injection at all</li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2021/11/15/kmm_adoption_strategies/" data-toggle="tooltip" data-placement="top" title="KMM adoption strategies">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2022
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
