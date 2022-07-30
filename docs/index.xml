@@ -13,7 +13,8 @@
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</guid>
-      <description>Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becomaing the ViewModel to large, the ViewModel delegates to other objects. When using coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope.</description>
+      <description>Image by Dall-E: &amp;ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&amp;rdquo;
+Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects.</description>
     </item>
     
     <item>
