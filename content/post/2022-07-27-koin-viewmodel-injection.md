@@ -11,8 +11,6 @@ published: true
 showtoc: false
 tags:
 - Android
-- iOS
-- KMM
 
 categories: [ PROCESS ]
 URL: "/2022/07/27/koin_viewmodel_injection/"

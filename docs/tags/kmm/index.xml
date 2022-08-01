@@ -6,17 +6,7 @@
     <description>Recent content in KMM on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/kmm/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Koin ViewModel Injection</title>
-      <link>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</link>
-      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</guid>
-      <description>Image by Dall-E: &amp;ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&amp;rdquo;
-Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects.</description>
-    </item>
-    
+    <lastBuildDate>Mon, 15 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/kmm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Code re-usability</title>
       <link>https://jamiecraane.dev/2022/06/16/code_reusability/</link>
