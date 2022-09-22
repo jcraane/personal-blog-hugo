@@ -88,6 +88,15 @@ kmmImagesConfig {
 var generateImages = tasks["generateImages"]
 tasks["preBuild"].dependsOn(generateImages)
 ```
+4. Add the generated-res to the sourceSets in the android configuration section:
+
+```kotlin
+sourceSets {
+    getByName("main") {
+        res.srcDirs("../androidApp/src/main/generated-res")
+    }
+}
+```
 
 ## Known issues
 
