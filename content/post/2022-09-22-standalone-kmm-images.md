@@ -21,7 +21,7 @@ Image by Dall-E: *"Factory which produces lots of the same products. Dark."*
 
 ## Context
 
-https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the [kmm-images plugin\(https://github.com/jcraane/kmm-images) to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.
+https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the [kmm-images plugin](https://github.com/jcraane/kmm-images) to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.
 
 ## Benefits of using kmm-images in an Android app
 
