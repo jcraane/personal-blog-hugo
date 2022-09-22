@@ -98,7 +98,3 @@ sourceSets {
 }
 ```
 
-## Known issues
-
-Kmm-images generates code to retrieve images in a type-safe way. This is not supported yet for standalone Android apps. See https://github.com/jcraane/kmm-images/issues/20.
-
