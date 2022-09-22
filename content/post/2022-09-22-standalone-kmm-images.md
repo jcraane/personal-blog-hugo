@@ -93,7 +93,7 @@ tasks["preBuild"].dependsOn(generateImages)
 ```kotlin
 sourceSets {
     getByName("main") {
-        res.srcDirs("../androidApp/src/main/generated-res")
+        res.srcDirs("src/main/generated-res")
     }
 }
 ```
