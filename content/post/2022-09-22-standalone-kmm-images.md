@@ -41,11 +41,11 @@ To use an SVG in Android it must be converted to a vector drawable. To convert a
 - Use an online tool to convert SVG files to vector drawables.
 - Use a command line tool to convert SVG files to vector drawables.
 
-kmm-images automates this process. All SVG images present in the images folder manager by kmm-images are converted to vector drawables. After the conversion the images are placed in the drawable resource folder. kmm-images uses the Android Vector Drawable tool to do the conversion.
+kmm-images automates this process. All SVG images present in the images folder managed by kmm-images are converted to vector drawables. After the conversion the images are placed in the drawable resource folder. kmm-images uses the Android Vector Drawable tool to do the conversion.
 
 ### PNG/JPG conversion
 
-To create multiple version for different densities of a PNG or JPG you can:
+To create multiple versions for different densities of a PNG or JPG you can:
 
 - Ask the designer to supply the image in multiple densities.
 - Export the image in multiple densities from the design tool of choice.
@@ -55,7 +55,7 @@ kmm-support automatic creation of all required densities for a PNG or JPG. The o
 
 ### Support of PDF image format
 
-To use a PDF image in Android you must convert it to a supported format. kmm-images does this conversion automatically. A PDF images is converted to an SVG. The SVG is then convert to a vector drawable for use in Android.
+To use a PDF image in Android you must convert it to a supported format. kmm-images does this conversion automatically. A PDF images is converted to an SVG. The SVG is then converted to a vector drawable for use in Android.
 
 ### Ready for Kotlin Multiplatform
 
@@ -63,10 +63,14 @@ When you integrate kmm-images into an Android project means no more refactoring 
 
 ## Integrating kmm-images in an Android app
 
-To integrate kmm-images in an Android app add the following to the Android app build.gradle.kts file:
+To integrate kmm-images in an Android app, add the following to the Android app build.gradle.kts file:
 
-1. Add id("dev.jamiecraane.plugins.kmmimages") version "1.0.0-alpha11" to the plugins section.
-2. Add the following section to configure kmm-images
+1. Add the following to the plugins section:
+
+```kotlin
+ id("dev.jamiecraane.plugins.kmmimages") version "1.0.0-alpha11"
+```
+2. Add the following section to configure kmm-images:
 
 ```kotlin
 kmmImagesConfig {
