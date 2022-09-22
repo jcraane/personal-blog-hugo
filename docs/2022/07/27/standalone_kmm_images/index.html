@@ -247,9 +247,9 @@
 <li>Use an online tool to convert SVG files to vector drawables.</li>
 <li>Use a command line tool to convert SVG files to vector drawables.</li>
 </ul>
-<p>kmm-images automates this process. All SVG images present in the images folder manager by kmm-images are converted to vector drawables. After the conversion the images are placed in the drawable resource folder. kmm-images uses the Android Vector Drawable tool to do the conversion.</p>
+<p>kmm-images automates this process. All SVG images present in the images folder managed by kmm-images are converted to vector drawables. After the conversion the images are placed in the drawable resource folder. kmm-images uses the Android Vector Drawable tool to do the conversion.</p>
 <h3 id="pngjpg-conversion">PNG/JPG conversion</h3>
-<p>To create multiple version for different densities of a PNG or JPG you can:</p>
+<p>To create multiple versions for different densities of a PNG or JPG you can:</p>
 <ul>
 <li>Ask the designer to supply the image in multiple densities.</li>
 <li>Export the image in multiple densities from the design tool of choice.</li>
@@ -257,14 +257,17 @@
 </ul>
 <p>kmm-support automatic creation of all required densities for a PNG or JPG. The only requirement is to provide the images in the xxxhdpi density. kmm-images convers the images for both Android and iOS.</p>
 <h3 id="support-of-pdf-image-format">Support of PDF image format</h3>
-<p>To use a PDF image in Android you must convert it to a supported format. kmm-images does this conversion automatically. A PDF images is converted to an SVG. The SVG is then convert to a vector drawable for use in Android.</p>
+<p>To use a PDF image in Android you must convert it to a supported format. kmm-images does this conversion automatically. A PDF images is converted to an SVG. The SVG is then converted to a vector drawable for use in Android.</p>
 <h3 id="ready-for-kotlin-multiplatform">Ready for Kotlin Multiplatform</h3>
 <p>When you integrate kmm-images into an Android project means no more refactoring when the Android app is migrated to Kotlin Multiplatform Mobile.</p>
 <h2 id="integrating-kmm-images-in-an-android-app">Integrating kmm-images in an Android app</h2>
-<p>To integrate kmm-images in an Android app add the following to the Android app build.gradle.kts file:</p>
+<p>To integrate kmm-images in an Android app, add the following to the Android app build.gradle.kts file:</p>
 <ol>
-<li>Add id(&ldquo;dev.jamiecraane.plugins.kmmimages&rdquo;) version &ldquo;1.0.0-alpha11&rdquo; to the plugins section.</li>
-<li>Add the following section to configure kmm-images</li>
+<li>Add the following to the plugins section:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> id(<span style="color:#f1fa8c">&#34;dev.jamiecraane.plugins.kmmimages&#34;</span>) version <span style="color:#f1fa8c">&#34;1.0.0-alpha11&#34;</span>
+</span></span></code></pre></div><ol start="2">
+<li>Add the following section to configure kmm-images:</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>kmmImagesConfig {
 </span></span><span style="display:flex;"><span>    imageFolder.<span style="color:#ff79c6">set</span>(project.projectDir.resolve(<span style="color:#f1fa8c">&#34;images&#34;</span>))
