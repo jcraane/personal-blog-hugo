@@ -6,7 +6,7 @@ subtitle:   "Using KMM Images in a standalone Android project"
 author: Jamie Craane
 date: 2022-09-22
 description: "This post describes the benefits of using KMM Images in a standalone Android project."
-image: "/img/factory.JPG"
+image: "/img/factory.jpg"
 published: true
 showtoc: false
 tags:
