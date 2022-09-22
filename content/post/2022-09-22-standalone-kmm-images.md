@@ -28,7 +28,7 @@ https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the
 Kmm-images unifies image handling in a KMM iOS and Android app. Using kmm-images in a standalone Android app has the following advantages:
 
 - automatic conversion of SVG to Android vector drawables
-- automatic conversion of PNG and JPG to all requirements densities
+- automatic conversion of PNG and JPG to all required densities
 - support for PDF image format
 - ready for Kotlin Multiplatform
 
