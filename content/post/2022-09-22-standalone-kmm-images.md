@@ -51,7 +51,7 @@ To create multiple versions for different densities of a PNG or JPG you can:
 - Export the image in multiple densities from the design tool of choice.
 - Use a tool to convert the image to multiple densities.
 
-kmm-support automatic creation of all required densities for a PNG or JPG. The only requirement is to provide the images in the xxxhdpi density. kmm-images convers the images for both Android and iOS.
+kmm-images supports automatic creation of all required densities for a PNG or JPG. The only requirement is to provide the images in the xxxhdpi density. kmm-images convers the images for both Android and iOS.
 
 ### Support of PDF image format
 
