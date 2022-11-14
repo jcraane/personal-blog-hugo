@@ -6,11 +6,11 @@
     <description>Recent content in KMM on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Jetpack Compose - Recompositions</title>
       <link>https://jamiecraane.dev/2022/11/13/compose_recompositions/</link>
-      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
       
       <guid>https://jamiecraane.dev/2022/11/13/compose_recompositions/</guid>
       <description>What is recomposition A Compose function in Jetpack Compose represents some UI to be rendered:
