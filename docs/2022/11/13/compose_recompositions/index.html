@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="Kotlin: Multi variable null check" />
-    <meta property="og:title" content="Kotlin: Multi variable null check" />
-    <meta property="twitter:title" content="Kotlin: Multi variable null check" />
+    <meta name="title" content="Jetpack Compose - Recompositions" />
+    <meta property="og:title" content="Jetpack Compose - Recompositions" />
+    <meta property="twitter:title" content="Jetpack Compose - Recompositions" />
     
 
     
-    <meta name="description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin.">
-    <meta property="og:description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin." />
-    <meta property="twitter:description" content="There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin." />
+    <meta name="description" content="This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions.">
+    <meta property="og:description" content="This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions." />
+    <meta property="twitter:description" content="This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions." />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Kotlin: Multi variable null check | Jamie Craane blog</title>
+    <title>Jetpack Compose - Recompositions | Jamie Craane blog</title>
 
-    <link rel="canonical" href="/2020/12/10/kotlin_null/">
+    <link rel="canonical" href="/2022/11/13/compose_recompositions/">
 
     
     
@@ -172,7 +172,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/keyboard.jpg')
+        background-image: url('/img/recompositions-header.png')
     }
 </style>
 
@@ -184,13 +184,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/kotlin" title="Kotlin">
-                            Kotlin
+                        <a class="tag" href="/tags/android" title="Android">
+                            Android
+                        </a>
+                        
+                        <a class="tag" href="/tags/compose" title="Compose">
+                            Compose
                         </a>
                         
                     </div>
-                    <h1>Kotlin: Multi variable null check</h1>
-                    <h2 class="subheading">Different ways of checking for not null with multiple variables</h2>
+                    <h1>Jetpack Compose - Recompositions</h1>
+                    <h2 class="subheading">Recompositions in Jetpack Compose</h2>
                     <span class="meta">
                         
                             Posted by 
@@ -198,7 +202,7 @@
                                 Jamie Craane
                              
                             on 
-                            Thursday, December 10, 2020
+                            Thursday, September 22, 2022
                             
                             
                             
@@ -224,75 +228,120 @@
                 post-container">
 
                 
-                <p>Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.</p>
-<p>Consider the following example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (name <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> age <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
-</span></span><span style="display:flex;"><span>            name.length <span style="color:#6272a4">// Compile error since smart-cast is not possible
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+                <h1 id="what-is-recomposition">What is recomposition</h1>
+<p>A Compose function in Jetpack Compose represents some UI to be rendered:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@Composable
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">UsersScreen</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> usersScreenState <span style="color:#ff79c6">by</span> remember {
+</span></span><span style="display:flex;"><span>        mutableStateOf(
+</span></span><span style="display:flex;"><span>            UsersScreenState(
+</span></span><span style="display:flex;"><span>                title = <span style="color:#f1fa8c">&#34;Users&#34;</span>,
+</span></span><span style="display:flex;"><span>                body = <span style="color:#f1fa8c">&#34;This is the users screen&#34;</span>,
+</span></span><span style="display:flex;"><span>                (<span style="color:#bd93f9">1.</span>.<span style="color:#bd93f9">40</span>).toList().map { Person(<span style="color:#ff79c6">it</span>, <span style="color:#f1fa8c">&#34;Firstname Lastname </span><span style="color:#f1fa8c">$it</span><span style="color:#f1fa8c">&#34;</span>) },
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>When the name or age property is accessed after the above null check we get the following compile error: smart cast to &lsquo;String&rsquo; is impossible, because &rsquo;name&rsquo; is a mutable property that could have been changed by this time.</p>
-<p>There are several solutions to this problem which are presented below.</p>
-<p><strong>Assign variables to immutable val</strong></p>
-<p>In this variant the mutable variables are assigned to immutable val. This wat the compiler is able to execute the smart cast:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> n = name
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> a = age
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> n <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
-</span></span><span style="display:flex;"><span>            n.length <span style="color:#6272a4">// Smart cast is possible
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Use destructuring to assign the variables to a val</strong></p>
-<p>In the example the destructuring capabilities of Kotlin are used to make assigment of multiple variables at once easier. The null-check itself is the same:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
+</span></span><span style="display:flex;"><span>    Column() {
+</span></span><span style="display:flex;"><span>        Text(usersScreenState.title)
+</span></span><span style="display:flex;"><span>        Text(usersScreenState.description)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> (n, a) = name to age
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> n <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
-</span></span><span style="display:flex;"><span>            n.length
+</span></span><span style="display:flex;"><span>        Button(onClick = { usersScreenState = usersScreenState.copy(title = Random.nextInt().toString()) }) {
+</span></span><span style="display:flex;"><span>            Text(<span style="color:#f1fa8c">&#34;Change title&#34;</span>)
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>In the above example the to keyword is used to create a pair which is destructured into n and a. If there are more than two variables the listOf() method can be used to destructure up to 5 variables (because a list defines component1 to component5 functions) as in the following example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">val</span> (a, b, c, d, e) = kotlin.collections.listOf(<span style="color:#f1fa8c">&#34;a&#34;</span>, <span style="color:#f1fa8c">&#34;b&#34;</span>, <span style="color:#f1fa8c">&#34;c&#34;</span>, <span style="color:#f1fa8c">&#34;d&#34;</span>, <span style="color:#f1fa8c">&#34;e&#34;</span>)
-</span></span></code></pre></div><p><strong>Use a specialized function</strong></p>
-<p>The following example uses a function to check the passed-in variables for not-null and executes the block of both variables are not null:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Executes block if all supplied params are not null.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param a First param
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param b Second param
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param block The block to execute of all of the supplied params are not null.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">A</span>, <span style="color:#50fa7b">B</span>, <span style="color:#50fa7b">RESULT</span>&gt; <span style="color:#50fa7b">doIfNotNull</span>(a: A?, b: B?, block: (A, B) <span style="color:#ff79c6">-&gt;</span> RESULT): RESULT? {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (a <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> b <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> block(a, b)
-</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The above function can be used like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Person</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> name: String? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> age: Int? = <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">doSomething</span>() {
-</span></span><span style="display:flex;"><span>        doIfNotNull(name, age) { n, a <span style="color:#ff79c6">-&gt;</span> n.length}
+</span></span><span style="display:flex;"><span>        PersonList(usersScreenState.persons)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>For a more in-depth discussion see <a href="https://discuss.kotlinlang.org/t/kotlin-null-check-for-multiple-nullable-vars/1946">https://discuss.kotlinlang.org/t/kotlin-null-check-for-multiple-nullable-vars/1946</a></p>
+</span></span></code></pre></div><p>Notice that the usersScreenState is a var which means it can change. Any time the usersScreenState changes, the UI is recomposed. This is
+also called recomposition. Smart recomposition means skipping Composables when their inputs have not changed and those inputs are considered stable.</p>
+<p>The part &lsquo;when inputs change&rsquo; is important. This applies that when inputs are not changed, Composables are not re-rendered. This is indeed
+the case, according to the docs: When Compose recomposes based on new inputs, it only calls the functions or lambdas that might have changed, and skips the rest.</p>
+<p>The UI of the app looks like this:</p>
+<p>
+  <img src="/img/posts/recomposition-app.png" alt="img.png">
+
+</p>
+<h1 id="why-does-it-matter">Why does it matter</h1>
+<p>It is important for performance reasons that a Composable can be skipped if its inputs have not changed. A Composable can be executed many
+times. When you have an animation, Composables can be executed many times. To getter a stutter free UI, it is important that portions
+of the UI which have not change are not re-rendered.</p>
+<h1 id="how-does-compose-determine-that-a-composable-might-be-skipped">How does Compose determine that a Composable might be skipped</h1>
+<p>Look again the definition of recomposition: Smart recomposition means skipping Composables when their inputs have not changed and those inputs are considered stable.</p>
+<p>How does Compose consider a certain type stable? To be a stable type, the type must adhere to the following properties:</p>
+<ul>
+<li>Call to equals returns the same value for the same instances.</li>
+<li>Composition is notified when a public property of the type changes.</li>
+<li>All public properties are primitive types or also considered stable.</li>
+</ul>
+<p>All primitives are considered stable by default.</p>
+<h1 id="list-type-and-recomposition">List type and recomposition</h1>
+<p>Going back to the above example. When the Change title button is pressed, the title of the usersScreenState is updated with a random value.
+Based on our intuition we might think that only the Title is recomposed when usersScreenState changes. This is not the case however!</p>
+<p>What actually happens is that the whole PersonList is also recomposed along with the Composables in it. We can visualize this by
+using the Layout inspector in Android Studio. The Layout Inspector shows the UI Tree along with how many times Composables are recomposed or skipped.</p>
+<p>
+  <img src="/img/posts/recomposition-layout-inspector.png" alt="img.png">
+
+</p>
+<p>As you can see in the above screenshot, the Title is recomposed and the Description is skipped. This is expected because the title has changed
+whereas the description has not. What we also see is that all elements in the LazyColumn are also recomposed. This is not what we expect because
+the person list has not changed.</p>
+<h1 id="how-to-fix">How to fix</h1>
+<p>How can we fix this? Take a look at the third requirement for Compose to consider a type stable: All public properties are primitive types or also considered stable.</p>
+<p>The persons property is of the following type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> <span style="color:#ff79c6">val</span> persons: List&lt;Person&gt;
+</span></span></code></pre></div><p>As you can see the type is List<!-- raw HTML omitted -->. Since List is an interface, Compose cannot determine if this is a mutable or immutable implementation.
+Therefore, the UsersScreenState data class is considered unstable. As mentioned in <a href="https://chris.banes.dev/posts/composable-metrics/">Compose Metrics</a> we can take a look at the class stability and notice the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>unstable class UsersScreenState {
+</span></span><span style="display:flex;"><span>  stable val title: String
+</span></span><span style="display:flex;"><span>  stable val body: String
+</span></span><span style="display:flex;"><span>  unstable val persons: List&lt;Person&gt; &lt;-- List&lt;Person&gt; considered unstable
+</span></span><span style="display:flex;"><span>  &lt;runtime stability&gt; = Unstable
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>stable class Person {
+</span></span><span style="display:flex;"><span>  stable val id: Int
+</span></span><span style="display:flex;"><span>  stable val name: String
+</span></span><span style="display:flex;"><span>  &lt;runtime stability&gt; = Stable
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As expected, the List<!-- raw HTML omitted --> type is considered unstable and so is the enclosing type UsersScreenState.</p>
+<p>To fix this we can use the Immutable annotation to inform the Compose compiler that all public properties of the type remain unchanged after creation.
+We cannot use this annotation on an individual property. We need to create a wrapper class for the list of persons:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UsersScreenState</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> title: String,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> body: String,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> personCollection: PersonCollection,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Immutable
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PersonCollection</span>(<span style="color:#ff79c6">val</span> persons: List&lt;Person&gt;)
+</span></span></code></pre></div><p>By introducing a wrapper class and annotate that as @Immutable, the UsersScreenState becomes stable. We can proof this by looking at the class
+metrics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>stable class UsersScreenState {
+</span></span><span style="display:flex;"><span>  stable val title: String
+</span></span><span style="display:flex;"><span>  stable val body: String
+</span></span><span style="display:flex;"><span>  stable val personCollection: PersonCollection &lt;- PersonCollection is table so UsersScreenState is also considered stable
+</span></span><span style="display:flex;"><span>  &lt;runtime stability&gt; = Stable
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>stable class PersonCollection {
+</span></span><span style="display:flex;"><span>  unstable val persons: List&lt;Person&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Finally, to see if it works, lets re-run the layout inspector to see if we get rid of the recompositions in the list:</p>
+<p>
+  <img src="/img/posts/recomposition-layout-inspector-good.png" alt="img.png">
+
+</p>
+<p>The list is indeed not recomposed because the PersonCollection has not changed.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>When working with Jetpack Compose it is important to know how certain code may affect performance. One of the aspects is recomposition.
+Recomposition means execute Composable functions again when inputs have changed. Smart recompositions means skipping those Composable
+functions when inputs have not changed.</p>
+<p>Compose uses certain properties anout types to determine if a type is considered stable. Only with a stable type Compose is able to
+skip a Composable if inputs have not changed.</p>
+<p>For certain types Compose cannot determine if a type is stable, for example List. This is because List is an interface which can have
+both a mutable or immutable implementation. To help Compose with stability you can use the Immutable annotion on the class level.</p>
+<p>Compose has various tools to inspect the stability and number of recomposed or skipped composables.</p>
+<p>With this post you now have the knowledge to optimize Compose recompositions.</p>
 
 
                 
@@ -302,15 +351,10 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/12/12/aws_dynamo_db2/" data-toggle="tooltip" data-placement="top" title="AWS tutorial: DynamoDB part 2">&larr;
+                        <a href="/2022/07/27/standalone_kmm_images/" data-toggle="tooltip" data-placement="top" title="Standalone KMM Images">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/16/intellij_replace_regex/" data-toggle="tooltip" data-placement="top" title="IntelliJ find and replace using regular expressions">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

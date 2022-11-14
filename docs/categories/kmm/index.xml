@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Jetpack Compose - Recompositions</title>
+      <link>https://jamiecraane.dev/2022/11/13/compose_recompositions/</link>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2022/11/13/compose_recompositions/</guid>
+      <description>What is recomposition A Compose function in Jetpack Compose represents some UI to be rendered:
+@Composable fun UsersScreen() { var usersScreenState by remember { mutableStateOf( UsersScreenState( title = &amp;#34;Users&amp;#34;, body = &amp;#34;This is the users screen&amp;#34;, (1..40).toList().map { Person(it, &amp;#34;Firstname Lastname $it&amp;#34;) }, ) ) } Column() { Text(usersScreenState.title) Text(usersScreenState.description) Button(onClick = { usersScreenState = usersScreenState.copy(title = Random.nextInt().toString()) }) { Text(&amp;#34;Change title&amp;#34;) } PersonList(usersScreenState.persons) } } Notice that the usersScreenState is a var which means it can change.</description>
+    </item>
+    
+    <item>
       <title>Standalone KMM Images</title>
       <link>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</link>
       <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
