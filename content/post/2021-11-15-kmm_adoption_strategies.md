@@ -14,7 +14,7 @@ tags:
 - iOS
 - KMM
 
-categories: [ KMM ]
+categories: [ KMM, Process ]
 URL: "/2021/11/15/kmm_adoption_strategies/"
 ---
 # KMM adoption strategies

@@ -5,6 +5,9 @@
     <loc>https://jamiecraane.dev/tags/android/</loc>
     <lastmod>2022-11-13T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://jamiecraane.dev/categories/android/</loc>
+    <lastmod>2022-11-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jamiecraane.dev/categories/</loc>
     <lastmod>2022-11-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -17,9 +20,6 @@
     <loc>https://jamiecraane.dev/2022/11/13/compose_recompositions/</loc>
     <lastmod>2022-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jamiecraane.dev/categories/kmm/</loc>
-    <lastmod>2022-11-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://jamiecraane.dev/post/</loc>
     <lastmod>2022-11-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -27,6 +27,9 @@
     <lastmod>2022-11-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/kmm/</loc>
+    <lastmod>2022-09-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/categories/kmm/</loc>
     <lastmod>2022-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</loc>
@@ -52,9 +55,6 @@
   </url><url>
     <loc>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</loc>
     <lastmod>2021-07-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/categories/android/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2021/01/05/android_chromecast_images/</loc>
     <lastmod>2021-01-05T00:00:00+00:00</lastmod>

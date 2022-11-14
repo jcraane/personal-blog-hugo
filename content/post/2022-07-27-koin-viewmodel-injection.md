@@ -12,7 +12,7 @@ showtoc: false
 tags:
 - Android
 
-categories: [ KMM ]
+categories: [ Android ]
 URL: "/2022/07/27/koin_viewmodel_injection/"
 ---
 

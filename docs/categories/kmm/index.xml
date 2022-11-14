@@ -6,17 +6,7 @@
     <description>Recent content in KMM on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Jetpack Compose - Recompositions</title>
-      <link>https://jamiecraane.dev/2022/11/13/compose_recompositions/</link>
-      <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/11/13/compose_recompositions/</guid>
-      <description>What is recomposition A Compose function in Jetpack Compose represents some UI to be rendered:
-@Composable fun UsersScreen() { var usersScreenState by remember { mutableStateOf( UsersScreenState( title = &amp;#34;Users&amp;#34;, body = &amp;#34;This is the users screen&amp;#34;, (1..40).toList().map { Person(it, &amp;#34;Firstname Lastname $it&amp;#34;) }, ) ) } Column() { Text(usersScreenState.title) Text(usersScreenState.description) Button(onClick = { usersScreenState = usersScreenState.copy(title = Random.nextInt().toString()) }) { Text(&amp;#34;Change title&amp;#34;) } PersonList(usersScreenState.persons) } } Notice that the usersScreenState is a var which means it can change.</description>
-    </item>
-    
+    <lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Standalone KMM Images</title>
       <link>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</link>
@@ -26,16 +16,6 @@
       <description>Image by Dall-E: &amp;ldquo;Factory which produces lots of the same products. Dark.&amp;rdquo;
 Context https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the kmm-images plugin to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.
 Benefits of using kmm-images in an Android app Kmm-images unifies image handling in a KMM iOS and Android app.</description>
-    </item>
-    
-    <item>
-      <title>Koin ViewModel Injection</title>
-      <link>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</link>
-      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</guid>
-      <description>Image by Dall-E: &amp;ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&amp;rdquo;
-Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects.</description>
     </item>
     
     <item>

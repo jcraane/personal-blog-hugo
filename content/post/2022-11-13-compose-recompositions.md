@@ -13,7 +13,7 @@ tags:
 - Android
 - Compose
 
-categories: [ KMM ]
+categories: [ Android ]
 URL: "/2022/11/13/compose_recompositions/"
 ---
 
