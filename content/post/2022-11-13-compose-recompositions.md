@@ -153,6 +153,17 @@ Finally, to see if it works, lets re-run the layout inspector to see if we get r
 
 The list is indeed not recomposed because the PersonCollection has not changed.
 
+# Detekt with Compose
+
+Another way to get information about the parameters passed to Composables is by using [Detekt](https://github.com/detekt/detekt) together with the [Twitter Compose Rules](https://twitter.github.io/compose-rules/). If we run the Twitter Compose rules on the above code we get the following warning:
+
+```plain
+TwitterCompose - 20min debt
+	UnstableCollections - [The Compose Compiler cannot infer the stability of a parameter if a List<Person>(...)] at /Users/jamiecraane/develop/AndroidStudio/JetpackCompose/Recompositions/app/src/main/java/dev/jamiecraane/recompositions/RecompositionScreenDemo.kt:48:33
+```
+
+This specific rules of the Twitter Compose checks if any parameters passed to Composable functions are mutable or not.
+
 # Conclusion
 
 When working with Jetpack Compose it is important to know how certain code may affect performance. One of the aspects is recomposition. 
@@ -168,3 +179,6 @@ both a mutable or immutable implementation. To help Compose with stability you c
 Compose has various tools to inspect the stability and number of recomposed or skipped composables.
 
 With this post you now have the knowledge to optimize Compose recompositions.
+
+# Resources
+- [Sample code](https://github.com/jcraane/ComposeRecompositions)

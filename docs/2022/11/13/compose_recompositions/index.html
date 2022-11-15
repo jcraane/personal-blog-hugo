@@ -332,6 +332,11 @@ metrics:</p>
 
 </p>
 <p>The list is indeed not recomposed because the PersonCollection has not changed.</p>
+<h1 id="detekt-with-compose">Detekt with Compose</h1>
+<p>Another way to get information about the parameters passed to Composables is by using <a href="https://github.com/detekt/detekt">Detekt</a> together with the <a href="https://twitter.github.io/compose-rules/">Twitter Compose Rules</a>. If we run the Twitter Compose rules on the above code we get the following warning:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>TwitterCompose - 20min debt
+</span></span><span style="display:flex;"><span>	UnstableCollections - [The Compose Compiler cannot infer the stability of a parameter if a List&lt;Person&gt;(...)] at /Users/jamiecraane/develop/AndroidStudio/JetpackCompose/Recompositions/app/src/main/java/dev/jamiecraane/recompositions/RecompositionScreenDemo.kt:48:33
+</span></span></code></pre></div><p>This specific rules of the Twitter Compose checks if any parameters passed to Composable functions are mutable or not.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>When working with Jetpack Compose it is important to know how certain code may affect performance. One of the aspects is recomposition.
 Recomposition means execute Composable functions again when inputs have changed. Smart recompositions means skipping those Composable
@@ -342,6 +347,10 @@ skip a Composable if inputs have not changed.</p>
 both a mutable or immutable implementation. To help Compose with stability you can use the Immutable annotion on the class level.</p>
 <p>Compose has various tools to inspect the stability and number of recomposed or skipped composables.</p>
 <p>With this post you now have the knowledge to optimize Compose recompositions.</p>
+<h1 id="resources">Resources</h1>
+<ul>
+<li><a href="https://github.com/jcraane/ComposeRecompositions">Sample code</a></li>
+</ul>
 
 
                 
