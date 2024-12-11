@@ -6,7 +6,7 @@ subtitle:   "Using Firebase authentication with Ktor"
 author: Jamie Craane
 date: 2024-12-11
 description: "This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase's authentication capabilities."
-image: "/img/recompositions-header.png"
+image: "/img/part1-firebase-ktor.png"
 published: true
 showtoc: false
 tags:
