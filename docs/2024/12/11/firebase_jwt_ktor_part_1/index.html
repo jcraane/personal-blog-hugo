@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Integrating Firebase JWT token verification in Ktor - Part 1" />
+    <meta property="og:title" content="Integrating Firebase JWT token verification in Ktor - Part 1" />
+    <meta property="twitter:title" content="Integrating Firebase JWT token verification in Ktor - Part 1" />
+    
+
+    
+    <meta name="description" content="This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase&#39;s authentication capabilities.">
+    <meta property="og:description" content="This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase&#39;s authentication capabilities." />
+    <meta property="twitter:description" content="This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase&#39;s authentication capabilities." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Integrating Firebase JWT token verification in Ktor - Part 1 | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2024/12/11/firebase_jwt_ktor_part_1/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/recompositions-header.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/firebase" title="Firebase">
+                            Firebase
+                        </a>
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/ktor" title="Ktor">
+                            Ktor
+                        </a>
+                        
+                    </div>
+                    <h1>Integrating Firebase JWT token verification in Ktor - Part 1</h1>
+                    <h2 class="subheading">Using Firebase authentication with Ktor</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Wednesday, December 11, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="integrating-firebase-jwt-token-verification-in-ktor---part-1">Integrating Firebase JWT token verification in Ktor - Part 1</h1>
+<p>As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.</p>
+<h2 id="introduction-to-ktor-and-firebase-authentication">Introduction to Ktor and Firebase Authentication</h2>
+<p><a href="https://ktor.io/">https://ktor.io</a> is a lightweight framework for creating web applications in Kotlin, known for its simplicity and flexibility, you will find no magic here. <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a> provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, and popular federated identity providers like Google, Facebook, and Twitter.</p>
+<h2 id="setting-up-ktor-with-firebase-authentication">Setting Up Ktor with Firebase Authentication</h2>
+<p>In a typical Ktor application, modules are defined to manage different aspects of the application lifecycle. Here’s a simplified module setup to illustrate the integration process:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Application</span>.module() {
+</span></span><span style="display:flex;"><span>    install(Koin) {
+</span></span><span style="display:flex;"><span>        slf4jLogger(Level.INFO)
+</span></span><span style="display:flex;"><span>        modules(securityModule(environment))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">val</span> firebaseAuth <span style="color:#ff79c6">by</span> inject&lt;FirebaseAuth&gt;()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    install(Authentication) {
+</span></span><span style="display:flex;"><span>        jwt(<span style="color:#f1fa8c">&#34;auth-jwt&#34;</span>) {
+</span></span><span style="display:flex;"><span>	        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	        The verifier function allows you to verify a token format and its signature. In our case, we use the FirebaseSDK to do the token verification.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	        */</span>
+</span></span><span style="display:flex;"><span>            verifier(
+</span></span><span style="display:flex;"><span>                FirebaseJWTVerifier(
+</span></span><span style="display:flex;"><span>                    firebaseAuth = firebaseAuth,
+</span></span><span style="display:flex;"><span>                    audience = <span style="color:#f1fa8c">&#34;your-audience-id&#34;</span>
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            The validate function allows you to perform additional validations on the JWT payload. Check the credential parameter, which represents a JWTCredential object and contains the JWT payload. In the example below, we just create a JWTPrincipal because we do not require additional validation.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            */</span>
+</span></span><span style="display:flex;"><span>            validate { credential <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>                JWTPrincipal(credential.payload)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            The challenge function allows you to configure a response to be sent if authentication fails.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            */</span>
+</span></span><span style="display:flex;"><span>            challenge { _, _ <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>                call.respond(
+</span></span><span style="display:flex;"><span>                    HttpStatusCode.Unauthorized,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;Token is not valid or has expired&#34;</span>
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="integrating-firebase-and-configuring-firebaseauth">Integrating Firebase and Configuring FirebaseAuth</h2>
+<p>Before we delve into verifying JWT tokens, it&rsquo;s essential to configure FirebaseAuth. In this example we use Koin to initialize all of our dependencies. This setup involves downloading a Firebase service account JSON file (The instructions to create a Firebase config file can be found <a href="https://firebase.google.com/docs/admin/setup">here</a>) and initializing FirebaseApp:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">securityModule</span>(environment: ApplicationEnvironment) = module {
+</span></span><span style="display:flex;"><span>    single {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> firebaseConfig = environment.config.<span style="color:#ff79c6">property</span>(<span style="color:#f1fa8c">&#34;firebase.config&#34;</span>).getString()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> options = FirebaseOptions.builder()
+</span></span><span style="display:flex;"><span>            .setCredentials(
+</span></span><span style="display:flex;"><span>                GoogleCredentials.fromStream(
+</span></span><span style="display:flex;"><span>	                ByteArrayInputStream(firebaseConfig.toByteArray(Charsets.UTF_8)
+</span></span><span style="display:flex;"><span>                ))
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            .build()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        FirebaseApp.initializeApp(options)
+</span></span><span style="display:flex;"><span>        FirebaseAuth.getInstance()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="creating-firebasejwtverifier">Creating FirebaseJWTVerifier</h2>
+<p>The <code>FirebaseJWTVerifier</code> is responsible for decoding and verifying the JWTs provided by Firebase by using the Firebase SDK:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FirebaseJWTVerifier</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> firebaseAuth: FirebaseAuth,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> audience: String
+</span></span><span style="display:flex;"><span>) : com.auth0.jwt.interfaces.JWTVerifier {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">verify</span>(token: String): DecodedJWT {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> parts = token.split(<span style="color:#f1fa8c">&#34;.&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">val</span> header = parts[<span style="color:#bd93f9">0</span>]
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">val</span> payload = parts[<span style="color:#bd93f9">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">val</span> firebaseToken = firebaseAuth.verifyIdToken(token)
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">return</span> FirebaseDecodedToken(firebaseToken, audience, token, header, payload)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, <code>FirebaseDecodedToken</code> is a custom class that implements <code>DecodedJWT</code> to provide functionalities such as extracting claims and the JWT header and payload. It is just a wrapper around the firebaseToken.</p>
+<h2 id="handling-jwt-in-ktor-routes">Handling JWT in Ktor Routes</h2>
+<p>Once JWT authentication is set up, you can secure specific routes by wrapping them with the <code>authenticate</code> block in your Ktor routing setup:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>routing {
+</span></span><span style="display:flex;"><span>    authenticate(<span style="color:#f1fa8c">&#34;auth-jwt&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">get</span>(<span style="color:#f1fa8c">&#34;/secured-endpoint&#34;</span>) {
+</span></span><span style="display:flex;"><span>            call.respondText(<span style="color:#f1fa8c">&#34;This is a secured endpoint!&#34;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">get</span>(<span style="color:#f1fa8c">&#34;/open-endpoint&#34;</span>) {
+</span></span><span style="display:flex;"><span>        call.respondText(<span style="color:#f1fa8c">&#34;This is an open endpoint!&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>/secured-endpoint</code> will require a valid JWT to access, while <code>/open-endpoint</code> will remain unsecured. This flexibility allows you to mix secure and open routes within the same application.</p>
+<h2 id="potential-errors">Potential errors</h2>
+<ul>
+<li>When configuring Ktor authentication maken sure the Authentication plugin is installed before the Routing plugin. Else the following error occurs:</li>
+</ul>
+<pre tabindex="0"><code>Exception in thread &#34;main&#34; io.ktor.server.application.MissingApplicationPluginException: Application plugin AuthenticationHolder is not installed
+</code></pre><h2 id="conclusion">Conclusion</h2>
+<p>Integrating Firebase JWT authentication with a Ktor application enhances security while leveraging Firebase&rsquo;s robust authentication management capabilities. By following the steps in this article you have configured Ktor to validate Firebase JWT&rsquo;s by using the Ktor JWT plugin and the Firebase SDK.</p>
+<p>In the next article we are going to look into integrating Firebase JWT with users in our own database by using custom tokens and Kotlin context receivers.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/Moxie-Mobile/ktor-firebase-jwt">https://github.com/Moxie-Mobile/ktor-firebase-jwt</a></li>
+<li><a href="https://ktor.io/">https://ktor.io/</a></li>
+<li><a href="https://firebase.google.com/docs/auth">https://firebase.google.com/docs/auth</a></li>
+<li><a href="https://jwt.io/">https://jwt.io</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/11/13/compose_recompositions/" data-toggle="tooltip" data-placement="top" title="Jetpack Compose - Recompositions">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2024
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

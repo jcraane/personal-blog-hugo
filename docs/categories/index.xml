@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kotlin</title>
+      <link>https://jamiecraane.dev/categories/kotlin/</link>
+      <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/categories/kotlin/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Android</title>
       <link>https://jamiecraane.dev/categories/android/</link>
@@ -40,15 +49,6 @@
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jamiecraane.dev/categories/intellij/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kotlin</title>
-      <link>https://jamiecraane.dev/categories/kotlin/</link>
-      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/kotlin/</guid>
       <description></description>
     </item>
     

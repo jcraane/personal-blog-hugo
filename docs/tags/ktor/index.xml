@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ktor on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/tags/ktor/</link>
+    <description>Recent content in Ktor on Jamie Craane personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ktor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integrating Firebase JWT token verification in Ktor - Part 1</title>
+      <link>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</link>
+      <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</guid>
+      <description>Integrating Firebase JWT token verification in Ktor - Part 1 As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&amp;rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.
+Introduction to Ktor and Firebase Authentication https://ktor.</description>
+    </item>
+    
+  </channel>
+</rss>

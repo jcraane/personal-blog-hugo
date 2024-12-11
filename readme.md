@@ -1,2 +1,2 @@
 Run locally: hugo server -D
-Compile statically: hugo -D
+Compile statically: hugo -Dhugo

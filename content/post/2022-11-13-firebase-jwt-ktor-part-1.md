@@ -7,7 +7,7 @@ author: Jamie Craane
 date: 2022-11-13
 description: "This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions."
 image: "/img/recompositions-header.png"
-published: false
+published: true
 showtoc: false
 tags:
 - Android
