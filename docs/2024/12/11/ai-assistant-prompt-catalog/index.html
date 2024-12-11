@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="AI Assistant Prompt Catalog" />
+    <meta property="og:title" content="AI Assistant Prompt Catalog" />
+    <meta property="twitter:title" content="AI Assistant Prompt Catalog" />
+    
+
+    
+    <meta name="description" content="This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs.">
+    <meta property="og:description" content="This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs." />
+    <meta property="twitter:description" content="This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>AI Assistant Prompt Catalog | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2024/12/11/ai-assistant-prompt-catalog/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/custom-prompts.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                    </div>
+                    <h1>AI Assistant Prompt Catalog</h1>
+                    <h2 class="subheading">Collection of useful prompts for Jetbrains AI Assistant</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Wednesday, December 11, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="ai-assistant-prompt-catalog">AI Assistant prompt catalog</h1>
+<h2 id="prompts">Prompts</h2>
+<h3 id="android-replace-kotlin-synthetic-view-viewbinding">Android: Replace kotlin synthetic view viewBinding</h3>
+<p>@author: <a href="https://x.com/jcraane">https://x.com/jcraane</a></p>
+<p>Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Replace kotlin synthetic with viewBinding.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Prefix all Koltin synthetic views with binding.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Replace snake case view names with camel casing.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$SELECTION
+</span></span></code></pre></div><h3 id="create-a-unit-test-using-kotest-and-behaviorspec">Create a unit test using Kotest and BehaviorSpec</h3>
+<p>@author: <a href="https://x.com/jcraane">https://x.com/jcraane</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>You are an expert AI programmer which uses unit tests to verify behavior.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Use Kotlin kotest BehaviorSpec
+</span></span><span style="display:flex;"><span>- Write unit tests for the obvious cases
+</span></span><span style="display:flex;"><span>- Write unit tests for the edge cases
+</span></span><span style="display:flex;"><span>- DO NOT EXPLAIN THE TEST
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>$SELECTION
+</span></span></code></pre></div><h3 id="create-a-unit-test-using-jest">Create a unit test using Jest</h3>
+<p>@author: <a href="https://x.com/jcraane">https://x.com/jcraane</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Write a unit test using Jest and typescript.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Write unit tests for the obvious cases
+</span></span><span style="display:flex;"><span>- Write unit tests for the edge cases
+</span></span><span style="display:flex;"><span>- DO NOT EXPLAIN THE TEST
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>$SELECTION
+</span></span></code></pre></div><h3 id="document-api-route">Document API route</h3>
+<p>@author: <a href="https://x.com/jcraane">https://x.com/jcraane</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Write OpenApi docs for all routes which miss documentation. Write the documentation as Kotlin kdoc in the code, use the following as an example:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        /**
+</span></span><span style="display:flex;"><span>         * GET /v1/users/profile
+</span></span><span style="display:flex;"><span>         *
+</span></span><span style="display:flex;"><span>         * Retrieves the profile of the currently authenticated user.
+</span></span><span style="display:flex;"><span>         * Requires the user to be logged in.
+</span></span><span style="display:flex;"><span>         *
+</span></span><span style="display:flex;"><span>         * Response:
+</span></span><span style="display:flex;"><span>         * - 200 OK: Returns the user&#39;s profile information.
+</span></span><span style="display:flex;"><span>         * - 401 Unauthorized: The user is not authenticated.
+</span></span><span style="display:flex;"><span>         */
+</span></span><span style="display:flex;"><span>        get(&#34;/users/profile&#34;) {
+</span></span><span style="display:flex;"><span>            val user = call.getAuthenticatedUser()
+</span></span><span style="display:flex;"><span>            val profile = userService.getUserProfile(user.id)
+</span></span><span style="display:flex;"><span>            call.respond(HttpStatusCode.OK, profile)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- Make the documentation user-friendly
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$SELECTION  
+</span></span></code></pre></div><h3 id="review-code">Review code</h3>
+<p>@author: <a href="https://x.com/jcraane">https://x.com/jcraane</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>You are an expert AI programmer reviewing code written by others. During the review:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        - Summarize what is good about the code
+</span></span><span style="display:flex;"><span>        - Mention where the code can be improved and why if applicable
+</span></span><span style="display:flex;"><span>        - Check if there are potential security issues
+</span></span><span style="display:flex;"><span>        - Check if there are potential performance issues
+</span></span><span style="display:flex;"><span>        - Check for potential duplicate code and suggest refactorings
+</span></span><span style="display:flex;"><span>        - DO NOT EXPLAIN THE CODE
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span> $SELECTION
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/12/11/firebase_jwt_ktor_part_1/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase JWT token verification in Ktor - Part 1">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2024
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

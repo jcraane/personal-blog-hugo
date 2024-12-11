@@ -8,6 +8,18 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 11 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>AI Assistant Prompt Catalog</title>
+      <link>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</link>
+      <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</guid>
+      <description>AI Assistant prompt catalog Prompts Android: Replace kotlin synthetic view viewBinding @author: https://x.com/jcraane
+Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:
+Replace kotlin synthetic with viewBinding. Prefix all Koltin synthetic views with binding. Replace snake case view names with camel casing. $SELECTION Create a unit test using Kotest and BehaviorSpec @author: https://x.com/jcraane
+You are an expert AI programmer which uses unit tests to verify behavior.</description>
+    </item>
+    
+    <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 1</title>
       <link>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
