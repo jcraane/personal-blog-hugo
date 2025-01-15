@@ -26,7 +26,7 @@ In this post, we will look at how to integrate your Firebase users in your own a
 
 ## Introduction to Custom Tokens and User Management in Firebase
 
-In many cases, storing users in your own database is required to track additional user attributes and metadata beyond what Firebase offers out of the box.
+In many cases, storing users in your own database is required to track additional user attributes and for referencing user owned data.
 
 But how can we efficiently associate a Firebase user with a user  in our own database? By efficient I mean, not checking the database with every request to verify if the Firebase user is present or not.
 
@@ -34,11 +34,7 @@ One way of doing this, is leveraging Firebase custom tokens.
 
 ## Setting Up the User Model and Database
 
-In our example, we’ve used PostgreSQL as the database backend and the **Exposed SQL library** to interact with the database. Below is a sample schema for managing users.
-
-### Creating the User Table
-
-A firebase_id columns is added where the Firebase uid is stored. Another option is creating a separate table containing the external id’s of the user. In that case you trade in **simplicity** for **flexibility**.
+In our example, we’ve used PostgreSQL as the database and the **[Jetbrains Exposed SQL library](https://github.com/JetBrains/Exposed)** to interact with the database. Below is a sample schema for managing users.
 
 ```sql
 CREATE TABLE users
@@ -54,13 +50,15 @@ CREATE TABLE users
 
 ```
 
-The idea is that we associate Firebase users via de uid to the users in the database. However, the backend does not expose the Firebase uid. Instead, the native id of the user is exposed in the form of a typed id, like so: user_01jhk53fajfbyb9abhks1bp8yx.
+A firebase_id columns is added where the Firebase uid is stored. Another option is creating a separate table containing the external id’s of the user. In that case you trade in **simplicity** for **flexibility**.
+
+The idea is that we associate Firebase users via de uid to the users in the database. However, the backend does not expose the Firebase uid from the API. Instead, the native id of the user is exposed in the form of a typed id, like so: user_01jhk53fajfbyb9abhks1bp8yx.
 
 How do we obtain the native user id when a user makes a request to our backend?
 
 ### Leveraging Custom Tokens
 
-Firebase has the option to authenticate users and devices using JSON Web Tokens (JWT). The backend generates these token and can add additional attributes. This is exactly with the create-custom-token endpoint does.  It receives a (valid) Firebase token set our native user id as custom attribute on the token.
+Firebase has the option to authenticate users and devices using JSON Web Tokens (JWT). The backend generates these token and can add additional attributes. This is exactly what the create-custom-token endpoint does. The create-custom-token endpoint is an API call we implement in our own backend. It receives a (valid) Firebase token, validates it and sets our native user id as a custom attribute on the token.
 
 In this stage, the user is created if the user did not already exists in our own database, together with the firebase uid. Below is the sample implementation:
 
@@ -97,7 +95,7 @@ Remember, the create-custom-token endpoint is called only when the user logs in 
 
 ![img.png](/img/posts/create-custom-token.png)
 
-The following is an example (some details omitted) of how the custom attribute is present in the custom token:
+The following is an example token with our custom attribute:
 
 ```jsx
 {
@@ -117,11 +115,11 @@ The following is an example (some details omitted) of how the custom attribute i
 
 Now that our native user is associated with a Firebase user, how do we obtain the currently authenticated user in our application logic?
 
-For this, we can use  **Kotlin** **context receivers. Instead** of passing the authenticated user down through function parameters, **Kotlin** **context receivers** simplify access to the current authenticated user. Here’s an example of how this works when handling tags for the authenticated user.
+For this, we can use  **Kotlin** **context receivers.** Instead of passing the authenticated user down through function parameters, **Kotlin** **context receivers** simplify access to the current authenticated user. Here’s an example of how this works when handling tags for the authenticated user.
 
 ### Example: Adding Tags for an Authenticated User
 
-In this implementation, a tag object is linked to the authenticated user stored in a database. this funciton uses  **context receivers** to obtain the authenticated user without passing this user explicitly through function parameters.
+In this implementation, a tag object is linked to the authenticated user stored in the database. this funciton uses  **context receivers** to obtain the authenticated user without passing this user explicitly through function parameters.
 
 ```kotlin
 context(AuthenticatedUser)
@@ -142,7 +140,7 @@ override suspend fun addTag(name: String, documentId: DocumentId?): Tag {
 
 ```
 
-In the above example, the nativeUserId is a property in the Authenticated user.
+In the above example, the nativeUserId is a property of the Authenticated user.
 
 ## Implementing the route
 
@@ -191,3 +189,4 @@ In the next part of this series, we will look at integrating Firebase authentica
 - [https://firebase.google.com/docs/auth/admin/custom-claims](https://firebase.google.com/docs/auth/admin/custom-claims)
 - https://github.com/Kotlin/KEEP/blob/master/proposals/context-receivers.md
 - https://github.com/JetBrains/Exposed
+- https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/

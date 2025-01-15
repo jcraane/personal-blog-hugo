@@ -236,13 +236,11 @@
 <p>In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.</p>
 <p>In this post, we will look at how to integrate your Firebase users in your own application database. This article will cover using <strong>custom tokens</strong>, <strong>context receivers</strong>, and the <strong>Exposed SQL library</strong> to implement this functionality.</p>
 <h2 id="introduction-to-custom-tokens-and-user-management-in-firebase">Introduction to Custom Tokens and User Management in Firebase</h2>
-<p>In many cases, storing users in your own database is required to track additional user attributes and metadata beyond what Firebase offers out of the box.</p>
+<p>In many cases, storing users in your own database is required to track additional user attributes and for referencing user owned data.</p>
 <p>But how can we efficiently associate a Firebase user with a user  in our own database? By efficient I mean, not checking the database with every request to verify if the Firebase user is present or not.</p>
 <p>One way of doing this, is leveraging Firebase custom tokens.</p>
 <h2 id="setting-up-the-user-model-and-database">Setting Up the User Model and Database</h2>
-<p>In our example, we’ve used PostgreSQL as the database backend and the <strong>Exposed SQL library</strong> to interact with the database. Below is a sample schema for managing users.</p>
-<h3 id="creating-the-user-table">Creating the User Table</h3>
-<p>A firebase_id columns is added where the Firebase uid is stored. Another option is creating a separate table containing the external id’s of the user. In that case you trade in <strong>simplicity</strong> for <strong>flexibility</strong>.</p>
+<p>In our example, we’ve used PostgreSQL as the database and the <strong><a href="https://github.com/JetBrains/Exposed">Jetbrains Exposed SQL library</a></strong> to interact with the database. Below is a sample schema for managing users.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> users
 </span></span><span style="display:flex;"><span>(
 </span></span><span style="display:flex;"><span>    id            uuid <span style="color:#ff79c6">PRIMARY</span> <span style="color:#ff79c6">KEY</span>,
@@ -253,10 +251,11 @@
 </span></span><span style="display:flex;"><span>    created_at    <span style="color:#ff79c6">TIMESTAMP</span> <span style="color:#ff79c6">NOT</span> <span style="color:#ff79c6">NULL</span> <span style="color:#ff79c6">DEFAULT</span> <span style="color:#ff79c6">CURRENT_TIMESTAMP</span>,
 </span></span><span style="display:flex;"><span>    last_modified <span style="color:#ff79c6">TIMESTAMP</span> <span style="color:#ff79c6">NOT</span> <span style="color:#ff79c6">NULL</span> <span style="color:#ff79c6">DEFAULT</span> <span style="color:#ff79c6">CURRENT_TIMESTAMP</span>
 </span></span><span style="display:flex;"><span>);
-</span></span></code></pre></div><p>The idea is that we associate Firebase users via de uid to the users in the database. However, the backend does not expose the Firebase uid. Instead, the native id of the user is exposed in the form of a typed id, like so: user_01jhk53fajfbyb9abhks1bp8yx.</p>
+</span></span></code></pre></div><p>A firebase_id columns is added where the Firebase uid is stored. Another option is creating a separate table containing the external id’s of the user. In that case you trade in <strong>simplicity</strong> for <strong>flexibility</strong>.</p>
+<p>The idea is that we associate Firebase users via de uid to the users in the database. However, the backend does not expose the Firebase uid from the API. Instead, the native id of the user is exposed in the form of a typed id, like so: user_01jhk53fajfbyb9abhks1bp8yx.</p>
 <p>How do we obtain the native user id when a user makes a request to our backend?</p>
 <h3 id="leveraging-custom-tokens">Leveraging Custom Tokens</h3>
-<p>Firebase has the option to authenticate users and devices using JSON Web Tokens (JWT). The backend generates these token and can add additional attributes. This is exactly with the create-custom-token endpoint does.  It receives a (valid) Firebase token set our native user id as custom attribute on the token.</p>
+<p>Firebase has the option to authenticate users and devices using JSON Web Tokens (JWT). The backend generates these token and can add additional attributes. This is exactly what the create-custom-token endpoint does. The create-custom-token endpoint is an API call we implement in our own backend. It receives a (valid) Firebase token, validates it and sets our native user id as a custom attribute on the token.</p>
 <p>In this stage, the user is created if the user did not already exists in our own database, together with the firebase uid. Below is the sample implementation:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// The create-custom-token endpoint is secured by verifying the Firebase token with which this endpoint is called
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>authenticate(<span style="color:#f1fa8c">&#34;auth-jwt-custom-token&#34;</span>) {
@@ -284,7 +283,7 @@
   <img src="/img/posts/create-custom-token.png" alt="img.png">
 
 </p>
-<p>The following is an example (some details omitted) of how the custom attribute is present in the custom token:</p>
+<p>The following is an example token with our custom attribute:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;claims&#34;</span> <span style="color:#ff79c6">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;nativeUserId&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;user_01jhk53ddsfbyb9qvwks1bpabc&#34;</span>
@@ -298,9 +297,9 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="using-context-receivers-for-authenticated-user-context">Using Context Receivers for Authenticated User Context</h2>
 <p>Now that our native user is associated with a Firebase user, how do we obtain the currently authenticated user in our application logic?</p>
-<p>For this, we can use  <strong>Kotlin</strong> <strong>context receivers. Instead</strong> of passing the authenticated user down through function parameters, <strong>Kotlin</strong> <strong>context receivers</strong> simplify access to the current authenticated user. Here’s an example of how this works when handling tags for the authenticated user.</p>
+<p>For this, we can use  <strong>Kotlin</strong> <strong>context receivers.</strong> Instead of passing the authenticated user down through function parameters, <strong>Kotlin</strong> <strong>context receivers</strong> simplify access to the current authenticated user. Here’s an example of how this works when handling tags for the authenticated user.</p>
 <h3 id="example-adding-tags-for-an-authenticated-user">Example: Adding Tags for an Authenticated User</h3>
-<p>In this implementation, a tag object is linked to the authenticated user stored in a database. this funciton uses  <strong>context receivers</strong> to obtain the authenticated user without passing this user explicitly through function parameters.</p>
+<p>In this implementation, a tag object is linked to the authenticated user stored in the database. this funciton uses  <strong>context receivers</strong> to obtain the authenticated user without passing this user explicitly through function parameters.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>context(AuthenticatedUser)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">addTag</span>(name: String, documentId: DocumentId?): Tag {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> tag = Tag(typeId = typeId, name = name, created = timeRepository.now())
@@ -316,7 +315,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> tag
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>In the above example, the nativeUserId is a property in the Authenticated user.</p>
+</span></span></code></pre></div><p>In the above example, the nativeUserId is a property of the Authenticated user.</p>
 <h2 id="implementing-the-route">Implementing the route</h2>
 <p>The final piece of the puzzle is implementing the route which calls our service/repository. This also means setting the context so the authenticated user is passed with each function call.</p>
 <p>The Ktor <code>authenticate</code> block is used to ensure specific routes are secured. These routes rely on the <code>JWTPrincipal</code> to provide the authenticated user&rsquo;s context.</p>
@@ -353,6 +352,7 @@
 <li><a href="https://firebase.google.com/docs/auth/admin/custom-claims">https://firebase.google.com/docs/auth/admin/custom-claims</a></li>
 <li><a href="https://github.com/Kotlin/KEEP/blob/master/proposals/context-receivers.md">https://github.com/Kotlin/KEEP/blob/master/proposals/context-receivers.md</a></li>
 <li><a href="https://github.com/JetBrains/Exposed">https://github.com/JetBrains/Exposed</a></li>
+<li><a href="https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/">https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</a></li>
 </ul>
 
 
