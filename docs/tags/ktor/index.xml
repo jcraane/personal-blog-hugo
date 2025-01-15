@@ -6,7 +6,17 @@
     <description>Recent content in Ktor on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ktor/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ktor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integrating Firebase JWT token verification in Ktor - Part 2</title>
+      <link>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</link>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</guid>
+      <description>Part 2: Integrating Firebase Users into Your Database with Ktor In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.
+In this post, we will look at how to integrate your Firebase users in your own application database.</description>
+    </item>
+    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 1</title>
       <link>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</link>
