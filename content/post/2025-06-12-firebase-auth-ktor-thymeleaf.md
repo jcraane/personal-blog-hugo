@@ -4,10 +4,10 @@ layout:     post
 title:      "Integrating Firebase auth in server side Thymeleaf app"
 subtitle:   "Using Firebase authentication with Ktor and Thymeleaf"
 author: Jamie Craane
-date: 2025-01-15
-description: "This post, we will look at how to integrate your Firebase users in your own application database."
+date: 2025-06-12
+description: "This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application"
 image: "/img/part1-firebase-ktor.png"
-published: false
+published: true
 showtoc: false
 tags:
 - Firebase
@@ -15,7 +15,7 @@ tags:
 - Ktor
 
 categories: [ Kotlin ]
-URL: "/2025/06/06/firebase_auth_ktor_thymeleaf/"
+URL: "/2025/06/12/firebase_auth_ktor_thymeleaf/"
 ---
 
 # Server-Side Login with Firebase in Thymeleaf Templates
@@ -358,3 +358,4 @@ Using Firebase Authentication with server-side Thymeleaf templates gives you the
 - https://ktor.io/docs/server-session-auth.html
 - https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#introducing-thymeleaf
 - https://firebase.google.com/docs/reference/rest/database
+- https://github.com/jcraane/ktor-thymeleaf-firebase

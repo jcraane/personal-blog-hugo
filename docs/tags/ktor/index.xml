@@ -6,7 +6,16 @@
     <description>Recent content in Ktor on Jamie Craane personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ktor/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ktor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integrating Firebase auth in server side Thymeleaf app</title>
+      <link>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</link>
+      <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</guid>
+      <description>Server-Side Login with Firebase in Thymeleaf Templates This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.</description>
+    </item>
+    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 2</title>
       <link>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</link>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Integrating Firebase auth in server side Thymeleaf app" />
+    <meta property="og:title" content="Integrating Firebase auth in server side Thymeleaf app" />
+    <meta property="twitter:title" content="Integrating Firebase auth in server side Thymeleaf app" />
+    
+
+    
+    <meta name="description" content="This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application">
+    <meta property="og:description" content="This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application" />
+    <meta property="twitter:description" content="This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Integrating Firebase auth in server side Thymeleaf app | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2025/06/12/firebase_auth_ktor_thymeleaf/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine-learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/part1-firebase-ktor.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/firebase" title="Firebase">
+                            Firebase
+                        </a>
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/ktor" title="Ktor">
+                            Ktor
+                        </a>
+                        
+                    </div>
+                    <h1>Integrating Firebase auth in server side Thymeleaf app</h1>
+                    <h2 class="subheading">Using Firebase authentication with Ktor and Thymeleaf</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Jamie Craane
+                             
+                            on 
+                            Thursday, June 12, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="server-side-login-with-firebase-in-thymeleaf-templates">Server-Side Login with Firebase in Thymeleaf Templates</h1>
+<p>This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.</p>
+<h2 id="introduction">Introduction</h2>
+<p>In <a href="https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/">previous posts</a>, we explored how to implement Firebase authentication in Ktor for client applications. In this post, we&rsquo;ll focus on server-side rendering with Thymeleaf templates while still using Firebase for authentication.</p>
+<p>This approach offers several benefits:</p>
+<ul>
+<li>Secure server-side session management</li>
+<li>Traditional web application flow with form submissions</li>
+<li>Leveraging Firebase&rsquo;s authentication capabilities</li>
+<li>No need for client-side JavaScript authentication frameworks or libraries</li>
+</ul>
+<h2 id="project-setup">Project Setup</h2>
+<p>First, let&rsquo;s set up our dependencies in the <code>build.gradle.kts</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>dependencies {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Ktor core dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    implementation(libs.ktor.server.core)
+</span></span><span style="display:flex;"><span>    implementation(libs.ktor.server.netty)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Authentication
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    implementation(libs.ktor.server.auth)
+</span></span><span style="display:flex;"><span>    implementation(libs.ktor.server.auth.jwt)
+</span></span><span style="display:flex;"><span>    implementation(libs.ktor.server.sessions)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Templating
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    implementation(libs.ktor.server.thymeleaf)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Firebase Admin SDK
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    implementation(libs.firebase.admin)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="configuring-thymeleaf">Configuring Thymeleaf</h2>
+<p>We need to configure Thymeleaf to handle our templates:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Application</span>.configureTemplating() {
+</span></span><span style="display:flex;"><span>    install(Thymeleaf) {
+</span></span><span style="display:flex;"><span>        setTemplateResolver(
+</span></span><span style="display:flex;"><span>            ClassLoaderTemplateResolver().apply {
+</span></span><span style="display:flex;"><span>                prefix = <span style="color:#f1fa8c">&#34;templates/&#34;</span>
+</span></span><span style="display:flex;"><span>                suffix = <span style="color:#f1fa8c">&#34;.html&#34;</span>
+</span></span><span style="display:flex;"><span>                templateMode = TemplateMode.HTML
+</span></span><span style="display:flex;"><span>                characterEncoding = <span style="color:#f1fa8c">&#34;utf-8&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        routing {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// Public route for login page
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">get</span>(<span style="color:#f1fa8c">&#34;/admin/login&#34;</span>) {
+</span></span><span style="display:flex;"><span>                call.respond(ThymeleafContent(<span style="color:#f1fa8c">&#34;admin/login&#34;</span>, emptyMap()))
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// Protected routes that require authentication
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            authenticate(ADMIN_AUTH) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">get</span>(<span style="color:#f1fa8c">&#34;/admin/dashboard&#34;</span>) {
+</span></span><span style="display:flex;"><span>                    call.respond(ThymeleafContent(<span style="color:#f1fa8c">&#34;admin/dashboard&#34;</span>, emptyMap()))
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>For more information about configuring Thymeleaf with Ktor see: <a href="https://ktor.io/docs/server-thymeleaf.html#use_template">https://ktor.io/docs/server-thymeleaf.html#use_template</a></p>
+<h2 id="creating-the-login-template">Creating the Login Template</h2>
+<p>Our login page is a simple HTML form that posts to our authentication endpoint:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span> <span style="color:#50fa7b">xmlns:th</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://www.thymeleaf.org&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">title</span>&gt;Admin Login&lt;/<span style="color:#ff79c6">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdn.tailwindcss.com&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">body</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bg-gray-100 font-sans&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;min-h-screen flex items-center justify-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bg-white p-8 rounded-lg shadow-md w-full max-w-md&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text-center mb-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">h1</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text-2xl font-bold text-gray-800&#34;</span>&gt;Admin Panel&lt;/<span style="color:#ff79c6">h1</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">p</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text-gray-600&#34;</span>&gt;Please sign in to access the admin panel&lt;/<span style="color:#ff79c6">p</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">action</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/admin/login&#34;</span> <span style="color:#50fa7b">method</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;post&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;space-y-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">&lt;!-- Error message display --&gt;</span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">th:if</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;${error}&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">th:text</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;${error}&#34;</span>&gt;Invalid credentials. Please try again.&lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">&lt;!-- Success message display --&gt;</span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">th:if</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;${message}&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">th:text</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;${message}&#34;</span>&gt;Success message&lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">label</span> <span style="color:#50fa7b">for</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;email&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;block text-sm font-medium text-gray-700&#34;</span>&gt;Email&lt;/<span style="color:#ff79c6">label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;email&#34;</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;email&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;email&#34;</span> <span style="color:#50fa7b">required</span>
+</span></span><span style="display:flex;"><span>                       <span style="color:#50fa7b">th:value</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;${email}&#34;</span>
+</span></span><span style="display:flex;"><span>                       <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">label</span> <span style="color:#50fa7b">for</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;password&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;block text-sm font-medium text-gray-700&#34;</span>&gt;Password&lt;/<span style="color:#ff79c6">label</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;password&#34;</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;password&#34;</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;password&#34;</span> <span style="color:#50fa7b">required</span>
+</span></span><span style="display:flex;"><span>                       <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#ff79c6">button</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;submit&#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    Sign in
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#ff79c6">button</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#ff79c6">form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span></code></pre></div><h2 id="implementing-the-login-route">Implementing the Login Route</h2>
+<p>Now, let&rsquo;s implement the route that handles the login form submission:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Route</span>.adminRoutes(
+</span></span><span style="display:flex;"><span>    firebaseAuth: FirebaseAuth,
+</span></span><span style="display:flex;"><span>    userService: UserService,
+</span></span><span style="display:flex;"><span>    firebaseApi: FirebaseApi,
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>    route(<span style="color:#f1fa8c">&#34;/admin&#34;</span>) {
+</span></span><span style="display:flex;"><span>        post(<span style="color:#f1fa8c">&#34;/login&#34;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> parameters = call.receiveParameters()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> email = parameters[<span style="color:#f1fa8c">&#34;email&#34;</span>] <span style="color:#ff79c6">?:</span> <span style="color:#ff79c6">return</span>@post call.respond(
+</span></span><span style="display:flex;"><span>                HttpStatusCode.BadRequest,
+</span></span><span style="display:flex;"><span>                ErrorResponse(<span style="color:#f1fa8c">&#34;Email is required&#34;</span>)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> password = parameters[<span style="color:#f1fa8c">&#34;password&#34;</span>] <span style="color:#ff79c6">?:</span> <span style="color:#ff79c6">return</span>@post call.respond(
+</span></span><span style="display:flex;"><span>                HttpStatusCode.BadRequest,
+</span></span><span style="display:flex;"><span>                ErrorResponse(<span style="color:#f1fa8c">&#34;Password is required&#34;</span>)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            runCatching {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// Step 1: Sign in with Firebase using email/password
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">val</span> signInResponse = signInWithEmailAndPassword(email, password, firebaseApi)
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">val</span> firebaseUid = signInResponse.localId
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// Step 2: Get the user from our database and verify they&#39;re an admin. This function throws
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>               <span style="color:#6272a4">// an exception if the user is not found or does not have the ADMIN role.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">val</span> user = getAuthenticatedAdmin(userService, firebaseUid)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// Step 3: Set custom claims for the user. This makes sure the roles (with ADMIN) will be present in the Firebase idToken
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                setCustomClaimsForUser(user, firebaseAuth, firebaseUid)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// Step 4: Generate a session cookie
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">val</span> sessionCookie = generateSessionCookie(firebaseAuth, signInResponse)
+</span></span><span style="display:flex;"><span>                call.sessions.<span style="color:#ff79c6">set</span>(<span style="color:#f1fa8c">&#34;session&#34;</span>, sessionCookie)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// Step 5: Redirect to dashboard
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                call.respondRedirect(<span style="color:#f1fa8c">&#34;/admin/dashboard&#34;</span>)
+</span></span><span style="display:flex;"><span>            }.onFailure {
+</span></span><span style="display:flex;"><span>                call.respond(
+</span></span><span style="display:flex;"><span>                    HttpStatusCode.Unauthorized,
+</span></span><span style="display:flex;"><span>                    ErrorResponse(<span style="color:#f1fa8c">&#34;Invalid credentials&#34;</span>)
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        post(<span style="color:#f1fa8c">&#34;/logout&#34;</span>) {
+</span></span><span style="display:flex;"><span>            runCatching {
+</span></span><span style="display:flex;"><span>                call.sessions.clear(<span style="color:#f1fa8c">&#34;session&#34;</span>)
+</span></span><span style="display:flex;"><span>                call.respondRedirect(<span style="color:#f1fa8c">&#34;/admin/login&#34;</span>)
+</span></span><span style="display:flex;"><span>            }.onFailure {
+</span></span><span style="display:flex;"><span>                call.respond(
+</span></span><span style="display:flex;"><span>                    HttpStatusCode.InternalServerError,
+</span></span><span style="display:flex;"><span>                    ErrorResponse(<span style="color:#f1fa8c">&#34;Logout failed: </span><span style="color:#f1fa8c">${it.message}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s break down the key helper functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">signInWithEmailAndPassword</span>(
+</span></span><span style="display:flex;"><span>   email: String,
+</span></span><span style="display:flex;"><span>   password: String,
+</span></span><span style="display:flex;"><span>   firebaseApi: FirebaseApi,
+</span></span><span style="display:flex;"><span>): SignInWithPasswordResponse {
+</span></span><span style="display:flex;"><span>   <span style="color:#6272a4">// Call Firebase REST API to authenticate with email/password
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>   <span style="color:#ff79c6">val</span> signInRequest = SignInWithPasswordRequest(
+</span></span><span style="display:flex;"><span>      email = email,
+</span></span><span style="display:flex;"><span>      password = password,
+</span></span><span style="display:flex;"><span>      returnSecureToken = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>   )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">return</span> firebaseApi.signInWithPassword(signInRequest)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">generateSessionCookie</span>(
+</span></span><span style="display:flex;"><span>    firebaseAuth: FirebaseAuth,
+</span></span><span style="display:flex;"><span>    signInResponse: SignInWithPasswordResponse,
+</span></span><span style="display:flex;"><span>): String? {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Create a session cookie that expires in 5 days (or user whatever expiry is sufficient for your use case)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">val</span> expiresIn: Long = TimeUnit.DAYS.toMillis(<span style="color:#bd93f9">5</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> options = SessionCookieOptions.builder()
+</span></span><span style="display:flex;"><span>        .setExpiresIn(expiresIn)
+</span></span><span style="display:flex;"><span>        .build()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Create the session cookie using the ID token from Firebase
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> firebaseAuth.createSessionCookie(signInResponse.idToken, options)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">setCustomClaimsForUser</span>(
+</span></span><span style="display:flex;"><span>    user: User,
+</span></span><span style="display:flex;"><span>    firebaseAuth: FirebaseAuth,
+</span></span><span style="display:flex;"><span>    firebaseUid: String,
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Set custom claims for the user, including role information so this information is present in the token.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// This way, we do not need to retrieve the user with every request to determine the roles of the user
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">val</span> customClaims = mapOf(
+</span></span><span style="display:flex;"><span>        NATIVE_USER_ID_CLAIM to user.id.toString(),
+</span></span><span style="display:flex;"><span>        TIMEZONE_ID_CLAIM to user.<span style="color:#ff79c6">data</span><span style="color:#ff79c6">?.</span>timeZoneId,
+</span></span><span style="display:flex;"><span>        ROLES_CLAIM to UserRole.ADMIN.code
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    firebaseAuth.setCustomUserClaims(firebaseUid, customClaims)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="the-firebase-api-interface">The Firebase API Interface</h2>
+<p>Please note firebaseApi.SignInWithPasswordRequest is used to login wht email/password server-side. This functionality is not presenet in the firebase admin sdk. Therefore
+a firebaseApi is created which leverages the Firebase REST API to provide this functionality. The implementation uses Ktor client to call the Firebase Rest API.</p>
+<h2 id="configuring-firebase-authentication">Configuring Firebase Authentication</h2>
+<p>Since sessions are used to manage authenticated users, we need to setup session authentication which validates the session
+cookie and the required roles of the user which access the /admin pages.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Application</span>.configureJwtAuth() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> firebaseAuth <span style="color:#ff79c6">by</span> inject&lt;FirebaseAuth&gt;()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    install(Sessions) {
+</span></span><span style="display:flex;"><span>        cookie&lt;String&gt;(<span style="color:#f1fa8c">&#34;session&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    install(Authentication) {
+</span></span><span style="display:flex;"><span>        session&lt;String&gt;(ADMIN_AUTH) {
+</span></span><span style="display:flex;"><span>            validate { sessionCookie <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// Verify the session cookie
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">val</span> decodedToken = firebaseAuth.verifySessionCookie(sessionCookie, <span style="color:#ff79c6">true</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">val</span> roles = decodedToken.claims[<span style="color:#f1fa8c">&#34;roles&#34;</span>] <span style="color:#ff79c6">as</span>? String
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// Check if user has admin role
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">if</span> (roles <span style="color:#ff79c6">==</span> UserRole.ADMIN.code) {
+</span></span><span style="display:flex;"><span>                        UserIdPrincipal(decodedToken.uid)
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">null</span>
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (e: Exception) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">null</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="dashboard-template">Dashboard Template</h2>
+<p>Once authenticated, users are redirected to the dashboard:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span> <span style="color:#50fa7b">th:replace</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;~{layout :: layout(~{::content}, ~{::title}, ~{::breadcrumb})}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">title</span> <span style="color:#50fa7b">th:fragment</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;title&#34;</span>&gt;Admin Dashboard&lt;/<span style="color:#ff79c6">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">body</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- This content will be injected into the layout --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">th:fragment</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;content&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">h1</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text-2xl font-bold mb-6&#34;</span>&gt;Welcome to the Admin Dashboard&lt;/<span style="color:#ff79c6">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">&lt;!-- Dashboard content here --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- This will be used by the layout for the breadcrumb --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">span</span> <span style="color:#50fa7b">th:fragment</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;breadcrumb&#34;</span>&gt;Dashboard&lt;/<span style="color:#ff79c6">span</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span></code></pre></div><h2 id="how-it-all-works-together">How It All Works Together</h2>
+<ol>
+<li>The user navigates to <code>/admin/login</code> and sees the login form</li>
+<li>They enter their email and password and submit the form</li>
+<li>The server calls Firebase to authenticate the credentials</li>
+<li>If successful, the server:
+<ul>
+<li>Verifies the user has admin privileges in our database</li>
+<li>Sets custom claims for the user in Firebase</li>
+<li>Creates a session cookie with Firebase</li>
+<li>Sets the session cookie in the browser</li>
+<li>Redirects to the dashboard</li>
+</ul>
+</li>
+<li>For subsequent requests, the session cookie is validated against Firebase</li>
+<li>When the user logs out, the session is cleared</li>
+</ol>
+<h2 id="security-considerations">Security Considerations</h2>
+<ul>
+<li>The Firebase server sdk has no function for signing in with email and password. We need to leverage the Firebase REST API for this</li>
+<li>Firebase handles the creation of session cookies using the Firebase admin SDK</li>
+<li>Server-side validation ensures only authorized users can access protected routes</li>
+<li>Custom claims allow for role-based access control. Custom claims are persisted using the setCustomUserClaims fuction of the Firebase SDK</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Using Firebase Authentication with server-side Thymeleaf templates gives you the best of both worlds: Firebase&rsquo;s robust authentication system and the simplicity of server-rendered HTML. This approach is perfect for admin panels or dashboards where you want to leverage Firebase while maintaining a traditional web application flow.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://ktor.io/docs/server-thymeleaf.html">https://ktor.io/docs/server-thymeleaf.html</a></li>
+<li><a href="https://ktor.io/docs/server-session-auth.html">https://ktor.io/docs/server-session-auth.html</a></li>
+<li><a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#introducing-thymeleaf">https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#introducing-thymeleaf</a></li>
+<li><a href="https://firebase.google.com/docs/reference/rest/database">https://firebase.google.com/docs/reference/rest/database</a></li>
+<li><a href="https://github.com/jcraane/ktor-thymeleaf-firebase">https://github.com/jcraane/ktor-thymeleaf-firebase</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2025/01/16/firebase_jwt_ktor_part_2/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase JWT token verification in Ktor - Part 2">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine-learning">
+                            machine-learning
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2025
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-YZ49LBW0KM', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
