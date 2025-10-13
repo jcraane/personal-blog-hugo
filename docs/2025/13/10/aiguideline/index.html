@@ -243,6 +243,7 @@
                 <h3 id="introduction">Introduction</h3>
 <p>As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&rsquo;s specific architectural patterns, design principles, and coding standards?</p>
 <p>Traditional documentation, while valuable, often exists separately from the code itself. Developers—both human and AI—must context-switch between the codebase and external documentation, leading to potential misalignment and inconsistencies.</p>
+<p>Guidelines do exist, for example .junie/guidelines.md, but these guidelines need to kept in sync. The bigger the guidelines the harder for the AI to follow consistently.</p>
 <p>Enter <code>@AIGuideline</code>: a simple yet powerful annotation that embeds architectural and design guidance directly into your codebase, making it immediately discoverable by AI assistants during code generation.</p>
 <h3 id="the-problem-ai-assistants-need-context">The Problem: AI Assistants Need Context</h3>
 <p>Modern AI coding assistants like GitHub Copilot, JetBrains AI Assistant, and others are remarkably capable at generating syntactically correct code. However, they often lack understanding of:</p>
@@ -297,54 +298,7 @@
 </ol>
 <h3 id="real-world-examples">Real-World Examples</h3>
 <p>Let&rsquo;s explore how <code>@AIGuideline</code> is used in a real Kotlin/Ktor application to communicate architectural patterns to AI assistants.</p>
-<h4 id="example-1-use-case-pattern">Example 1: Use Case Pattern</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Base interface for all use cases in the application.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * This interface provides a standardized structure for use case implementations,
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * ensuring consistent execution patterns across the application. Use cases
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * encapsulate business logic and coordinate between different services and repositories.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Core functionality used by other components in the app is implemented using use cases&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">UseCase</span>&lt;Input, Output&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * Executes the use case with the provided input.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param input The input data required for executing the use case.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return The result of the use case execution.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">execute</span>(input: Input): Output
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>What this communicates to AI:</strong></p>
-<ul>
-<li>When implementing new business logic, use the UseCase pattern</li>
-<li>Core functionality should be encapsulated in use cases</li>
-<li>Use cases should follow this generic interface contract</li>
-</ul>
-<h4 id="example-2-workflow-pattern-for-complex-operations">Example 2: Workflow Pattern for Complex Operations</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Base interface for all workflows in the application.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Workflows orchestrate complex application flows that span multiple 
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * use cases and coordinate between different services and repositories.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Complex application flow spanning multiple use cases are implemented using workflows&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">Workflow</span>&lt;Input, Output&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * Executes the workflow with the provided input.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param input The input data required for executing the workflow.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return The result of the workflow execution.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">execute</span>(input: Input): Output
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>What this communicates to AI:</strong></p>
-<ul>
-<li>Distinguish between simple use cases and complex multi-step workflows</li>
-<li>When orchestrating multiple use cases, create a Workflow</li>
-<li>Workflows follow the same execution contract as use cases for consistency</li>
-</ul>
-<h4 id="example-3-technology-choice-guidance">Example 3: Technology Choice Guidance</h4>
+<h4 id="example-1-technology-choice-guidance">Example 1: Technology Choice Guidance</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Database access is implementing using Kotlin Exposed&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DocumentsExposedRepository</span> : DocumentsRepository {
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Implementation using Exposed SQL library
@@ -355,7 +309,7 @@
 <li>When generating database access code, follow Exposed patterns</li>
 <li>Don&rsquo;t suggest alternative database libraries</li>
 </ul>
-<h4 id="example-4-testing-strategy">Example 4: Testing Strategy</h4>
+<h4 id="example-2-testing-strategy">Example 2: Testing Strategy</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Time repository is implementing using Kotlin Time and should be used when the current time is needed to facilitate testing&#34;</span>)
 </span></span><span style="display:flex;"><span>@OptIn(ExperimentalTime<span style="color:#ff79c6">::</span><span style="color:#ff79c6">class</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">TimeRepository</span> {
@@ -367,7 +321,7 @@
 <li>Always inject TimeRepository for time-dependent logic</li>
 <li>This pattern exists specifically to enable deterministic testing</li>
 </ul>
-<h4 id="example-5-abstraction-boundaries">Example 5: Abstraction Boundaries</h4>
+<h4 id="example-3-abstraction-boundaries">Example 3: Abstraction Boundaries</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;This interface abstracts the searching of content from different technologies and sources.&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">ContentSearcher</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">search</span>(): List&lt;Document&gt;
@@ -378,7 +332,7 @@
 <li>When adding new search capabilities, implement this interface</li>
 <li>Don&rsquo;t couple search logic directly to specific technologies</li>
 </ul>
-<h4 id="example-6-dependency-injection-configuration">Example 6: Dependency Injection Configuration</h4>
+<h4 id="example-4-dependency-injection-configuration">Example 4: Dependency Injection Configuration</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The main module is responsible for configuring the Koin dependency injection framework&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">mainModule</span>(environment: ApplicationEnvironment) = module {
 </span></span><span style="display:flex;"><span>    single&lt;String&gt;(named(OPEN_API_KEY)) {
@@ -400,7 +354,7 @@
 <li>All DI configuration happens in this module function</li>
 <li>When adding new dependencies, register them here following Koin patterns</li>
 </ul>
-<h4 id="example-7-api-encapsulation">Example 7: API Encapsulation</h4>
+<h4 id="example-5-api-encapsulation">Example 5: API Encapsulation</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The OpenAI API&#39;s are encapsulated in the OpenAIApi implementation&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">OpenAIApi</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">createEmbeddings</span>(input: List&lt;String&gt;): EmbeddingsResponse
@@ -423,6 +377,8 @@
 <p>AI assistants can maintain architectural consistency even when generating code for complex scenarios they haven&rsquo;t seen before.</p>
 <h4 id="5-onboarding-aid">5. <strong>Onboarding Aid</strong></h4>
 <p>New developers (human or AI) can quickly understand architectural patterns by looking at annotated interfaces and base classes.</p>
+<h4 id="6-simpler-common-guidlines">6. <strong>Simpler common guidlines</strong></h4>
+<p>Adding @AIGuidline minimizes the information required in .junie/guidelines.md. This makes it easier to maintain and update.</p>
 <h3 id="best-practices">Best Practices</h3>
 <h4 id="1-be-concise-but-clear">1. <strong>Be Concise but Clear</strong></h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Good: Clear and actionable

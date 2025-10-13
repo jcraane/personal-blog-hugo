@@ -24,6 +24,8 @@ As AI-powered coding assistants become increasingly prevalent in software develo
 
 Traditional documentation, while valuable, often exists separately from the code itself. Developers—both human and AI—must context-switch between the codebase and external documentation, leading to potential misalignment and inconsistencies.
 
+Guidelines do exist, for example .junie/guidelines.md, but these guidelines need to kept in sync. The bigger the guidelines the harder for the AI to follow consistently.
+
 Enter `@AIGuideline`: a simple yet powerful annotation that embeds architectural and design guidance directly into your codebase, making it immediately discoverable by AI assistants during code generation.
 
 ### The Problem: AI Assistants Need Context
@@ -91,60 +93,7 @@ This explicit instruction ensures AI assistants:
 
 Let's explore how `@AIGuideline` is used in a real Kotlin/Ktor application to communicate architectural patterns to AI assistants.
 
-#### Example 1: Use Case Pattern
-
-```kotlin
-/**
- * Base interface for all use cases in the application.
- *
- * This interface provides a standardized structure for use case implementations,
- * ensuring consistent execution patterns across the application. Use cases
- * encapsulate business logic and coordinate between different services and repositories.
- */
-@AIGuideline("Core functionality used by other components in the app is implemented using use cases")
-interface UseCase<Input, Output> {
-    /**
-     * Executes the use case with the provided input.
-     *
-     * @param input The input data required for executing the use case.
-     * @return The result of the use case execution.
-     */
-    suspend fun execute(input: Input): Output
-}
-```
-
-**What this communicates to AI:**
-- When implementing new business logic, use the UseCase pattern
-- Core functionality should be encapsulated in use cases
-- Use cases should follow this generic interface contract
-
-#### Example 2: Workflow Pattern for Complex Operations
-
-```kotlin
-/**
- * Base interface for all workflows in the application.
- *
- * Workflows orchestrate complex application flows that span multiple 
- * use cases and coordinate between different services and repositories.
- */
-@AIGuideline("Complex application flow spanning multiple use cases are implemented using workflows")
-interface Workflow<Input, Output> {
-    /**
-     * Executes the workflow with the provided input.
-     *
-     * @param input The input data required for executing the workflow.
-     * @return The result of the workflow execution.
-     */
-    suspend fun execute(input: Input): Output
-}
-```
-
-**What this communicates to AI:**
-- Distinguish between simple use cases and complex multi-step workflows
-- When orchestrating multiple use cases, create a Workflow
-- Workflows follow the same execution contract as use cases for consistency
-
-#### Example 3: Technology Choice Guidance
+#### Example 1: Technology Choice Guidance
 
 ```kotlin
 @AIGuideline("Database access is implementing using Kotlin Exposed")
@@ -158,7 +107,7 @@ class DocumentsExposedRepository : DocumentsRepository {
 - When generating database access code, follow Exposed patterns
 - Don't suggest alternative database libraries
 
-#### Example 4: Testing Strategy
+#### Example 2: Testing Strategy
 
 ```kotlin
 @AIGuideline("Time repository is implementing using Kotlin Time and should be used when the current time is needed to facilitate testing")
@@ -173,7 +122,7 @@ interface TimeRepository {
 - Always inject TimeRepository for time-dependent logic
 - This pattern exists specifically to enable deterministic testing
 
-#### Example 5: Abstraction Boundaries
+#### Example 3: Abstraction Boundaries
 
 ```kotlin
 @AIGuideline("This interface abstracts the searching of content from different technologies and sources.")
@@ -187,7 +136,7 @@ interface ContentSearcher {
 - When adding new search capabilities, implement this interface
 - Don't couple search logic directly to specific technologies
 
-#### Example 6: Dependency Injection Configuration
+#### Example 4: Dependency Injection Configuration
 
 ```kotlin
 @AIGuideline("The main module is responsible for configuring the Koin dependency injection framework")
@@ -212,7 +161,7 @@ fun mainModule(environment: ApplicationEnvironment) = module {
 - All DI configuration happens in this module function
 - When adding new dependencies, register them here following Koin patterns
 
-#### Example 7: API Encapsulation
+#### Example 5: API Encapsulation
 
 ```kotlin
 @AIGuideline("The OpenAI API's are encapsulated in the OpenAIApi implementation")
@@ -243,6 +192,9 @@ AI assistants can maintain architectural consistency even when generating code f
 
 #### 5. **Onboarding Aid**
 New developers (human or AI) can quickly understand architectural patterns by looking at annotated interfaces and base classes.
+
+#### 6. **Simpler common guidlines**
+Adding @AIGuidline minimizes the information required in .junie/guidelines.md. This makes it easier to maintain and update.
 
 ### Best Practices
 

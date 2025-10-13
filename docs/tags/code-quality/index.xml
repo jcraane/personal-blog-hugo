@@ -15,7 +15,7 @@
       <guid>https://jamiecraane.dev/2025/13/10/aiguideline/</guid>
       <description>Introduction As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?
 Traditional documentation, while valuable, often exists separately from the code itself. Developers—both human and AI—must context-switch between the codebase and external documentation, leading to potential misalignment and inconsistencies.
-Enter @AIGuideline: a simple yet powerful annotation that embeds architectural and design guidance directly into your codebase, making it immediately discoverable by AI assistants during code generation.</description>
+Guidelines do exist, for example .junie/guidelines.md, but these guidelines need to kept in sync.</description>
     </item>
     
   </channel>
