@@ -14,7 +14,7 @@
       
       <guid>https://jamiecraane.dev/2025/13/10/aiguideline/</guid>
       <description>Introduction As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?
-Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. How do we keep the guidelines consistent with the codebase? Depending on the project, they can contain a lot of information.</description>
+Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.</description>
     </item>
     
     <item>
