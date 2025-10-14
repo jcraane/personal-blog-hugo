@@ -22,11 +22,13 @@ URL: "/2025/13/10/aiguideline/"
 
 As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project's specific architectural patterns, design principles, and coding standards?
 
-Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. How do we keep the guidelines consistent with the codebase? Depending on the project, they can contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.
+Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently. 
 
-How can we fix this?
+- How can we keep the guidelines short and to the point?
+- How can we keep the guidelines consistent with the codebase over the long run? 
+- How can we couple the guidelines with the code itself?
 
-Enter `@AIGuideline`: a simple yet powerful annotation that embeds architectural and design guidance directly into your codebase, making it immediately discoverable by AI assistants during code generation.
+In this post, we introduduce @AIGuideline, a novel approach to embedding AI architectural guidance directly into your codebase.
 
 ### The Problem: AI Assistants Need Context
 
