@@ -7,7 +7,6 @@ author: Jamie Craane
 date:       2016-12-12
 description: "In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway."
 image: "/img/reflections.jpg"
-published: true
 showtoc: false
 tags:
 - AWS

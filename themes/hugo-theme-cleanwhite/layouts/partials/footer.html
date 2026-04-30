@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     {{ with .Site.Params.social.email }}
                     <li>
                         <a href="mailto:{{ . }}">
@@ -310,11 +310,6 @@
 </script>
 {{ end }}
 
-{{ if .Site.GoogleAnalytics }}
-{{ template "_internal/google_analytics_async.html" . }}
-{{ end }}
-
-
 <!-- Side Catalog -->
 {{ if not (eq (.Param "showtoc") false) }}
 <script type="text/javascript">
@@ -411,7 +406,7 @@
             $en.style.display = "none";
             $en.classList.remove("active");
         }
-        // interop with catalog 
+        // interop with catalog
         generateCatalog(".catalog-body");
     }
 

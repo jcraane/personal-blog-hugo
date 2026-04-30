@@ -6,7 +6,6 @@ author: Jamie Craane
 date: 2025-10-13
 description: "Learn how the @AIGuideline annotation helps AI assistants understand and respect your project's architectural decisions and coding patterns."
 image: "/img/posts/aiguideline.png"
-published: true
 showtoc: true
 tags:
 - Kotlin

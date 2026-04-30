@@ -2,42 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>KMM on Jamie Craane personal blog</title>
-    <link>https://jamiecraane.dev/categories/kmm/</link>
+    <link>http://localhost:1313/categories/kmm/</link>
     <description>Recent content in KMM on Jamie Craane personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/kmm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Standalone KMM Images</title>
-      <link>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</link>
+      <link>http://localhost:1313/2022/07/27/standalone_kmm_images/</link>
       <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</guid>
-      <description>Image by Dall-E: &amp;ldquo;Factory which produces lots of the same products. Dark.&amp;rdquo;
-Context https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the kmm-images plugin to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.
-Benefits of using kmm-images in an Android app Kmm-images unifies image handling in a KMM iOS and Android app.</description>
+      <guid>http://localhost:1313/2022/07/27/standalone_kmm_images/</guid>
+      <description>&lt;p&gt;Image by Dall-E: &lt;em&gt;&amp;ldquo;Factory which produces lots of the same products. Dark.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://jamiecraane.dev/2021/07/27/resource_images_kmm/&#34;&gt;https://jamiecraane.dev/2021/07/27/resource_images_kmm/&lt;/a&gt; describes how to use the &lt;a href=&#34;https://github.com/jcraane/kmm-images&#34;&gt;kmm-images plugin&lt;/a&gt; to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.&lt;/p&gt;&#xA;&lt;h2 id=&#34;benefits-of-using-kmm-images-in-an-android-app&#34;&gt;Benefits of using kmm-images in an Android app&lt;/h2&gt;&#xA;&lt;p&gt;Kmm-images unifies image handling in a KMM iOS and Android app. Using kmm-images in a standalone Android app has the following advantages:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>KMM adoption strategies</title>
-      <link>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</link>
+      <link>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
-      <description>KMM adoption strategies Introduction Kotlin multiplatform Mobile, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.
-There are several advantages of sharing code between platforms:
-Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication KMM gives the flexibility to decide what code is shared.</description>
+      <guid>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</guid>
+      <description>&lt;h1 id=&#34;kmm-adoption-strategies&#34;&gt;KMM adoption strategies&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/kmm-getting-started.html#start-kmm-from-scratch&#34;&gt;Kotlin multiplatform Mobile&lt;/a&gt;, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.&lt;/p&gt;&#xA;&lt;p&gt;There are several advantages of sharing code between platforms:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Reduced development time&lt;/li&gt;&#xA;&lt;li&gt;More consistent logic across platforms&lt;/li&gt;&#xA;&lt;li&gt;More consistent behavior across platforms&lt;/li&gt;&#xA;&lt;li&gt;Less bugs&lt;/li&gt;&#xA;&lt;li&gt;Improved team communication&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;KMM gives the flexibility to decide what code is shared. Without going into the details about what to share, some common strategies are:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Localized resources and images in KMM</title>
-      <link>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</link>
+      <link>http://localhost:1313/2021/07/27/resource_images_kmm/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</guid>
-      <description>Introduction Kotlin Multiplatform Mobile (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.
-Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.</description>
+      <guid>http://localhost:1313/2021/07/27/resource_images_kmm/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/lp/mobile/&#34;&gt;Kotlin Multiplatform Mobile&lt;/a&gt; (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.&lt;/p&gt;&#xA;&lt;p&gt;Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

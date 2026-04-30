@@ -7,7 +7,6 @@ author: Jamie Craane
 date:       2014-02-08
 description: "Sometimes you run into a situation where you want to refactor some code bu"
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
-published: true
 showtoc: false
 tags:
 - IntelliJ

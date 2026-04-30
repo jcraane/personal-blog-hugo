@@ -2,72 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kotlin on Jamie Craane personal blog</title>
-    <link>https://jamiecraane.dev/tags/kotlin/</link>
+    <link>http://localhost:1313/tags/kotlin/</link>
     <description>Recent content in Kotlin on Jamie Craane personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bridging Human Intent and AI Code Generation with @AIGuideline</title>
-      <link>https://jamiecraane.dev/2025/13/10/aiguideline/</link>
+      <link>http://localhost:1313/2025/13/10/aiguideline/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/13/10/aiguideline/</guid>
-      <description>Introduction As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?
-Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.</description>
+      <guid>http://localhost:1313/2025/13/10/aiguideline/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?&lt;/p&gt;&#xA;&lt;p&gt;Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase auth in server side Thymeleaf app</title>
-      <link>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</link>
+      <link>http://localhost:1313/2025/06/12/firebase_auth_ktor_thymeleaf/</link>
       <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</guid>
-      <description>Server-Side Login with Firebase in Thymeleaf Templates This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.</description>
+      <guid>http://localhost:1313/2025/06/12/firebase_auth_ktor_thymeleaf/</guid>
+      <description>&lt;h1 id=&#34;server-side-login-with-firebase-in-thymeleaf-templates&#34;&gt;Server-Side Login with Firebase in Thymeleaf Templates&lt;/h1&gt;&#xA;&lt;p&gt;This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 2</title>
-      <link>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</link>
+      <link>http://localhost:1313/2025/01/16/firebase_jwt_ktor_part_2/</link>
       <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</guid>
-      <description>Part 2: Integrating Firebase Users into Your Database with Ktor In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.
-In this post, we will look at how to integrate your Firebase users in your own application database.</description>
+      <guid>http://localhost:1313/2025/01/16/firebase_jwt_ktor_part_2/</guid>
+      <description>&lt;h1 id=&#34;part-2-integrating-firebase-users-into-your-database-with-ktor&#34;&gt;Part 2: Integrating Firebase Users into Your Database with Ktor&lt;/h1&gt;&#xA;&lt;p&gt;In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.&lt;/p&gt;&#xA;&lt;p&gt;In this post, we will look at how to integrate your Firebase users in your own application database. This article will cover using &lt;strong&gt;custom tokens&lt;/strong&gt;, &lt;strong&gt;context receivers&lt;/strong&gt;, and the &lt;strong&gt;Exposed SQL library&lt;/strong&gt; to implement this functionality.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AI Assistant Prompt Catalog</title>
-      <link>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</link>
+      <link>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</guid>
-      <description>AI Assistant prompt catalog Prompts Android: Replace kotlin synthetic view viewBinding @author: https://x.com/jcraane
-Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:
-Replace kotlin synthetic with viewBinding. Prefix all Koltin synthetic views with binding. Replace snake case view names with camel casing. $SELECTION Create a unit test using Kotest and BehaviorSpec @author: https://x.com/jcraane
-You are an expert AI programmer which uses unit tests to verify behavior.</description>
+      <guid>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</guid>
+      <description>&lt;h1 id=&#34;ai-assistant-prompt-catalog&#34;&gt;AI Assistant prompt catalog&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prompts&#34;&gt;Prompts&lt;/h2&gt;&#xA;&lt;h3 id=&#34;android-replace-kotlin-synthetic-view-viewbinding&#34;&gt;Android: Replace kotlin synthetic view viewBinding&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace kotlin synthetic with viewBinding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Prefix all Koltin synthetic views with binding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace snake case view names with camel casing.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-kotest-and-behaviorspec&#34;&gt;Create a unit test using Kotest and BehaviorSpec&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;You are an expert AI programmer which uses unit tests to verify behavior.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Use Kotlin kotest BehaviorSpec&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the obvious cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the edge cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- DO NOT EXPLAIN THE TEST&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-jest&#34;&gt;Create a unit test using Jest&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 1</title>
-      <link>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</link>
+      <link>http://localhost:1313/2024/12/11/firebase_jwt_ktor_part_1/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</guid>
-      <description>Integrating Firebase JWT token verification in Ktor - Part 1 As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&amp;rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.
-Introduction to Ktor and Firebase Authentication https://ktor.</description>
+      <guid>http://localhost:1313/2024/12/11/firebase_jwt_ktor_part_1/</guid>
+      <description>&lt;h1 id=&#34;integrating-firebase-jwt-token-verification-in-ktor---part-1&#34;&gt;Integrating Firebase JWT token verification in Ktor - Part 1&lt;/h1&gt;&#xA;&lt;p&gt;As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&amp;rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction-to-ktor-and-firebase-authentication&#34;&gt;Introduction to Ktor and Firebase Authentication&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://ktor.io/&#34;&gt;https://ktor.io&lt;/a&gt; is a lightweight framework for creating web applications in Kotlin, known for its simplicity and flexibility, you will find no magic here. &lt;a href=&#34;https://firebase.google.com/docs/auth&#34;&gt;Firebase Authentication&lt;/a&gt; provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, and popular federated identity providers like Google, Facebook, and Twitter.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kotlin: Multi variable null check</title>
-      <link>https://jamiecraane.dev/2020/12/10/kotlin_null/</link>
+      <link>http://localhost:1313/2020/12/10/kotlin_null/</link>
       <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2020/12/10/kotlin_null/</guid>
-      <description>Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.
-Consider the following example:
-class Person() { var name: String? = null var age: Int? = null fun doSomething() { if (name !</description>
+      <guid>http://localhost:1313/2020/12/10/kotlin_null/</guid>
+      <description>&lt;p&gt;Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.&lt;/p&gt;&#xA;&lt;p&gt;Consider the following example:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Person&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;var&lt;/span&gt; name: String? = &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;var&lt;/span&gt; age: Int? = &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;doSomething&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (name &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; age &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            name.length &lt;span style=&#34;color:#6272a4&#34;&gt;// Compile error since smart-cast is not possible&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When the name or age property is accessed after the above null check we get the following compile error: smart cast to &amp;lsquo;String&amp;rsquo; is impossible, because &amp;rsquo;name&amp;rsquo; is a mutable property that could have been changed by this time.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

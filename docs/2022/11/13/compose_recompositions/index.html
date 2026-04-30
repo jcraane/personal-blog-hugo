@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
-    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
     
 
     
@@ -121,11 +121,15 @@
                         </li>
                         
                         <li>
-                            <a href="/categories/machine-learning">machine-learning</a>
+                            <a href="/categories/machine-learning">machine learning</a>
                         </li>
                         
                         <li>
                             <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
                         </li>
                         
                     
@@ -173,45 +177,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/recompositions-header.png')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/android" title="Android">
-                            Android
-                        </a>
-                        
-                        <a class="tag" href="/tags/compose" title="Compose">
-                            Compose
-                        </a>
-                        
-                    </div>
-                    <h1>Jetpack Compose - Recompositions</h1>
-                    <h2 class="subheading">Recompositions in Jetpack Compose</h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                Jamie Craane
-                             
-                            on 
-                            Sunday, November 13, 2022
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
                 </div>
             </div>
         </div>
@@ -224,24 +197,24 @@
 <article>
     <div class="container">
         <div class="row">
-
             
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
                 <h1 id="what-is-recomposition">What is recomposition</h1>
 <p>A Compose function in Jetpack Compose represents some UI to be rendered:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@Composable
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@Composable
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">UsersScreen</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">var</span> usersScreenState <span style="color:#ff79c6">by</span> remember {
 </span></span><span style="display:flex;"><span>        mutableStateOf(
 </span></span><span style="display:flex;"><span>            UsersScreenState(
 </span></span><span style="display:flex;"><span>                title = <span style="color:#f1fa8c">&#34;Users&#34;</span>,
 </span></span><span style="display:flex;"><span>                body = <span style="color:#f1fa8c">&#34;This is the users screen&#34;</span>,
-</span></span><span style="display:flex;"><span>                (<span style="color:#bd93f9">1.</span>.<span style="color:#bd93f9">40</span>).toList().map { Person(<span style="color:#ff79c6">it</span>, <span style="color:#f1fa8c">&#34;Firstname Lastname </span><span style="color:#f1fa8c">$it</span><span style="color:#f1fa8c">&#34;</span>) },
+</span></span><span style="display:flex;"><span>                (<span style="color:#bd93f9">1</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">40</span>).toList().map { Person(<span style="color:#ff79c6">it</span>, <span style="color:#f1fa8c">&#34;Firstname Lastname </span><span style="color:#f1fa8c">$it</span><span style="color:#f1fa8c">&#34;</span>) },
 </span></span><span style="display:flex;"><span>            )
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>    }
@@ -250,7 +223,7 @@
 </span></span><span style="display:flex;"><span>        Text(usersScreenState.title)
 </span></span><span style="display:flex;"><span>        Text(usersScreenState.description)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        Button(onClick = { usersScreenState = usersScreenState.copy(title = Random.nextInt().toString()) }) {
+</span></span><span style="display:flex;"><span>        Button(onClick = { usersScreenState = usersScreenState.copy(title = <span style="color:#50fa7b">Random</span>.nextInt().toString()) }) {
 </span></span><span style="display:flex;"><span>            Text(<span style="color:#f1fa8c">&#34;Change title&#34;</span>)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
@@ -294,10 +267,10 @@ the person list has not changed.</p>
 <h1 id="how-to-fix">How to fix</h1>
 <p>How can we fix this? Take a look at the third requirement for Compose to consider a type stable: All public properties are primitive types or also considered stable.</p>
 <p>The persons property is of the following type:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> <span style="color:#ff79c6">val</span> persons: List&lt;Person&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> <span style="color:#ff79c6">val</span> persons: List&lt;Person&gt;
 </span></span></code></pre></div><p>As you can see the type is List<!-- raw HTML omitted -->. Since List is an interface, Compose cannot determine if this is a mutable or immutable implementation.
 Therefore, the UsersScreenState data class is considered unstable. As mentioned in <a href="https://chris.banes.dev/posts/composable-metrics/">Compose Metrics</a> we can take a look at the class stability and notice the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>unstable class UsersScreenState {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>unstable class UsersScreenState {
 </span></span><span style="display:flex;"><span>  stable val title: String
 </span></span><span style="display:flex;"><span>  stable val body: String
 </span></span><span style="display:flex;"><span>  unstable val persons: List&lt;Person&gt; &lt;-- List&lt;Person&gt; considered unstable
@@ -311,7 +284,7 @@ Therefore, the UsersScreenState data class is considered unstable. As mentioned 
 </span></span></code></pre></div><p>As expected, the List<!-- raw HTML omitted --> type is considered unstable and so is the enclosing type UsersScreenState.</p>
 <p>To fix this we can use the Immutable annotation to inform the Compose compiler that all public properties of the type remain unchanged after creation.
 We cannot use this annotation on an individual property. We need to create a wrapper class for the list of persons:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UsersScreenState</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UsersScreenState</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> title: String,
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> body: String,
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> personCollection: PersonCollection,
@@ -321,7 +294,7 @@ We cannot use this annotation on an individual property. We need to create a wra
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PersonCollection</span>(<span style="color:#ff79c6">val</span> persons: List&lt;Person&gt;)
 </span></span></code></pre></div><p>By introducing a wrapper class and annotate that as @Immutable, the UsersScreenState becomes stable. We can proof this by looking at the class
 metrics:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>stable class UsersScreenState {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>stable class UsersScreenState {
 </span></span><span style="display:flex;"><span>  stable val title: String
 </span></span><span style="display:flex;"><span>  stable val body: String
 </span></span><span style="display:flex;"><span>  stable val personCollection: PersonCollection &lt;- PersonCollection is table so UsersScreenState is also considered stable
@@ -338,7 +311,7 @@ metrics:</p>
 <p>The list is indeed not recomposed because the PersonCollection has not changed.</p>
 <h1 id="detekt-with-compose">Detekt with Compose</h1>
 <p>Another way to get information about the parameters passed to Composables is by using <a href="https://github.com/detekt/detekt">Detekt</a> together with the <a href="https://twitter.github.io/compose-rules/">Twitter Compose Rules</a>. If we run the Twitter Compose rules on the above code we get the following warning:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>TwitterCompose - 20min debt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>TwitterCompose - 20min debt
 </span></span><span style="display:flex;"><span>	UnstableCollections - [The Compose Compiler cannot infer the stability of a parameter if a List&lt;Person&gt;(...)] at /Users/jamiecraane/develop/AndroidStudio/JetpackCompose/Recompositions/app/src/main/java/dev/jamiecraane/recompositions/RecompositionScreenDemo.kt:48:33
 </span></span></code></pre></div><p>This specific rules of the Twitter Compose checks if any parameters passed to Composable functions are mutable or not.</p>
 <h1 id="conclusion">Conclusion</h1>
@@ -356,127 +329,197 @@ both a mutable or immutable implementation. To help Compose with stability you c
 <li><a href="https://github.com/jcraane/ComposeRecompositions">Sample code</a></li>
 </ul>
 
+            
+             
+            
 
-                
 
-                
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2022/07/27/standalone_kmm_images/" data-toggle="tooltip" data-placement="top" title="Standalone KMM Images">&larr;
-                            Previous Post</a>
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
                     </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2024/12/11/firebase_jwt_ktor_part_1/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase JWT token verification in Ktor - Part 1">Next
-                            Post &rarr;</a>
-                    </li>
-                    
+            
+            
+            
+               
+               
+               
+               
                 </ul>
-                
-
-                
-
-
-
             </div>
-
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
             
             
-
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
             
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+               
+            
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
 
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/android" title="android">
-                            android
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/aws" title="aws">
-                            aws
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/firebase" title="firebase">
-                            firebase
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/intellij" title="intellij">
-                            intellij
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kmm" title="kmm">
-                            kmm
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kotlin" title="kotlin">
-                            kotlin
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ktor" title="ktor">
-                            ktor
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/machine-learning" title="machine-learning">
-                            machine-learning
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
+    
+    
+    
+</div>
 
-                
-                
-            </div>
         </div>
     </div>
 </article>
@@ -488,7 +531,7 @@ both a mutable or immutable implementation. To help Compose with stability you c
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     
                     
                     <li>
@@ -558,7 +601,7 @@ both a mutable or immutable implementation. To help Compose with stability you c
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2025
+                    Copyright &copy; Jamie Craane personal blog 2026
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -611,22 +654,6 @@ both a mutable or immutable implementation. To help Compose with stability you c
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-YZ49LBW0KM', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

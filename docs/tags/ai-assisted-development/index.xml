@@ -2,20 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI-Assisted Development on Jamie Craane personal blog</title>
-    <link>https://jamiecraane.dev/tags/ai-assisted-development/</link>
+    <link>http://localhost:1313/tags/ai-assisted-development/</link>
     <description>Recent content in AI-Assisted Development on Jamie Craane personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/tags/ai-assisted-development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ai-assisted-development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bridging Human Intent and AI Code Generation with @AIGuideline</title>
-      <link>https://jamiecraane.dev/2025/13/10/aiguideline/</link>
+      <link>http://localhost:1313/2025/13/10/aiguideline/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/13/10/aiguideline/</guid>
-      <description>Introduction As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?
-Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.</description>
+      <guid>http://localhost:1313/2025/13/10/aiguideline/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?&lt;/p&gt;&#xA;&lt;p&gt;Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

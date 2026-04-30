@@ -2,82 +2,74 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Jamie Craane personal blog</title>
-    <link>https://jamiecraane.dev/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Jamie Craane personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reliability</title>
+      <link>http://localhost:1313/categories/reliability/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/reliability/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
-      <link>https://jamiecraane.dev/categories/ai/</link>
+      <link>http://localhost:1313/categories/ai/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/ai/</guid>
+      <guid>http://localhost:1313/categories/ai/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Kotlin</title>
-      <link>https://jamiecraane.dev/categories/kotlin/</link>
+      <link>http://localhost:1313/categories/kotlin/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/kotlin/</guid>
+      <guid>http://localhost:1313/categories/kotlin/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Android</title>
-      <link>https://jamiecraane.dev/categories/android/</link>
+      <link>http://localhost:1313/categories/android/</link>
       <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/android/</guid>
+      <guid>http://localhost:1313/categories/android/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>KMM</title>
-      <link>https://jamiecraane.dev/categories/kmm/</link>
+      <link>http://localhost:1313/categories/kmm/</link>
       <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/kmm/</guid>
+      <guid>http://localhost:1313/categories/kmm/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>PROCESS</title>
-      <link>https://jamiecraane.dev/categories/process/</link>
+      <title>Process</title>
+      <link>http://localhost:1313/categories/process/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/process/</guid>
+      <guid>http://localhost:1313/categories/process/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>IntelliJ</title>
-      <link>https://jamiecraane.dev/categories/intellij/</link>
+      <link>http://localhost:1313/categories/intellij/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/intellij/</guid>
+      <guid>http://localhost:1313/categories/intellij/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>AWS</title>
-      <link>https://jamiecraane.dev/categories/aws/</link>
+      <link>http://localhost:1313/categories/aws/</link>
       <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/aws/</guid>
+      <guid>http://localhost:1313/categories/aws/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>Machine learning</title>
-      <link>https://jamiecraane.dev/categories/machine-learning/</link>
+      <title>Machine Learning</title>
+      <link>http://localhost:1313/categories/machine-learning/</link>
       <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/categories/machine-learning/</guid>
+      <guid>http://localhost:1313/categories/machine-learning/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
-    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
     
 
     
@@ -121,11 +121,15 @@
                         </li>
                         
                         <li>
-                            <a href="/categories/machine-learning">machine-learning</a>
+                            <a href="/categories/machine-learning">machine learning</a>
                         </li>
                         
                         <li>
                             <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
                         </li>
                         
                     
@@ -173,49 +177,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/part1-firebase-ktor.png')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/firebase" title="Firebase">
-                            Firebase
-                        </a>
-                        
-                        <a class="tag" href="/tags/kotlin" title="Kotlin">
-                            Kotlin
-                        </a>
-                        
-                        <a class="tag" href="/tags/ktor" title="Ktor">
-                            Ktor
-                        </a>
-                        
-                    </div>
-                    <h1>Integrating Firebase JWT token verification in Ktor - Part 2</h1>
-                    <h2 class="subheading">Using Firebase authentication with Ktor</h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                Jamie Craane
-                             
-                            on 
-                            Wednesday, January 15, 2025
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
                 </div>
             </div>
         </div>
@@ -228,14 +197,14 @@
 <article>
     <div class="container">
         <div class="row">
-
             
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
                 <h1 id="part-2-integrating-firebase-users-into-your-database-with-ktor">Part 2: Integrating Firebase Users into Your Database with Ktor</h1>
 <p>In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.</p>
 <p>In this post, we will look at how to integrate your Firebase users in your own application database. This article will cover using <strong>custom tokens</strong>, <strong>context receivers</strong>, and the <strong>Exposed SQL library</strong> to implement this functionality.</p>
@@ -245,7 +214,7 @@
 <p>One way of doing this, is leveraging Firebase custom tokens.</p>
 <h2 id="setting-up-the-user-model-and-database">Setting Up the User Model and Database</h2>
 <p>In our example, we’ve used PostgreSQL as the database and the <strong><a href="https://github.com/JetBrains/Exposed">Jetbrains Exposed SQL library</a></strong> to interact with the database. Below is a sample schema for managing users.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> users
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> users
 </span></span><span style="display:flex;"><span>(
 </span></span><span style="display:flex;"><span>    id            uuid <span style="color:#ff79c6">PRIMARY</span> <span style="color:#ff79c6">KEY</span>,
 </span></span><span style="display:flex;"><span>    firebase_id   <span style="color:#8be9fd;font-style:italic">VARCHAR</span>(<span style="color:#bd93f9">36</span>) <span style="color:#ff79c6">UNIQUE</span>,
@@ -261,26 +230,26 @@
 <h3 id="leveraging-custom-tokens">Leveraging Custom Tokens</h3>
 <p>Firebase has the option to authenticate users and devices using JSON Web Tokens (JWT). The backend generates these token and can add additional attributes. This is exactly what the create-custom-token endpoint does. The create-custom-token endpoint is an API call we implement in our own backend. It receives a (valid) Firebase token, validates it and sets our native user id as a custom attribute on the token.</p>
 <p>In this stage, the user is created if the user did not already exists in our own database, together with the firebase uid. Below is the sample implementation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// The create-custom-token endpoint is secured by verifying the Firebase token with which this endpoint is called
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>authenticate(<span style="color:#f1fa8c">&#34;auth-jwt-custom-token&#34;</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// The create-custom-token endpoint is secured by verifying the Firebase token with which this endpoint is called
+</span></span></span><span style="display:flex;"><span>authenticate(<span style="color:#f1fa8c">&#34;auth-jwt-custom-token&#34;</span>) {
 </span></span><span style="display:flex;"><span>	post(<span style="color:#f1fa8c">&#34;/create-custom-token&#34;</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> jwtPrincipal = call.principal&lt;JWTPrincipal&gt;()
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> firebaseId = jwtPrincipal<span style="color:#ff79c6">?.</span>subject <span style="color:#ff79c6">?:</span> <span style="color:#ff79c6">return</span>@post call.respond(HttpStatusCode.Unauthorized)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> firebaseId = jwtPrincipal<span style="color:#ff79c6">?.</span>subject <span style="color:#ff79c6">?:</span> <span style="color:#ff79c6">return</span>@post call.respond(<span style="color:#50fa7b">HttpStatusCode</span>.Unauthorized)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Fetch or create user
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">val</span> user = userService.retrieveUserByFirebaseId(firebaseId)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> user = userService.retrieveUserByFirebaseId(firebaseId)
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">?:</span> createUser(userService, jwtPrincipal, firebaseId)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// Return the custom token in the response to the client
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    call.respondText(createCustomTokenForUser(firebaseAuth, user))
+</span></span></span><span style="display:flex;"><span>    call.respondText(createCustomTokenForUser(firebaseAuth, user))
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The custom token itself is created using the Firebase admin SDK:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">createCustomTokenForUser</span>(firebaseAuth: FirebaseAuth, user: User): String {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">createCustomTokenForUser</span>(firebaseAuth: FirebaseAuth, user: User): String {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> firebaseAuth.createCustomToken(
 </span></span><span style="display:flex;"><span>	    user.firebaseId, 
 </span></span><span style="display:flex;"><span>	    mapOf(<span style="color:#f1fa8c">&#34;nativeUserId&#34;</span> to user.id.toString()), <span style="color:#6272a4">// &#39;Our&#39; userId is set as custom attribute on the token
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>	  )
+</span></span></span><span style="display:flex;"><span>	  )
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Remember, the create-custom-token endpoint is called only when the user logs in to our application. The payload of a custom token cannot exceed 1000 bytes. The following sequence diagram shows the create-custom-token flow:</p>
 <p>
@@ -288,7 +257,7 @@
 
 </p>
 <p>The following is an example token with our custom attribute:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;claims&#34;</span> <span style="color:#ff79c6">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;nativeUserId&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;user_01jhk53ddsfbyb9qvwks1bpabc&#34;</span>
 </span></span><span style="display:flex;"><span>  },
@@ -304,14 +273,14 @@
 <p>For this, we can use  <strong>Kotlin</strong> <strong>context receivers.</strong> Instead of passing the authenticated user down through function parameters, <strong>Kotlin</strong> <strong>context receivers</strong> simplify access to the current authenticated user. Here’s an example of how this works when handling tags for the authenticated user.</p>
 <h3 id="example-adding-tags-for-an-authenticated-user">Example: Adding Tags for an Authenticated User</h3>
 <p>In this implementation, a tag object is linked to the authenticated user stored in the database. this funciton uses  <strong>context receivers</strong> to obtain the authenticated user without passing this user explicitly through function parameters.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>context(AuthenticatedUser)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>context(AuthenticatedUser)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">addTag</span>(name: String, documentId: DocumentId?): Tag {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> tag = Tag(typeId = typeId, name = name, created = timeRepository.now())
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    newSuspendedTransaction {
-</span></span><span style="display:flex;"><span>        TagsTable.insert {
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">TagsTable</span>.insert {
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">it</span>[id] = tag.id.uuid
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">it</span>[TagsTable.name] = tag.name
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">it</span>[<span style="color:#50fa7b">TagsTable</span>.name] = tag.name
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">it</span>[created] = tag.created
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">it</span>[userId] = nativeUserId.uuid
 </span></span><span style="display:flex;"><span>        }
@@ -324,17 +293,17 @@
 <p>The final piece of the puzzle is implementing the route which calls our service/repository. This also means setting the context so the authenticated user is passed with each function call.</p>
 <p>The Ktor <code>authenticate</code> block is used to ensure specific routes are secured. These routes rely on the <code>JWTPrincipal</code> to provide the authenticated user&rsquo;s context.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>route(<span style="color:#f1fa8c">&#34;v1/tags&#34;</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>route(<span style="color:#f1fa8c">&#34;v1/tags&#34;</span>) {
 </span></span><span style="display:flex;"><span>    authenticate(<span style="color:#f1fa8c">&#34;auth-jwt&#34;</span>) {
 </span></span><span style="display:flex;"><span>        post {
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> body = call.receive&lt;CreateTagRequest&gt;()
 </span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// The with function defines the context which means the autenticated user is passed via a context receiver. If this is omitted, a compile error appears 
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">val</span> response = with(call.principal&lt;JWTPrincipal&gt;()<span style="color:#ff79c6">!!</span>.authenticatedUser(typeId)) {
+</span></span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> response = with(call.principal&lt;JWTPrincipal&gt;()<span style="color:#ff79c6">!!</span>.authenticatedUser(typeId)) {
 </span></span><span style="display:flex;"><span>                body.tags.map {
 </span></span><span style="display:flex;"><span>                    tagService.addTag(name = <span style="color:#ff79c6">it</span>.name)
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            call.respond(HttpStatusCode.OK, response)
+</span></span><span style="display:flex;"><span>            call.respond(<span style="color:#50fa7b">HttpStatusCode</span>.OK, response)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>You might ask yourself the question, what about the two different configurations for verifying JWT tokens?</p>
@@ -359,127 +328,197 @@
 <li><a href="https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/">https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</a></li>
 </ul>
 
+            
+             
+            
 
-                
 
-                
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2024/12/11/ai-assistant-prompt-catalog/" data-toggle="tooltip" data-placement="top" title="AI Assistant Prompt Catalog">&larr;
-                            Previous Post</a>
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
                     </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2025/06/12/firebase_auth_ktor_thymeleaf/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase auth in server side Thymeleaf app">Next
-                            Post &rarr;</a>
-                    </li>
-                    
+            
+            
+            
+               
+               
+               
+               
                 </ul>
-                
-
-                
-
-
-
             </div>
-
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
             
             
-
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
             
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+               
+            
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
 
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/android" title="android">
-                            android
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/aws" title="aws">
-                            aws
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/firebase" title="firebase">
-                            firebase
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/intellij" title="intellij">
-                            intellij
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kmm" title="kmm">
-                            kmm
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kotlin" title="kotlin">
-                            kotlin
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ktor" title="ktor">
-                            ktor
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/machine-learning" title="machine-learning">
-                            machine-learning
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
+    
+    
+    
+</div>
 
-                
-                
-            </div>
         </div>
     </div>
 </article>
@@ -491,7 +530,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     
                     
                     <li>
@@ -561,7 +600,7 @@
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2025
+                    Copyright &copy; Jamie Craane personal blog 2026
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -614,22 +653,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-YZ49LBW0KM', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

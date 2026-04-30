@@ -6,8 +6,7 @@ subtitle:   "Reliability Engineering in the AI Era"
 author: Jamie Craane
 date: 2026-04-30
 description: "Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets."
-image: ""
-published: true
+image: "/img/ai-reliabiity.png"
 showtoc: false
 tags:
 - AI

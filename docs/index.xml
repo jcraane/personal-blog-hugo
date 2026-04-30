@@ -2,247 +2,179 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jamie Craane personal blog</title>
-    <link>https://jamiecraane.dev/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Jamie Craane personal blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jamiecraane.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If an AI Agent Can Delete Your Production Database, That&#39;s on You</title>
+      <link>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;ve all seen the viral stories circulating on X recently: an AI coding agent runs amok and deletes a production database. Immediately, the blame game begins: users point fingers at the agent framework, at coding assistants like Cursor, or at cloud platforms like Railway.&lt;/p&gt;&#xA;&lt;p&gt;My take? The operator carries the responsibility. Tool vendors absolutely should ship safer defaults — scoped tokens, confirmation prompts on destructive operations, dry-run modes — and I&amp;rsquo;d happily criticize them for not doing so. But even with perfect vendor defaults, the buck stops with whoever wired the agent into production. Cursor and Railway are stand-ins here for &lt;em&gt;any&lt;/em&gt; autonomous agent with tool access; the same arguments apply to whatever framework you&amp;rsquo;re running.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Bridging Human Intent and AI Code Generation with @AIGuideline</title>
-      <link>https://jamiecraane.dev/2025/13/10/aiguideline/</link>
+      <link>http://localhost:1313/2025/13/10/aiguideline/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/13/10/aiguideline/</guid>
-      <description>Introduction As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?
-Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.</description>
+      <guid>http://localhost:1313/2025/13/10/aiguideline/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&amp;rsquo;s specific architectural patterns, design principles, and coding standards?&lt;/p&gt;&#xA;&lt;p&gt;Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase auth in server side Thymeleaf app</title>
-      <link>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</link>
+      <link>http://localhost:1313/2025/06/12/firebase_auth_ktor_thymeleaf/</link>
       <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</guid>
-      <description>Server-Side Login with Firebase in Thymeleaf Templates This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.</description>
+      <guid>http://localhost:1313/2025/06/12/firebase_auth_ktor_thymeleaf/</guid>
+      <description>&lt;h1 id=&#34;server-side-login-with-firebase-in-thymeleaf-templates&#34;&gt;Server-Side Login with Firebase in Thymeleaf Templates&lt;/h1&gt;&#xA;&lt;p&gt;This blog post explains how to implement server-side authentication with Firebase in a Kotlin Ktor application using Thymeleaf templates. This approach is particularly useful for admin panels or dashboards where you want to leverage Firebase Authentication while rendering server-side HTML. By leveraging Thymeleaf (or other server-side templates for example Freemarker), may shorten the time-to-market for these kind of dashboard compared to full fledged Javascript frameworks like Angular or React.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 2</title>
-      <link>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</link>
+      <link>http://localhost:1313/2025/01/16/firebase_jwt_ktor_part_2/</link>
       <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</guid>
-      <description>Part 2: Integrating Firebase Users into Your Database with Ktor In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.
-In this post, we will look at how to integrate your Firebase users in your own application database.</description>
+      <guid>http://localhost:1313/2025/01/16/firebase_jwt_ktor_part_2/</guid>
+      <description>&lt;h1 id=&#34;part-2-integrating-firebase-users-into-your-database-with-ktor&#34;&gt;Part 2: Integrating Firebase Users into Your Database with Ktor&lt;/h1&gt;&#xA;&lt;p&gt;In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.&lt;/p&gt;&#xA;&lt;p&gt;In this post, we will look at how to integrate your Firebase users in your own application database. This article will cover using &lt;strong&gt;custom tokens&lt;/strong&gt;, &lt;strong&gt;context receivers&lt;/strong&gt;, and the &lt;strong&gt;Exposed SQL library&lt;/strong&gt; to implement this functionality.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AI Assistant Prompt Catalog</title>
-      <link>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</link>
+      <link>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</guid>
-      <description>AI Assistant prompt catalog Prompts Android: Replace kotlin synthetic view viewBinding @author: https://x.com/jcraane
-Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:
-Replace kotlin synthetic with viewBinding. Prefix all Koltin synthetic views with binding. Replace snake case view names with camel casing. $SELECTION Create a unit test using Kotest and BehaviorSpec @author: https://x.com/jcraane
-You are an expert AI programmer which uses unit tests to verify behavior.</description>
+      <guid>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</guid>
+      <description>&lt;h1 id=&#34;ai-assistant-prompt-catalog&#34;&gt;AI Assistant prompt catalog&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prompts&#34;&gt;Prompts&lt;/h2&gt;&#xA;&lt;h3 id=&#34;android-replace-kotlin-synthetic-view-viewbinding&#34;&gt;Android: Replace kotlin synthetic view viewBinding&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace kotlin synthetic with viewBinding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Prefix all Koltin synthetic views with binding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace snake case view names with camel casing.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-kotest-and-behaviorspec&#34;&gt;Create a unit test using Kotest and BehaviorSpec&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;You are an expert AI programmer which uses unit tests to verify behavior.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Use Kotlin kotest BehaviorSpec&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the obvious cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the edge cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- DO NOT EXPLAIN THE TEST&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-jest&#34;&gt;Create a unit test using Jest&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Integrating Firebase JWT token verification in Ktor - Part 1</title>
-      <link>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</link>
+      <link>http://localhost:1313/2024/12/11/firebase_jwt_ktor_part_1/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</guid>
-      <description>Integrating Firebase JWT token verification in Ktor - Part 1 As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&amp;rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.
-Introduction to Ktor and Firebase Authentication https://ktor.</description>
+      <guid>http://localhost:1313/2024/12/11/firebase_jwt_ktor_part_1/</guid>
+      <description>&lt;h1 id=&#34;integrating-firebase-jwt-token-verification-in-ktor---part-1&#34;&gt;Integrating Firebase JWT token verification in Ktor - Part 1&lt;/h1&gt;&#xA;&lt;p&gt;As applications become more complex and security becomes a priority, choosing the right tools to handle authentication is crucial. Today, we&amp;rsquo;ll explore how to integrate Firebase JWT (JSON Web Token) authentication in a Ktor server application. This blog post will cover the core setup and implementation details required to ensure secure handling of JWTs in a Ktor application.&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction-to-ktor-and-firebase-authentication&#34;&gt;Introduction to Ktor and Firebase Authentication&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://ktor.io/&#34;&gt;https://ktor.io&lt;/a&gt; is a lightweight framework for creating web applications in Kotlin, known for its simplicity and flexibility, you will find no magic here. &lt;a href=&#34;https://firebase.google.com/docs/auth&#34;&gt;Firebase Authentication&lt;/a&gt; provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, and popular federated identity providers like Google, Facebook, and Twitter.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Jetpack Compose - Recompositions</title>
-      <link>https://jamiecraane.dev/2022/11/13/compose_recompositions/</link>
+      <link>http://localhost:1313/2022/11/13/compose_recompositions/</link>
       <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/11/13/compose_recompositions/</guid>
-      <description>What is recomposition A Compose function in Jetpack Compose represents some UI to be rendered:
-@Composable fun UsersScreen() { var usersScreenState by remember { mutableStateOf( UsersScreenState( title = &amp;#34;Users&amp;#34;, body = &amp;#34;This is the users screen&amp;#34;, (1..40).toList().map { Person(it, &amp;#34;Firstname Lastname $it&amp;#34;) }, ) ) } Column() { Text(usersScreenState.title) Text(usersScreenState.description) Button(onClick = { usersScreenState = usersScreenState.copy(title = Random.nextInt().toString()) }) { Text(&amp;#34;Change title&amp;#34;) } PersonList(usersScreenState.persons) } } Notice that the usersScreenState is a var which means it can change.</description>
+      <guid>http://localhost:1313/2022/11/13/compose_recompositions/</guid>
+      <description>&lt;h1 id=&#34;what-is-recomposition&#34;&gt;What is recomposition&lt;/h1&gt;&#xA;&lt;p&gt;A Compose function in Jetpack Compose represents some UI to be rendered:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Composable&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;UsersScreen&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;var&lt;/span&gt; usersScreenState &lt;span style=&#34;color:#ff79c6&#34;&gt;by&lt;/span&gt; remember {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        mutableStateOf(&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            UsersScreenState(&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                title = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Users&amp;#34;&lt;/span&gt;,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                body = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;This is the users screen&amp;#34;&lt;/span&gt;,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                (&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;..&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;40&lt;/span&gt;).toList().map { Person(&lt;span style=&#34;color:#ff79c6&#34;&gt;it&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Firstname Lastname &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;$it&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;) },&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            )&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Column() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Text(usersScreenState.title)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Text(usersScreenState.description)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Button(onClick = { usersScreenState = usersScreenState.copy(title = &lt;span style=&#34;color:#50fa7b&#34;&gt;Random&lt;/span&gt;.nextInt().toString()) }) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Text(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Change title&amp;#34;&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        PersonList(usersScreenState.persons)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Notice that the usersScreenState is a var which means it can change. Any time the usersScreenState changes, the UI is recomposed. This is&#xA;also called recomposition. Smart recomposition means skipping Composables when their inputs have not changed and those inputs are considered stable.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Standalone KMM Images</title>
-      <link>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</link>
+      <link>http://localhost:1313/2022/07/27/standalone_kmm_images/</link>
       <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/07/27/standalone_kmm_images/</guid>
-      <description>Image by Dall-E: &amp;ldquo;Factory which produces lots of the same products. Dark.&amp;rdquo;
-Context https://jamiecraane.dev/2021/07/27/resource_images_kmm/ describes how to use the kmm-images plugin to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.
-Benefits of using kmm-images in an Android app Kmm-images unifies image handling in a KMM iOS and Android app.</description>
+      <guid>http://localhost:1313/2022/07/27/standalone_kmm_images/</guid>
+      <description>&lt;p&gt;Image by Dall-E: &lt;em&gt;&amp;ldquo;Factory which produces lots of the same products. Dark.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://jamiecraane.dev/2021/07/27/resource_images_kmm/&#34;&gt;https://jamiecraane.dev/2021/07/27/resource_images_kmm/&lt;/a&gt; describes how to use the &lt;a href=&#34;https://github.com/jcraane/kmm-images&#34;&gt;kmm-images plugin&lt;/a&gt; to share images between a Kotlin Multiplatform Mobile (short KMM) Android and iOS app. You can also use kmm-images in a standalone Android app. This post describes the advantages of doing this.&lt;/p&gt;&#xA;&lt;h2 id=&#34;benefits-of-using-kmm-images-in-an-android-app&#34;&gt;Benefits of using kmm-images in an Android app&lt;/h2&gt;&#xA;&lt;p&gt;Kmm-images unifies image handling in a KMM iOS and Android app. Using kmm-images in a standalone Android app has the following advantages:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Koin ViewModel Injection</title>
-      <link>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</link>
+      <link>http://localhost:1313/2022/07/27/koin_viewmodel_injection/</link>
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/07/27/koin_viewmodel_injection/</guid>
-      <description>Image by Dall-E: &amp;ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&amp;rdquo;
-Context A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects.</description>
+      <guid>http://localhost:1313/2022/07/27/koin_viewmodel_injection/</guid>
+      <description>&lt;p&gt;Image by Dall-E: &lt;em&gt;&amp;ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;&#xA;&lt;p&gt;A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle&#xA;of another component, usually a fragment or an activity. To create maintainable code without becoming the ViewModel to large, the ViewModel delegates to other objects. When using&#xA;coroutines, those other objects might use suspending functions. Those functions are called from the ViewModel in a CoroutineScope. For a ViewModel this is the viewModelScope. When the ViewModel is cleared, the viewModelScope is cancelled.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Code re-usability</title>
-      <link>https://jamiecraane.dev/2022/06/16/code_reusability/</link>
+      <link>http://localhost:1313/2022/06/16/code_reusability/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2022/06/16/code_reusability/</guid>
-      <description>Re-usability within software development means to reuse (part of) a solution in different products with the aim of:
-faster time to market lower costs less chance of introducing issues be able to use shared knowledge Re-usability at different abstraction levels Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:
-Infrastructure Using infrastructure to distribute software.</description>
+      <guid>http://localhost:1313/2022/06/16/code_reusability/</guid>
+      <description>&lt;p&gt;Re-usability within software development means to reuse (part of) a solution in different products with the aim of:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;faster time to market&lt;/li&gt;&#xA;&lt;li&gt;lower costs&lt;/li&gt;&#xA;&lt;li&gt;less chance of introducing issues&lt;/li&gt;&#xA;&lt;li&gt;be able to use shared knowledge&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;re-usability-at-different-abstraction-levels&#34;&gt;Re-usability at different abstraction levels&lt;/h2&gt;&#xA;&lt;p&gt;Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;&#xA;Using infrastructure to distribute software. This can be a cloud solution, but also an app store, for example.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>KMM adoption strategies</title>
-      <link>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</link>
+      <link>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
-      <description>KMM adoption strategies Introduction Kotlin multiplatform Mobile, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.
-There are several advantages of sharing code between platforms:
-Reduced development time More consistent logic across platforms More consistent behavior across platforms Less bugs Improved team communication KMM gives the flexibility to decide what code is shared.</description>
+      <guid>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</guid>
+      <description>&lt;h1 id=&#34;kmm-adoption-strategies&#34;&gt;KMM adoption strategies&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/kmm-getting-started.html#start-kmm-from-scratch&#34;&gt;Kotlin multiplatform Mobile&lt;/a&gt;, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.&lt;/p&gt;&#xA;&lt;p&gt;There are several advantages of sharing code between platforms:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Reduced development time&lt;/li&gt;&#xA;&lt;li&gt;More consistent logic across platforms&lt;/li&gt;&#xA;&lt;li&gt;More consistent behavior across platforms&lt;/li&gt;&#xA;&lt;li&gt;Less bugs&lt;/li&gt;&#xA;&lt;li&gt;Improved team communication&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;KMM gives the flexibility to decide what code is shared. Without going into the details about what to share, some common strategies are:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Localized resources and images in KMM</title>
-      <link>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</link>
+      <link>http://localhost:1313/2021/07/27/resource_images_kmm/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</guid>
-      <description>Introduction Kotlin Multiplatform Mobile (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.
-Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.</description>
+      <guid>http://localhost:1313/2021/07/27/resource_images_kmm/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/lp/mobile/&#34;&gt;Kotlin Multiplatform Mobile&lt;/a&gt; (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.&lt;/p&gt;&#xA;&lt;p&gt;Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Casting images with Chromecast</title>
-      <link>https://jamiecraane.dev/2021/01/05/android_chromecast_images/</link>
+      <link>http://localhost:1313/2021/01/05/android_chromecast_images/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2021/01/05/android_chromecast_images/</guid>
-      <description>Full source code can be found here: https://github.com/jcraane/android-simple-image-cast
-By adding Chromecast support to media rich apps like photo- and video players, users can display content to Chromecast enabled devices. This greatly enhances the user experience of those apps.
-This post demonstrates how to integrate the Chromecast SDK to add cast support for casting images. The app displays a list of publicly available images using an image carousel. When the user scrolls through those images, the images are cast to a connected receiver.</description>
+      <guid>http://localhost:1313/2021/01/05/android_chromecast_images/</guid>
+      <description>&lt;p&gt;Full source code can be found here: &lt;a href=&#34;https://github.com/jcraane/android-simple-image-cast&#34;&gt;https://github.com/jcraane/android-simple-image-cast&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;By adding Chromecast support to media rich apps like photo- and video players, users can display content to Chromecast enabled devices. This greatly enhances the user experience of those apps.&lt;/p&gt;&#xA;&lt;p&gt;This post demonstrates how to integrate the Chromecast SDK to add cast support for casting images. The app displays a list of publicly available images using an image carousel. When the user scrolls through those images, the images are cast to a connected receiver.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>IntelliJ find and replace using regular expressions</title>
-      <link>https://jamiecraane.dev/2020/12/16/intellij_replace_regex/</link>
+      <link>http://localhost:1313/2020/12/16/intellij_replace_regex/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2020/12/16/intellij_replace_regex/</guid>
-      <description>IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the docs or examples to find out how they work.
-find/replace regex (and also regular find/replace) works particularly well when lots of replacements need to be made.</description>
+      <guid>http://localhost:1313/2020/12/16/intellij_replace_regex/</guid>
+      <description>&lt;p&gt;IntelliJ (and all JetBrains ideas) support the ability to find and replace text using regular expressions. Regular expressions in this context can be very powerful. When you do not use regular expressions enough, it may take some time to come up with a correct regex, often looking at the &lt;a href=&#34;https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html&#34;&gt;docs&lt;/a&gt; or examples to find out how they work.&lt;/p&gt;&#xA;&lt;p&gt;find/replace regex (and also regular find/replace) works particularly well when lots of replacements need to be made.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kotlin: Multi variable null check</title>
-      <link>https://jamiecraane.dev/2020/12/10/kotlin_null/</link>
+      <link>http://localhost:1313/2020/12/10/kotlin_null/</link>
       <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2020/12/10/kotlin_null/</guid>
-      <description>Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.
-Consider the following example:
-class Person() { var name: String? = null var age: Int? = null fun doSomething() { if (name !</description>
+      <guid>http://localhost:1313/2020/12/10/kotlin_null/</guid>
+      <description>&lt;p&gt;Although not-null, immutable variables with sensible defaults are often desired, it is not always the case. It is sometimes required to check if multiple variables are not null. This post describes several variants of how to do this when smart casts are not possible because the variables are mutable.&lt;/p&gt;&#xA;&lt;p&gt;Consider the following example:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Person&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;var&lt;/span&gt; name: String? = &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;var&lt;/span&gt; age: Int? = &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;doSomething&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (name &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; age &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            name.length &lt;span style=&#34;color:#6272a4&#34;&gt;// Compile error since smart-cast is not possible&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When the name or age property is accessed after the above null check we get the following compile error: smart cast to &amp;lsquo;String&amp;rsquo; is impossible, because &amp;rsquo;name&amp;rsquo; is a mutable property that could have been changed by this time.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS tutorial: DynamoDB part 2</title>
-      <link>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</link>
+      <link>http://localhost:1313/2016/12/12/aws_dynamo_db2/</link>
       <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</guid>
-      <description>In the previous tutorial I showed you how to use AWS Lambda and API Gateway to insert items in a DynamoDB table. The example implemented a function which stored the location of the user. In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway.
-Create a DynamoDB Global Secondary Index
-The DeviceLocation DynamoDB table uses the id as partition key.</description>
+      <guid>http://localhost:1313/2016/12/12/aws_dynamo_db2/</guid>
+      <description>&lt;p&gt;In the previous tutorial I showed you how to use AWS Lambda and API Gateway to insert items in a DynamoDB table. The example implemented a function which stored the location of the user. In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Create a DynamoDB Global Secondary Index&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The DeviceLocation DynamoDB table uses the id as partition key. To retrieve the locations for a given device, a global secondary index must be created to query on deviceId.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>AWS tutorial: DynamoDB part 1</title>
-      <link>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</link>
+      <link>http://localhost:1313/2016/12/02/aws_dynamo_db1/</link>
       <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</guid>
-      <description>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.
-Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):
-AWS Lambda. AWS Lambda is a compute service that runs developers&amp;rsquo; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.</description>
+      <guid>http://localhost:1313/2016/12/02/aws_dynamo_db1/</guid>
+      <description>&lt;p&gt;In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.&lt;/p&gt;&#xA;&lt;p&gt;Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;AWS Lambda. AWS Lambda is a compute service that runs developers&amp;rsquo; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.&lt;/li&gt;&#xA;&lt;li&gt;DynamoDB: Fast and flexible, managed, NoSql database.&lt;/li&gt;&#xA;&lt;li&gt;Api Gateway: Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;In this example we are going to create a lambda function which tracks the location (latitude and longitude) of a specific mobile device. The data flow looks like this:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Elastic Search max open files</title>
-      <link>https://jamiecraane.dev/2016/02/22/max_open_files_es/</link>
+      <link>http://localhost:1313/2016/02/22/max_open_files_es/</link>
       <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2016/02/22/max_open_files_es/</guid>
-      <description>Elastic Search, Logstash and Kibana (ELK) is an end-to-end stack which provides realtime analytics for almost any type of structured or unstructured data.
-When importing large amounts of data using Logstash to Elastic Search (ES), the chances are that ES hit the limits of the maximum files it can open. This limit is seen as an error in the ES logs with the following description: (Too many open files)
-To deal with this you can increase the maximum files ES (or any process) may open using the following steps:</description>
+      <guid>http://localhost:1313/2016/02/22/max_open_files_es/</guid>
+      <description>&lt;p&gt;Elastic Search, Logstash and Kibana (ELK) is an end-to-end stack which provides realtime analytics for almost any type of structured or unstructured data.&lt;/p&gt;&#xA;&lt;p&gt;When importing large amounts of data using Logstash to Elastic Search (ES), the chances are that ES hit the limits of the maximum files it can open. This limit is seen as an error in the ES logs with the following description: (Too many open files)&lt;/p&gt;&#xA;&lt;p&gt;To deal with this you can increase the maximum files ES (or any process) may open using the following steps:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>IntelliJ structural search and replace</title>
-      <link>https://jamiecraane.dev/2014/02/08/intellij_structural/</link>
+      <link>http://localhost:1313/2014/02/08/intellij_structural/</link>
       <pubDate>Sat, 08 Feb 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2014/02/08/intellij_structural/</guid>
-      <description>Sometimes you run into a situation where you want to refactor some code but cannot use the regular refactorings. For example, take the following code:
-jQuery(&amp;#34;body&amp;#34;).on(&amp;#34;change&amp;#34;, &amp;#34;#fontSelector&amp;#34;, &amp;#34;change&amp;#34;, function () { var selectedFont = jQuery(&amp;#34;#fontSelector&amp;#34;).val(); layoutDesigner.selectFont(selectedFont); }); I wanted to replace the above code with the following:
-jQuery(&amp;#34;#fontSelector&amp;#34;).off(&amp;#34;change&amp;#34;); jQuery(&amp;#34;#fontSelector&amp;#34;).on(&amp;#34;change&amp;#34;, function () { var selectedFont = jQuery(&amp;#34;#fontSelector&amp;#34;).val(); layoutDesigner.selectFont(selectedFont); }); Sure, I could rewrite this manually. But this takes a long time with dozens of such event handling constructs, all with different selectors, events and functions.</description>
+      <guid>http://localhost:1313/2014/02/08/intellij_structural/</guid>
+      <description>&lt;p&gt;Sometimes you run into a situation where you want to refactor some code but cannot use the regular refactorings. For example, take the following code:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;jQuery(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;).on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;change&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#fontSelector&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;change&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; selectedFont &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; jQuery(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#fontSelector&amp;#34;&lt;/span&gt;).val();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    layoutDesigner.selectFont(selectedFont);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I wanted to replace the above code with the following:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;jQuery(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#fontSelector&amp;#34;&lt;/span&gt;).off(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;change&amp;#34;&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;jQuery(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#fontSelector&amp;#34;&lt;/span&gt;).on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;change&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; selectedFont &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; jQuery(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#fontSelector&amp;#34;&lt;/span&gt;).val();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    layoutDesigner.selectFont(selectedFont);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sure, I could rewrite this manually. But this takes a long time with dozens of such event handling constructs, all with different selectors, events and functions. Structural search and replace to the rescue.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>MyBatis</title>
-      <link>https://jamiecraane.dev/2013/09/20/mybatis_mapping_map/</link>
+      <link>http://localhost:1313/2013/09/20/mybatis_mapping_map/</link>
       <pubDate>Fri, 20 Sep 2013 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2013/09/20/mybatis_mapping_map/</guid>
-      <description>As some of you will know I am a huge fan of MyBatis. I have used it in a lot of projects and it never failed me. I like how you are in control of the SQL and the flexibility this brings by mapping result sets to classes instead of mapping tables to classes.
-Recently I wanted to map some columns from a table to actual typed properties of an object, and some columns to a property of type Map within that same object.</description>
+      <guid>http://localhost:1313/2013/09/20/mybatis_mapping_map/</guid>
+      <description>&lt;p&gt;As some of you will know I am a huge fan of MyBatis. I have used it in a lot of projects and it never failed me. I like how you are in control of the SQL and the flexibility this brings by mapping result sets to classes instead of mapping tables to classes.&lt;/p&gt;&#xA;&lt;p&gt;Recently I wanted to map some columns from a table to actual typed properties of an object, and some columns to a property of type Map within that same object. Consider the following class:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Melody composition with genetic algorithms</title>
-      <link>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</link>
+      <link>http://localhost:1313/2009/06/16/ga_melody_composition/</link>
       <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2009/06/16/ga_melody_composition/</guid>
-      <description>Introduction Several techniques exist to create computer generated musical melodies. One of those techniques is genetic algorithms. Because the diversity of melodies over a specific range of notes is so large, genetic algorithms are a good candidate to help in composing melodies. This article describes how genetic algorithms can be used to compose musical melodies. this is explained following the steps needed to apply a genetic algorithm. These steps are:</description>
+      <guid>http://localhost:1313/2009/06/16/ga_melody_composition/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&#xA;Several techniques exist to create computer generated musical melodies. One of those techniques is genetic algorithms. Because the diversity of melodies over a specific range of notes is so large, genetic algorithms are a good candidate to help in composing melodies. This article describes how genetic algorithms can be used to compose musical melodies. this is explained following the steps needed to apply a genetic algorithm. These steps are:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introduction to genetic algorithms</title>
-      <link>https://jamiecraane.dev/2009/02/23/ga_introduction/</link>
+      <link>http://localhost:1313/2009/02/23/ga_introduction/</link>
       <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/2009/02/23/ga_introduction/</guid>
-      <description>Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project. As mentioned on the project&amp;rsquo;s site &amp;ldquo;JGAP (pronounced &amp;ldquo;jay-gap&amp;rdquo;) is a Genetic Algorithms and Genetic Programming component provided as a Java framework.&amp;rdquo;. For a newcomer I found it difficult to get a good overview about all the concepts introduced in genetic algorithms. Before diving into JGAP, I think it is essential that these concepts are well understood.</description>
+      <guid>http://localhost:1313/2009/02/23/ga_introduction/</guid>
+      <description>&lt;p&gt;Out of interest I am familiarizing myself in genetic algorithms, in short GA. My interest in GA came when I first heard about the JGAP project. As mentioned on the project&amp;rsquo;s site &amp;ldquo;JGAP (pronounced &amp;ldquo;jay-gap&amp;rdquo;) is a Genetic Algorithms and Genetic Programming component provided as a Java framework.&amp;rdquo;. For a newcomer I found it difficult to get a good overview about all the concepts introduced in genetic algorithms. Before diving into JGAP, I think it is essential that these concepts are well understood. This post is an introduction to genetic algorithms (GA) with JGAP and is explained with a concrete example. In one of my next posts I will demonstrate solving a problem with genetic programming (GP).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jamiecraane.dev/search/placeholder/</link>
+      <link>http://localhost:1313/search/placeholder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/search/placeholder/</guid>
+      <guid>http://localhost:1313/search/placeholder/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
-      <link>https://jamiecraane.dev/top/about/</link>
+      <link>http://localhost:1313/top/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jamiecraane.dev/top/about/</guid>
-      <description>I have been developing software professionally since 2001. Helping customers with solutions that really add value. I like a challenge and continuously keep my knowledge up to date and share it with great enthusiasm to the public and with my team.
-Since 2012 I have been designing and developing backend and mobile applications for organisations with user bases of several hundred of thousands to millions of users. From high performance backend systems which run on AWS to native Android apps for consumers.</description>
+      <guid>http://localhost:1313/top/about/</guid>
+      <description>&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/profile-picture.jpg&#34; alt=&#34;&#34;&gt;&#xA;&#xA; I have been developing software professionally since 2001. Helping customers with solutions that really add value. I like a challenge and continuously keep my knowledge up to date and share it with great enthusiasm to the public and with my team.&lt;/p&gt;&#xA;&lt;p&gt;Since 2012 I have been designing and developing backend and mobile applications for organisations with user bases of several hundred of thousands to millions of users. From high performance backend systems which run on AWS to native Android apps for consumers.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

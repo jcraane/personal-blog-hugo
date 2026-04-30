@@ -7,7 +7,6 @@ author: Jamie Craane
 date:       2020-12-10
 description: "There are several patterns you can use to test for not null on multiple variables. This post describes different methods of null checking multiple variables in Kotlin."
 image: "/img/keyboard.jpg"
-published: false
 showtoc: false
 tags:
 - Kotlin

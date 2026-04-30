@@ -7,7 +7,6 @@ author: Jamie Craane
 date:       2020-12-16
 description: "This post provides some example of using regular expressions with IntelliJ find and replace function."
 #image: "https://img.zhaohuabing.com/in-post/2018-06-02-istio08/background.jpg"
-published: true
 showtoc: false
 tags:
 - IntelliJ

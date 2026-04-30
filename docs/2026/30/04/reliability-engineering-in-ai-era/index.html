@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="If an AI Agent Can Delete Your Production Database, That&#39;s on You" />
+    <meta property="og:title" content="If an AI Agent Can Delete Your Production Database, That&#39;s on You" />
+    <meta property="twitter:title" content="If an AI Agent Can Delete Your Production Database, That&#39;s on You" />
+    
+
+    
+    <meta name="description" content="Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets.">
+    <meta property="og:description" content="Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets." />
+    <meta property="twitter:description" content="Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>If an AI Agent Can Delete Your Production Database, That&#39;s on You | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2026/30/04/reliability-engineering-in-ai-era/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ai">ai</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            
+            <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
+                <p>We&rsquo;ve all seen the viral stories circulating on X recently: an AI coding agent runs amok and deletes a production database. Immediately, the blame game begins: users point fingers at the agent framework, at coding assistants like Cursor, or at cloud platforms like Railway.</p>
+<p>My take? The operator carries the responsibility. Tool vendors absolutely should ship safer defaults — scoped tokens, confirmation prompts on destructive operations, dry-run modes — and I&rsquo;d happily criticize them for not doing so. But even with perfect vendor defaults, the buck stops with whoever wired the agent into production. Cursor and Railway are stand-ins here for <em>any</em> autonomous agent with tool access; the same arguments apply to whatever framework you&rsquo;re running.</p>
+<p>Blaming an AI agent for dropping a production database is like blaming your mechanical keyboard when you accidentally type <code>rm -rf /</code>. If an AI agent <em>can</em> delete your production database, your operational guardrails have already failed. As AI agents become more autonomous, the &ldquo;blast radius&rdquo; of their mistakes increases exponentially.</p>
+<p>Here is a non-exhaustive list of the engineering practices required to prevent these disasters, organized by a <strong>Defense in Depth</strong> strategy.</p>
+<hr>
+<h2 id="layer-1-the-perimeter-prevention">Layer 1: The Perimeter (Prevention)</h2>
+<h3 id="1-stop-storing-prod-secrets-in-local-env-files">1. Stop Storing Prod Secrets in Local <code>.env</code> Files</h3>
+<p>AI coding assistants ingest your local workspace to provide context. If your production <code>.env</code> file is sitting locally, the LLM is reading it — and, worse, it may pass those credentials into a tool call. The risk isn&rsquo;t just exfiltration; it&rsquo;s that the agent now has a working production token to <em>act</em> with.</p>
+<ul>
+<li><strong>Never store production secrets locally</strong>.</li>
+<li>Use secret managers (like AWS Secrets Manager or HashiCorp Vault) to inject secrets only at runtime within the secure production environment.</li>
+<li>Local environments should only ever contain local or staging mock secrets.</li>
+</ul>
+<h3 id="2-enforce-strict-environment-segregation">2. Enforce Strict Environment Segregation</h3>
+<p>AI agents should operate entirely in sandbox or ephemeral development environments.</p>
+<ul>
+<li>Production and Development should be completely segregated, ideally in different cloud accounts.</li>
+<li>IAM-only separation within a single account isn&rsquo;t enough. A leaked admin token can reach anything routable from that account, whereas a token issued in a separate account can&rsquo;t reach what it can&rsquo;t route to. Make the <em>network and account boundary</em> the primary control, not just IAM policy.</li>
+<li>An agent running locally should physically lack the network routing or credential access required to reach production infrastructure.</li>
+</ul>
+<h3 id="3-treat-every-agent-input-as-untrusted">3. Treat Every Agent Input as Untrusted</h3>
+<p>Most failure modes discussed in posts like this assume the agent is <em>mistaken</em>. The more dangerous case is when it&rsquo;s <em>adversarially controlled</em>. An attacker plants instructions in a GitHub issue, a Jira ticket, a vendor doc, or a file the agent crawls — and the agent dutifully executes them with whatever credentials it has. This is prompt injection, and it is the highest-leverage AI-specific risk in this entire list.</p>
+<ul>
+<li>Treat any text the agent ingests from an external source as potential instructions, not just data.</li>
+<li>Scope tool access <em>per task</em>, not per session. A code-review agent shouldn&rsquo;t have shell or deploy access just because it might be useful later.</li>
+<li>Assume your guardrails will be probed by something that actively wants them to fail, not just by an agent that occasionally hallucinates.</li>
+</ul>
+<hr>
+<h2 id="layer-2-the-process-authorization--visibility">Layer 2: The Process (Authorization &amp; Visibility)</h2>
+<h3 id="4-apply-the-principle-of-least-privilege-waf-security-pillar">4. Apply the Principle of Least Privilege (WAF Security Pillar)</h3>
+<p>Following the <strong>Security Pillar</strong> of the <strong>AWS Well-Architected Framework</strong>, access should be granted only for the specific task at hand.</p>
+<ul>
+<li>Application-level tokens used by an agent should have <strong>DML rights</strong> (e.g., <code>SELECT</code>, <code>UPDATE</code>) but <strong>never DDL rights</strong> (e.g., <code>DROP</code>, <code>ALTER</code>).</li>
+<li>Administrative credentials must be vaulted and used exclusively by CI/CD pipelines or DBAs.</li>
+<li>The <strong><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Top 10 for Agentic Applications</a></strong> explicitly calls out over-privileged agents (Identity and Privilege Abuse) as a leading cause of catastrophic failures — treat agent identities as first-class principals in your IAM model.</li>
+</ul>
+<h3 id="5-require-a-human-in-the-loop-for-infrastructure">5. Require a &ldquo;Human-in-the-Loop&rdquo; for Infrastructure</h3>
+<p>Agents should not execute infrastructure or schema changes directly via API or CLI.</p>
+<ul>
+<li>Adopt a <strong>GitOps</strong> approach where all changes are managed via Infrastructure as Code (IaC).</li>
+<li>If an agent proposes a change, it should open a Pull Request.</li>
+<li>A human must explicitly approve the &ldquo;plan&rdquo; before any destructive action is applied to production.</li>
+</ul>
+<h3 id="6-implement-audit-logging-and-concrete-anomaly-alerting">6. Implement Audit Logging and Concrete Anomaly Alerting</h3>
+<p>You must have visibility into what your agents are doing — and the alerting needs to be specific enough to act on. &ldquo;Set up alerts for suspicious activity&rdquo; is the kind of advice that&rsquo;s true and useless.</p>
+<ul>
+<li>Enable comprehensive audit logs (like AWS CloudTrail) to record exactly which token or user executed a command.</li>
+<li>Define concrete alerting rules. Examples: any <code>Delete*</code>, <code>Drop*</code>, or <code>Terminate*</code> API call issued by a non-CI principal; any destructive call from an agent identity outside a defined maintenance window; any IAM policy change touching production roles.</li>
+<li>The goal is to react before the damage is total — which means alerts have to fire on <em>the first suspicious call</em>, not the hundredth.</li>
+</ul>
+<hr>
+<h2 id="layer-3-the-safety-net-resilience">Layer 3: The Safety Net (Resilience)</h2>
+<h3 id="7-implement-termination-protection-and-soft-deletes">7. Implement Termination Protection and Soft Deletes</h3>
+<p>You need layers of defense that prevent permanent deletion even when a destructive command is authorized.</p>
+<ul>
+<li>Enable <strong>termination protection</strong> on all critical production resources.</li>
+<li>Ensure your cloud provider utilizes &ldquo;soft deletes&rdquo; (a recycle bin), where deleted resources sit in a suspended state for a mandatory retention period before permanent purging.</li>
+</ul>
+<h3 id="8-establish-rpo-and-rto-targets-waf-reliability-pillar">8. Establish RPO and RTO Targets (WAF Reliability Pillar)</h3>
+<p>Meeting the <strong>Reliability Pillar</strong> of the Well-Architected Framework means knowing exactly how you will recover when things go wrong.</p>
+<ul>
+<li><strong>Recovery Point Objective (RPO):</strong> how much data are you willing to lose?</li>
+<li><strong>Recovery Time Objective (RTO):</strong> how long can the system be down during a restore?</li>
+<li>RPO and RTO are <em>targets</em>; PITR is one <em>mechanism</em>. <strong>Point-in-Time Recovery (PITR)</strong> lets you restore to a specific second and is how most teams meet their RPO. But be honest about RTO: restoring a multi-terabyte database from a snapshot can take hours. If your RTO is measured in minutes, you&rsquo;ll need warm standbys, read replicas promotable to primary, or multi-region failover — PITR alone won&rsquo;t get you there.</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>This is not an exhaustive list, and treat it as a maturity ladder rather than a checkbox. A two-person team operating from a single staging environment isn&rsquo;t going to set up multi-region failover and probably shouldn&rsquo;t, but they should still get the secrets, least-privilege, and human-in-the-loop layers right. Depending on your scale, you may also need drift detection, chaos engineering, or multi-region failover.</p>
+<p>AI tools like Cursor are massive multipliers for productivity. But with great power comes a massive blast radius. Don&rsquo;t blame the AI when it does exactly what your system allowed it to do. Build fail-safe systems, enforce zero-trust policies, and treat your autonomous agents with the same strict security posture you would apply to any human engineer — knowing that, unlike a human, the agent will move faster than you can react.</p>
+<h2 id="references--further-reading">References &amp; Further Reading</h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html">AWS Well-Architected Framework: Reliability Pillar — Plan for Disaster Recovery</a></li>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html">AWS Well-Architected Framework: Security Pillar — Grant Least Privilege (SEC03-BP02)</a></li>
+<li><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Top 10 for Agentic Applications (2026)</a></li>
+<li><a href="https://aws.amazon.com/blogs/mt/establishing-rpo-and-rto-targets-for-cloud-applications/">Establishing RPO and RTO Targets for Cloud Applications — AWS Cloud Operations Blog</a></li>
+</ul>
+
+            
+             
+            
+
+
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+            
+            
+               
+               
+               
+               
+                </ul>
+            </div>
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
+            
+            
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
+
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

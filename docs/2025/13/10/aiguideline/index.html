@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
-    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
     
 
     
@@ -121,11 +121,15 @@
                         </li>
                         
                         <li>
-                            <a href="/categories/machine-learning">machine-learning</a>
+                            <a href="/categories/machine-learning">machine learning</a>
                         </li>
                         
                         <li>
                             <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
                         </li>
                         
                     
@@ -173,53 +177,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/posts/aiguideline.png')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/kotlin" title="Kotlin">
-                            Kotlin
-                        </a>
-                        
-                        <a class="tag" href="/tags/ai-assisted-development" title="AI-Assisted Development">
-                            AI-Assisted Development
-                        </a>
-                        
-                        <a class="tag" href="/tags/software-architecture" title="Software Architecture">
-                            Software Architecture
-                        </a>
-                        
-                        <a class="tag" href="/tags/code-quality" title="Code Quality">
-                            Code Quality
-                        </a>
-                        
-                    </div>
-                    <h1>Bridging Human Intent and AI Code Generation with @AIGuideline</h1>
-                    <h2 class="subheading">A Novel Approach to Embedding Architectural Guidelines in Your Codebase</h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                Jamie Craane
-                             
-                            on 
-                            Monday, October 13, 2025
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
                 </div>
             </div>
         </div>
@@ -232,14 +197,14 @@
 <article>
     <div class="container">
         <div class="row">
-
             
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
                 <h3 id="introduction">Introduction</h3>
 <p>As AI-powered coding assistants become increasingly prevalent in software development, a new challenge emerges: how do we ensure that AI-generated code aligns with our project&rsquo;s specific architectural patterns, design principles, and coding standards?</p>
 <p>Existing AI guidelines, for example junie/.guidelines exist for this purpose. However, they are often large and challenging to maintain. Depending on the project, they can also contain a lot of information. The larger the guidelines file, the harder for the AI to follow consistently.</p>
@@ -260,20 +225,20 @@
 <p>Without this context, AI-generated suggestions might technically work but violate your project&rsquo;s architectural principles, creating technical debt and inconsistency.</p>
 <h3 id="the-solution-self-documenting-architecture">The Solution: Self-Documenting Architecture</h3>
 <p>The <code>@AIGuideline</code> annotation provides a mechanism to embed architectural guidance directly where it matters most—in your code. Here&rsquo;s the implementation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> nl.moxie.embeddings.common.annotations
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> nl.moxie.embeddings.common.annotations
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Annotation for documenting guidelines within the codebase.
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @property description The description of the guideline.
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>@Retention(AnnotationRetention.SOURCE)
+</span></span><span style="display:flex;"><span>@Retention(<span style="color:#50fa7b">AnnotationRetention</span>.SOURCE)
 </span></span><span style="display:flex;"><span>@Target(
-</span></span><span style="display:flex;"><span>    AnnotationTarget.CLASS,
-</span></span><span style="display:flex;"><span>    AnnotationTarget.FUNCTION,
-</span></span><span style="display:flex;"><span>    AnnotationTarget.PROPERTY,
-</span></span><span style="display:flex;"><span>    AnnotationTarget.FILE,
-</span></span><span style="display:flex;"><span>    AnnotationTarget.VALUE_PARAMETER
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">AnnotationTarget</span>.CLASS,
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">AnnotationTarget</span>.FUNCTION,
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">AnnotationTarget</span>.PROPERTY,
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">AnnotationTarget</span>.FILE,
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">AnnotationTarget</span>.VALUE_PARAMETER
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">annotation</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">AIGuideline</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> description: String,
@@ -286,8 +251,8 @@
 </ul>
 <h3 id="integrating-with-ai-assistant-guidelines">Integrating with AI Assistant Guidelines</h3>
 <p>To ensure AI assistants recognize and respect these annotations, reference them in your project&rsquo;s AI guidelines file (typically <code>.junie/guidelines.md</code> or similar):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="font-weight:bold">## Backend Development
-</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="font-weight:bold">## Backend Development
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Important: Any code or section annotated with @AIGuideline indicates 
 </span></span><span style="display:flex;"><span>a project rule or practice that must be strictly followed by AI code 
 </span></span><span style="display:flex;"><span>generation or suggestions. Always prioritize and adhere to the logic, 
@@ -303,10 +268,10 @@
 <h3 id="real-world-examples">Real-World Examples</h3>
 <p>Let&rsquo;s explore how <code>@AIGuideline</code> is used in a real Kotlin/Ktor application to communicate architectural patterns to AI assistants.</p>
 <h4 id="example-1-technology-choice-guidance">Example 1: Technology Choice Guidance</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Database access is implementing using Kotlin Exposed&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Database access is implementing using Kotlin Exposed&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DocumentsExposedRepository</span> : DocumentsRepository {
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Implementation using Exposed SQL library
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>What this communicates to AI:</strong></p>
 <ul>
 <li>The project uses Kotlin Exposed, not JPA or other ORMs</li>
@@ -314,7 +279,7 @@
 <li>Don&rsquo;t suggest alternative database libraries</li>
 </ul>
 <h4 id="example-2-testing-strategy">Example 2: Testing Strategy</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Time repository is implementing using Kotlin Time and should be used when the current time is needed to facilitate testing&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Time repository is implementing using Kotlin Time and should be used when the current time is needed to facilitate testing&#34;</span>)
 </span></span><span style="display:flex;"><span>@OptIn(ExperimentalTime<span style="color:#ff79c6">::</span><span style="color:#ff79c6">class</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">TimeRepository</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">now</span>(): Instant
@@ -326,7 +291,7 @@
 <li>This pattern exists specifically to enable deterministic testing</li>
 </ul>
 <h4 id="example-3-abstraction-boundaries">Example 3: Abstraction Boundaries</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;This interface abstracts the searching of content from different technologies and sources.&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;This interface abstracts the searching of content from different technologies and sources.&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">ContentSearcher</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">search</span>(): List&lt;Document&gt;
 </span></span><span style="display:flex;"><span>}
@@ -337,21 +302,21 @@
 <li>Don&rsquo;t couple search logic directly to specific technologies</li>
 </ul>
 <h4 id="example-4-dependency-injection-configuration">Example 4: Dependency Injection Configuration</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The main module is responsible for configuring the Koin dependency injection framework&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The main module is responsible for configuring the Koin dependency injection framework&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">mainModule</span>(environment: ApplicationEnvironment) = module {
 </span></span><span style="display:flex;"><span>    single&lt;String&gt;(named(OPEN_API_KEY)) {
-</span></span><span style="display:flex;"><span>        System.getenv(<span style="color:#f1fa8c">&#34;OPENAI_API_KEY&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">System</span>.getenv(<span style="color:#f1fa8c">&#34;OPENAI_API_KEY&#34;</span>)
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">?:</span> <span style="color:#ff79c6">throw</span> IllegalStateException(<span style="color:#f1fa8c">&#34;OPEN_API_KEY environment variable is required&#34;</span>)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    single&lt;DataSource&gt; {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> config = HikariConfig()
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Configuration...
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        HikariDataSource(config)
+</span></span></span><span style="display:flex;"><span>        HikariDataSource(config)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Additional dependency configurations...
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>What this communicates to AI:</strong></p>
 <ul>
 <li>The project uses Koin for dependency injection</li>
@@ -359,7 +324,7 @@
 <li>When adding new dependencies, register them here following Koin patterns</li>
 </ul>
 <h4 id="example-5-api-encapsulation">Example 5: API Encapsulation</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The OpenAI API&#39;s are encapsulated in the OpenAIApi implementation&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;The OpenAI API&#39;s are encapsulated in the OpenAIApi implementation&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">OpenAIApi</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">createEmbeddings</span>(input: List&lt;String&gt;): EmbeddingsResponse
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">chatCompletion</span>(messages: List&lt;ChatMessage&gt;): ChatCompletionResponse
@@ -385,30 +350,30 @@
 <p>Adding @AIGuidline minimizes the information required in .junie/guidelines.md. This makes it easier to maintain and update.</p>
 <h3 id="best-practices">Best Practices</h3>
 <h4 id="1-be-concise-but-clear">1. <strong>Be Concise but Clear</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Good: Clear and actionable
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@AIGuideline(<span style="color:#f1fa8c">&#34;Use repository pattern for all database access&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Good: Clear and actionable
+</span></span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Use repository pattern for all database access&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// Too vague
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@AIGuideline(<span style="color:#f1fa8c">&#34;Database stuff goes here&#34;</span>)
+</span></span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Database stuff goes here&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// Too verbose
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@AIGuideline(<span style="color:#f1fa8c">&#34;This repository should be used whenever you need to access the database because we&#39;ve chosen to use the repository pattern as described in Clean Architecture by Robert Martin...&#34;</span>)
+</span></span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;This repository should be used whenever you need to access the database because we&#39;ve chosen to use the repository pattern as described in Clean Architecture by Robert Martin...&#34;</span>)
 </span></span></code></pre></div><h4 id="2-focus-on-architectural-decisions">2. <strong>Focus on Architectural Decisions</strong></h4>
 <p>Use <code>@AIGuideline</code> for decisions that affect code structure, not for trivial implementation details:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Good: Architectural pattern
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@AIGuideline(<span style="color:#f1fa8c">&#34;Validation logic is implemented as extension functions on input types&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Good: Architectural pattern
+</span></span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Validation logic is implemented as extension functions on input types&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// Unnecessary: Language convention
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@AIGuideline(<span style="color:#f1fa8c">&#34;Use data classes for immutable data&#34;</span>)
+</span></span></span><span style="display:flex;"><span>@AIGuideline(<span style="color:#f1fa8c">&#34;Use data classes for immutable data&#34;</span>)
 </span></span></code></pre></div><h4 id="3-apply-at-the-right-level">3. <strong>Apply at the Right Level</strong></h4>
 <ul>
 <li><strong>Interfaces/Abstract Classes</strong>: Define patterns and contracts</li>
 <li><strong>Top-Level Functions</strong>: Establish project-wide utilities or conventions</li>
 <li><strong>Files</strong>: Document module-level decisions</li>
 </ul>
-<h4 id="4-dont-over-annotate">4. <strong>Don&rsquo;t Over-Annotate</strong></h4>
+<h4 id="4-don">4. <strong>Don&rsquo;t Over-Annotate</strong></h4>
 <p>As mentioned in the guidelines: &ldquo;Do not add the @AIGuideline annotation yourself.&rdquo; This instruction is for AI assistants—use the annotation judiciously for truly important architectural decisions, not every class or function.</p>
-<h4 id="5-complement-dont-replace-documentation">5. <strong>Complement, Don&rsquo;t Replace Documentation</strong></h4>
+<h4 id="5-complement-don">5. <strong>Complement, Don&rsquo;t Replace Documentation</strong></h4>
 <p><code>@AIGuideline</code> annotations work best alongside comprehensive documentation. Use annotations for quick, actionable guidance and detailed documentation for deeper explanation.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>The <code>@AIGuideline</code> annotation represents a paradigm shift in how we communicate architectural intent. By embedding guidelines directly in our codebase, we create a self-documenting architecture that both human developers and AI assistants can understand and respect.</p>
@@ -422,136 +387,197 @@
 <li><a href="https://martinfowler.com/bliki/CodeAsDocumentation.html">Self-Documenting Code Best Practices</a></li>
 </ul>
 
+            
+             
+            
 
-                
 
-                
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2025/06/12/firebase_auth_ktor_thymeleaf/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase auth in server side Thymeleaf app">&larr;
-                            Previous Post</a>
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
                     </li>
-                    
-                    
+            
+            
+            
+               
+               
+               
+               
                 </ul>
-                
-
-                
-
-
-
             </div>
-
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
             
             
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
             
-
+               
             
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
 
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/android" title="android">
-                            android
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/aws" title="aws">
-                            aws
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/firebase" title="firebase">
-                            firebase
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/intellij" title="intellij">
-                            intellij
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kmm" title="kmm">
-                            kmm
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kotlin" title="kotlin">
-                            kotlin
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ktor" title="ktor">
-                            ktor
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/machine-learning" title="machine-learning">
-                            machine-learning
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
+    
+    
+    
+</div>
 
-                
-                
-            </div>
         </div>
     </div>
 </article>
@@ -563,7 +589,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     
                     
                     <li>
@@ -633,7 +659,7 @@
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2025
+                    Copyright &copy; Jamie Craane personal blog 2026
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -686,22 +712,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-YZ49LBW0KM', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

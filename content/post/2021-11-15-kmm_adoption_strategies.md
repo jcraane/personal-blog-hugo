@@ -7,7 +7,6 @@ author: Jamie Craane
 date: 2021-11-15    
 description: "This post describes various strategies that can be used whena adopting KMM for native Android and iOS development."
 image: "/img/beach.jpg"
-published: true
 showtoc: false
 tags:
 - Android

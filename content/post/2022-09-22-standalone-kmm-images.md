@@ -7,7 +7,6 @@ author: Jamie Craane
 date: 2022-09-22
 description: "This post describes the benefits of using KMM Images in a standalone Android project."
 image: "/img/factory.jpg"
-published: true
 showtoc: false
 tags:
 - Android

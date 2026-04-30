@@ -7,7 +7,6 @@ author: Jamie Craane
 date:       2009-06-16
 description: "Several techniques exist to create computer generated musical melodies. One of those techniques is genetic algorithms."
 image: "/img/piano.jpg"
-published: true
 showtoc: false
 tags:
 - Machine learning

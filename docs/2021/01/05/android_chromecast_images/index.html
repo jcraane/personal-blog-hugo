@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
-    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
     
 
     
@@ -121,11 +121,15 @@
                         </li>
                         
                         <li>
-                            <a href="/categories/machine-learning">machine-learning</a>
+                            <a href="/categories/machine-learning">machine learning</a>
                         </li>
                         
                         <li>
                             <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
                         </li>
                         
                     
@@ -173,45 +177,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/cast-background.jpg')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/android" title="Android">
-                            Android
-                        </a>
-                        
-                        <a class="tag" href="/tags/chromecast" title="Chromecast">
-                            Chromecast
-                        </a>
-                        
-                    </div>
-                    <h1>Casting images with Chromecast</h1>
-                    <h2 class="subheading">Android: example of how to cast images using the Chromecast SDK</h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                Jamie Craane
-                             
-                            on 
-                            Tuesday, January 5, 2021
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
                 </div>
             </div>
         </div>
@@ -224,14 +197,14 @@
 <article>
     <div class="container">
         <div class="row">
-
             
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
                 <p>Full source code can be found here: <a href="https://github.com/jcraane/android-simple-image-cast">https://github.com/jcraane/android-simple-image-cast</a></p>
 <p>By adding Chromecast support to media rich apps like photo- and video players, users can display content to Chromecast enabled devices. This greatly enhances the user experience of those apps.</p>
 <p>This post demonstrates how to integrate the Chromecast SDK to add cast support for casting images. The app displays a list of publicly available images using an image carousel. When the user scrolls through those images, the images are cast to a connected receiver.</p>
@@ -247,56 +220,56 @@
 <li>To test the application without publishing it, register a Cast Receiver Device. Both receiver and app need to be on the same network.</li>
 <li>Add the applicationId from step 1 to the local.properties file in the root of your project:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>cast_app_id=&lt;YOUR_GOOGLE_CAST_SDK_APP_ID&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>cast_app_id=&lt;YOUR_GOOGLE_CAST_SDK_APP_ID&gt;
 </span></span></code></pre></div><p>The app id is retrieved using a resValue configured in the buildType section of the apps build.gradle.kts file.</p>
 <h2 id="implementing-the-application">Implementing the application</h2>
 <p><strong>Adding support for Chromecast SDK</strong></p>
 <p>The first step is to include the dependencies for the cast SDK:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;androidx.mediarouter:mediarouter:1.0.0&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;androidx.mediarouter:mediarouter:1.0.0&#34;</span>)
 </span></span><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;com.google.android.gms:play-services-cast-framework:17.0.0&#34;</span>)
 </span></span></code></pre></div><p>The sample app uses default cast functionality. This section provides a brief overview of the steps required to add cast support to an Android app.</p>
 <p>The first step is to register an implementation of the CastOptions interface to the manifest. This initializes the CastContext singleton. The cast application id is required when initializing the cast context. Below is the implementation of the CastOptions interface in the sample app:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CastOptionsProvider</span> <span style="color:#8be9fd;font-style:italic">implements</span> OptionsProvider <span style="color:#ff79c6">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CastOptionsProvider</span> <span style="color:#8be9fd;font-style:italic">implements</span> OptionsProvider {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> CastOptions <span style="color:#50fa7b">getCastOptions</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> CastOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">()</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setReceiverApplicationId</span><span style="color:#ff79c6">(</span>context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getString</span><span style="color:#ff79c6">(</span>R<span style="color:#ff79c6">.</span><span style="color:#50fa7b">string</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">cast_app_id</span><span style="color:#ff79c6">))</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">setCastMediaOptions</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> CastMediaOptions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Builder</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">())</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> CastOptions <span style="color:#50fa7b">getCastOptions</span>(Context context) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> CastOptions.<span style="color:#50fa7b">Builder</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">setReceiverApplicationId</span>(context.<span style="color:#50fa7b">getString</span>(R.<span style="color:#50fa7b">string</span>.<span style="color:#50fa7b">cast_app_id</span>))
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">setCastMediaOptions</span>(<span style="color:#ff79c6">new</span> CastMediaOptions.<span style="color:#50fa7b">Builder</span>().<span style="color:#50fa7b">build</span>())
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">build</span>();
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    @Override
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> List<span style="color:#ff79c6">&lt;</span>SessionProvider<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getAdditionalSessionProviders</span><span style="color:#ff79c6">(</span>Context context<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> List<span style="color:#ff79c6">&lt;</span>SessionProvider<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getAdditionalSessionProviders</span>(Context context) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The following line registers this implementation in the manifest:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;meta-data</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;meta-data</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#50fa7b">android:name=</span><span style="color:#f1fa8c">&#34;com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME&#34;</span>
 </span></span><span style="display:flex;"><span>   <span style="color:#50fa7b">android:value=</span><span style="color:#f1fa8c">&#34;nl.jcraane.simpleimagecast.cast.CastOptionsProvider&#34;</span> <span style="color:#ff79c6">/&gt;</span>
 </span></span></code></pre></div><p><em>Add the cast button, initialize the cast context and show the introductory overlay</em></p>
 <p>The next step is adding the cast button and initialize the cast context. Adding the cast button is done by inflating a menu which contains the cast button. The menu is inflated in the onCreateOptionsMenu function where the menu item is assigned to the mediaRouteMenuItem variable in the activity. The menu item is needed when showing the introductory overlay (more on this later).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreateOptionsMenu</span>(menu: Menu?): Boolean {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreateOptionsMenu</span>(menu: Menu?): Boolean {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">super</span>.onCreateOptionsMenu(menu)
-</span></span><span style="display:flex;"><span>        menuInflater.inflate(R.menu.browse, menu)
-</span></span><span style="display:flex;"><span>        mediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(
+</span></span><span style="display:flex;"><span>        menuInflater.inflate(<span style="color:#50fa7b">R</span>.menu.browse, menu)
+</span></span><span style="display:flex;"><span>        mediaRouteMenuItem = <span style="color:#50fa7b">CastButtonFactory</span>.setUpMediaRouteButton(
 </span></span><span style="display:flex;"><span>            applicationContext,
 </span></span><span style="display:flex;"><span>            menu,
-</span></span><span style="display:flex;"><span>            R.id.media_route_menu_item
+</span></span><span style="display:flex;"><span>            <span style="color:#50fa7b">R</span>.id.media_route_menu_item
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>The cast context is initialized in the onCreate method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> mCastContext = CastContext.getSharedInstance(<span style="color:#ff79c6">this</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span> mCastContext = <span style="color:#50fa7b">CastContext</span>.getSharedInstance(<span style="color:#ff79c6">this</span>)
 </span></span></code></pre></div><p>It is good practice when an application integrates cast to show the user a so-called introductory overlay which introduces the user to the cast function pf your app. The cast SDK provides an IntroductoryOverlay for doing just that:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">showIntroductoryOverlay</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">showIntroductoryOverlay</span>() {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (mIntroductoryOverlay <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
 </span></span><span style="display:flex;"><span>            mIntroductoryOverlay<span style="color:#ff79c6">?.</span>remove()
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (mediaRouteMenuItem <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> mediaRouteMenuItem<span style="color:#ff79c6">?.</span>isVisible() <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">true</span>) {
 </span></span><span style="display:flex;"><span>            Handler().post {
-</span></span><span style="display:flex;"><span>                mIntroductoryOverlay = IntroductoryOverlay.Builder(
+</span></span><span style="display:flex;"><span>                mIntroductoryOverlay = <span style="color:#50fa7b">IntroductoryOverlay</span>.Builder(
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">this</span>@MainActivity, mediaRouteMenuItem
 </span></span><span style="display:flex;"><span>                )
 </span></span><span style="display:flex;"><span>                    .setTitleText(<span style="color:#f1fa8c">&#34;Introducing Cast&#34;</span>)
@@ -317,23 +290,23 @@
 <p>There a are a couple of events which are used to get feedback about the state of the cast session. These are the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastStateListener">CastStateListener</a> and <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/SessionManagerListener">SessionManagerListener</a>. The CastStateListener is used for monitoring the current <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastState">CastState</a>. The aforementioned showIntroductoryOverlay is called in the CastStateListener when the state is not equal to CastState.NO_DEVICES_AVAILABLE.</p>
 <p>The SessionManagerListener is used for events about the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastSession">CastSession</a> itself.</p>
 <p>When the user taps on the cast button, the onApplicationConnected function is called on the SessionManagerListener. This is the place to obtain an instance of the CastSession which is used to cast actual content to a connected receiver.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onApplicationConnected</span>(castSession: CastSession) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onApplicationConnected</span>(castSession: CastSession) {
 </span></span><span style="display:flex;"><span>    mCastSession = castSession
 </span></span><span style="display:flex;"><span>    castImage(images[currentPosition])
 </span></span><span style="display:flex;"><span>    supportInvalidateOptionsMenu()
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>When a CastSession is obtained we can cast actual content to the receiver in the form of a URL. In the example app the current image in the image carousel is cast. This is done by adding a listener to the viewpager and cast the current item (URL of the image) to the device. To cast an actual image the following code is used:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">castImage</span>(url: String) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">castImage</span>(url: String) {
 </span></span><span style="display:flex;"><span>   mCastSession<span style="color:#ff79c6">?.</span>remoteMediaClient<span style="color:#ff79c6">?.</span>let { remoteMediaClient <span style="color:#ff79c6">-&gt;</span>
 </span></span><span style="display:flex;"><span>      remoteMediaClient.load(
-</span></span><span style="display:flex;"><span>          MediaLoadRequestData.Builder()
+</span></span><span style="display:flex;"><span>          <span style="color:#50fa7b">MediaLoadRequestData</span>.Builder()
 </span></span><span style="display:flex;"><span>              .setMediaInfo(
-</span></span><span style="display:flex;"><span>                  MediaInfo.Builder(url)
-</span></span><span style="display:flex;"><span>                      .setStreamType(MediaInfo.STREAM_TYPE_NONE)
+</span></span><span style="display:flex;"><span>                  <span style="color:#50fa7b">MediaInfo</span>.Builder(url)
+</span></span><span style="display:flex;"><span>                      .setStreamType(<span style="color:#50fa7b">MediaInfo</span>.STREAM_TYPE_NONE)
 </span></span><span style="display:flex;"><span>                      .setContentType(<span style="color:#f1fa8c">&#34;image/png&#34;</span>)
-</span></span><span style="display:flex;"><span>                      .setMetadata(MediaMetadata(MediaMetadata.MEDIA_TYPE_PHOTO).apply {
-</span></span><span style="display:flex;"><span>                          putString(MediaMetadata.KEY_TITLE, url)
-</span></span><span style="display:flex;"><span>                          addImage(WebImage(Uri.parse(url)))
+</span></span><span style="display:flex;"><span>                      .setMetadata(MediaMetadata(<span style="color:#50fa7b">MediaMetadata</span>.MEDIA_TYPE_PHOTO).apply {
+</span></span><span style="display:flex;"><span>                          putString(<span style="color:#50fa7b">MediaMetadata</span>.KEY_TITLE, url)
+</span></span><span style="display:flex;"><span>                          addImage(WebImage(<span style="color:#50fa7b">Uri</span>.parse(url)))
 </span></span><span style="display:flex;"><span>                      })
 </span></span><span style="display:flex;"><span>                      .build()
 </span></span><span style="display:flex;"><span>              ).build()
@@ -355,127 +328,197 @@
 <li><a href="https://github.com/jcraane/android-simple-image-cast">https://github.com/jcraane/android-simple-image-cast</a></li>
 </ul>
 
+            
+             
+            
 
-                
 
-                
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2020/12/16/intellij_replace_regex/" data-toggle="tooltip" data-placement="top" title="IntelliJ find and replace using regular expressions">&larr;
-                            Previous Post</a>
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
                     </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2021/07/27/resource_images_kmm/" data-toggle="tooltip" data-placement="top" title="Localized resources and images in KMM">Next
-                            Post &rarr;</a>
-                    </li>
-                    
+            
+            
+            
+               
+               
+               
+               
                 </ul>
-                
-
-                
-
-
-
             </div>
-
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
             
             
-
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
             
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+               
+            
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
 
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/android" title="android">
-                            android
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/aws" title="aws">
-                            aws
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/firebase" title="firebase">
-                            firebase
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/intellij" title="intellij">
-                            intellij
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kmm" title="kmm">
-                            kmm
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kotlin" title="kotlin">
-                            kotlin
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ktor" title="ktor">
-                            ktor
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/machine-learning" title="machine-learning">
-                            machine-learning
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
+    
+    
+    
+</div>
 
-                
-                
-            </div>
         </div>
     </div>
 </article>
@@ -487,7 +530,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     
                     
                     <li>
@@ -557,7 +600,7 @@
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2025
+                    Copyright &copy; Jamie Craane personal blog 2026
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -610,22 +653,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-YZ49LBW0KM', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

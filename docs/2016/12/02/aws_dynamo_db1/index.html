@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg">
-    <meta property="twitter:image" content="https://jamiecraane.dev/img/home-header-bokeh.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
     
 
     
@@ -121,11 +121,15 @@
                         </li>
                         
                         <li>
-                            <a href="/categories/machine-learning">machine-learning</a>
+                            <a href="/categories/machine-learning">machine learning</a>
                         </li>
                         
                         <li>
                             <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
                         </li>
                         
                     
@@ -173,41 +177,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/reflections.jpg')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/aws" title="AWS">
-                            AWS
-                        </a>
-                        
-                    </div>
-                    <h1>AWS tutorial: DynamoDB part 1</h1>
-                    <h2 class="subheading">AWS Lambda/Java, DynamoDB and Api gateway integration </h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                Jamie Craane
-                             
-                            on 
-                            Friday, December 2, 2016
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jamie Craane personal blog </h1>
+                    
+		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
                 </div>
             </div>
         </div>
@@ -220,14 +197,14 @@
 <article>
     <div class="container">
         <div class="row">
-
             
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container">
+            
                 <p>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.</p>
 <p>Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):</p>
 <ul>
@@ -252,12 +229,12 @@ Prerequisites:</p>
 <li>Create the src/main/java folder if it does not exist already.</li>
 <li>Open de build.gradle file and add the following dependencies:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>compile <span style="color:#f1fa8c">&#39;com.amazonaws:aws-lambda-java-core:1.1.0&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>compile <span style="color:#f1fa8c">&#39;com.amazonaws:aws-lambda-java-core:1.1.0&#39;</span>
 </span></span><span style="display:flex;"><span>compile <span style="color:#f1fa8c">&#39;com.amazonaws:aws-lambda-java-events:1.1.0&#39;</span>
 </span></span></code></pre></div><ol start="6">
 <li>Add the following code to the build.gradle file:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>task <span style="color:#50fa7b">buildZip</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd;font-style:italic">type:</span> Zip<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>task <span style="color:#50fa7b">buildZip</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd;font-style:italic">type:</span> Zip<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
 </span></span><span style="display:flex;"><span>   from compileJava
 </span></span><span style="display:flex;"><span>   from processResources
 </span></span><span style="display:flex;"><span>   <span style="color:#50fa7b">into</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;lib&#39;</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
@@ -287,17 +264,17 @@ The DeviceLocation class holds the input which is passed to the Lambda function.
 <li>Open the LocationPersisterFunction</li>
 <li>Add the following code to the body of the handleRequest method:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">final</span> AmazonDynamoDBClient client <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AmazonDynamoDBClient<span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> EnvironmentVariableCredentialsProvider<span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>   client<span style="color:#ff79c6">.</span><span style="color:#50fa7b">withRegion</span><span style="color:#ff79c6">(</span>Regions<span style="color:#ff79c6">.</span><span style="color:#50fa7b">EU_WEST_1</span><span style="color:#ff79c6">);</span> <span style="color:#6272a4">// specify the region you created the table in.
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>   DynamoDB dynamoDB <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DynamoDB<span style="color:#ff79c6">(</span>client<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>   Table table <span style="color:#ff79c6">=</span> dynamoDB<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getTable</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;DeviceLocation&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">final</span> Item item <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Item<span style="color:#ff79c6">()</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withPrimaryKey</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;id&#34;</span><span style="color:#ff79c6">,</span> UUID<span style="color:#ff79c6">.</span><span style="color:#50fa7b">randomUUID</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">toString</span><span style="color:#ff79c6">())</span> <span style="color:#6272a4">// Every item gets a unique id
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withString</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;deviceId&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getDeviceId</span><span style="color:#ff79c6">())</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withDouble</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;lat&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getLat</span><span style="color:#ff79c6">())</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">.</span><span style="color:#50fa7b">withDouble</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;lng&#34;</span><span style="color:#ff79c6">,</span> input<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getLng</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>   table<span style="color:#ff79c6">.</span><span style="color:#50fa7b">putItem</span><span style="color:#ff79c6">(</span>item<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">final</span> AmazonDynamoDBClient client <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AmazonDynamoDBClient(<span style="color:#ff79c6">new</span> EnvironmentVariableCredentialsProvider());
+</span></span><span style="display:flex;"><span>   client.<span style="color:#50fa7b">withRegion</span>(Regions.<span style="color:#50fa7b">EU_WEST_1</span>); <span style="color:#6272a4">// specify the region you created the table in.</span>
+</span></span><span style="display:flex;"><span>   DynamoDB dynamoDB <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DynamoDB(client);
+</span></span><span style="display:flex;"><span>   Table table <span style="color:#ff79c6">=</span> dynamoDB.<span style="color:#50fa7b">getTable</span>(<span style="color:#f1fa8c">&#34;DeviceLocation&#34;</span>);
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">final</span> Item item <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Item()
+</span></span><span style="display:flex;"><span>   .<span style="color:#50fa7b">withPrimaryKey</span>(<span style="color:#f1fa8c">&#34;id&#34;</span>, UUID.<span style="color:#50fa7b">randomUUID</span>().<span style="color:#50fa7b">toString</span>()) <span style="color:#6272a4">// Every item gets a unique id</span>
+</span></span><span style="display:flex;"><span>   .<span style="color:#50fa7b">withString</span>(<span style="color:#f1fa8c">&#34;deviceId&#34;</span>, input.<span style="color:#50fa7b">getDeviceId</span>())
+</span></span><span style="display:flex;"><span>   .<span style="color:#50fa7b">withDouble</span>(<span style="color:#f1fa8c">&#34;lat&#34;</span>, input.<span style="color:#50fa7b">getLat</span>())
+</span></span><span style="display:flex;"><span>   .<span style="color:#50fa7b">withDouble</span>(<span style="color:#f1fa8c">&#34;lng&#34;</span>, input.<span style="color:#50fa7b">getLng</span>());
+</span></span><span style="display:flex;"><span>   table.<span style="color:#50fa7b">putItem</span>(item);
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
 </span></span></code></pre></div><ol start="3">
 <li>Make sure you change the region to match the region you created the table in.</li>
 <li>The above code gets a reference to the DynamoDB DeviceLocation table, creates an item and persist it.</li>
@@ -323,7 +300,7 @@ The DeviceLocation class holds the input which is passed to the Lambda function.
 <li>Click Test</li>
 <li>A dialog opens where you can specify the data sent to the Lambda function. Use the following testdata:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;deviceId&#34;</span>: <span style="color:#f1fa8c">&#34;deviceId&#34;</span>,
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;lat&#34;</span>: <span style="color:#bd93f9">52.5</span>,
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&#34;lng&#34;</span>: <span style="color:#bd93f9">5.5</span>
@@ -376,127 +353,197 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
 <li><a href="/2016/12/12/aws_dynamo_db2/">Part 2</a></li>
 </ul>
 
+            
+             
+            
 
-                
 
-                
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2016/02/22/max_open_files_es/" data-toggle="tooltip" data-placement="top" title="Elastic Search max open files">&larr;
-                            Previous Post</a>
+
+
+            
+            </div>
+            
+            
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/top/about">
+               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
+            
+           
+           <ul class="list-inline">
+               
+               
+               <li>
+                   <a href="https://www.twitter.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/jcraane">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
                     </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2016/12/12/aws_dynamo_db2/" data-toggle="tooltip" data-placement="top" title="AWS tutorial: DynamoDB part 2">Next
-                            Post &rarr;</a>
-                    </li>
-                    
+            
+            
+            
+               
+               
+               
+               
                 </ul>
-                
-
-                
-
-
-
             </div>
-
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
             
             
-
+               
+                    <a href="/tags/ai" title="ai">
+                        ai
+                    </a>
+               
             
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+               
+            
+               
+                    <a href="/tags/android" title="android">
+                        android
+                    </a>
+               
+            
+               
+                    <a href="/tags/aws" title="aws">
+                        aws
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/firebase" title="firebase">
+                        firebase
+                    </a>
+               
+            
+               
+                    <a href="/tags/intellij" title="intellij">
+                        intellij
+                    </a>
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+                    <a href="/tags/kmm" title="kmm">
+                        kmm
+                    </a>
+               
+            
+               
+                    <a href="/tags/kotlin" title="kotlin">
+                        kotlin
+                    </a>
+               
+            
+               
+                    <a href="/tags/ktor" title="ktor">
+                        ktor
+                    </a>
+               
+            
+               
+                    <a href="/tags/machine-learning" title="machine learning">
+                        machine learning
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+        </div>
+    </section>
+    
 
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/android" title="android">
-                            android
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/aws" title="aws">
-                            aws
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/firebase" title="firebase">
-                            firebase
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/intellij" title="intellij">
-                            intellij
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kmm" title="kmm">
-                            kmm
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/kotlin" title="kotlin">
-                            kotlin
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/ktor" title="ktor">
-                            ktor
-                        </a>
-                        
-                        
-                        
-                        <a href="/tags/machine-learning" title="machine-learning">
-                            machine-learning
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
+    
+    
+    
+</div>
 
-                
-                
-            </div>
         </div>
     </div>
 </article>
@@ -508,7 +555,7 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">                  
+                <ul class="list-inline text-center">
                     
                     
                     <li>
@@ -578,7 +625,7 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; Jamie Craane personal blog 2025
+                    Copyright &copy; Jamie Craane personal blog 2026
                     <br>
                     <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
                     <iframe
@@ -631,22 +678,6 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-
-
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-YZ49LBW0KM', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

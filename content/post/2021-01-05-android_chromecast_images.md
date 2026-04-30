@@ -7,7 +7,6 @@ author: Jamie Craane
 date: 2021-01-05       
 description: "This post show how to add basic support for casting images to a cast enabled receiver."
 image: "/img/cast-background.jpg"
-published: true
 showtoc: false
 tags:
 - Android
