@@ -177,14 +177,41 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/robotFactory.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/android" title="Android">
+                            Android
+                        </a>
+                        
+                    </div>
+                    <h1>Koin ViewModel Injection</h1>
+                    <h2 class="subheading">Inject objects into Android ViewModel which depend on a CoroutineScope</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Wednesday, July 27, 2022
+                            
+                            
+                            
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -197,14 +224,13 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
                 <p>Image by Dall-E: <em>&ldquo;Inside of a large factory assembling robots from parts. The scene is somewhat dark with neon lights. cyberpunk style.&rdquo;</em></p>
 <h2 id="context">Context</h2>
 <p>A ViewModel in Android (not to be confused with the term ViewModel in the MVVM architecture pattern) is a component scoped to the lifecycle
@@ -360,197 +386,138 @@ posts described three ways (non-exhaustive) todo this.</p>
 <li>If possible it is best to pass all parameters in a ViewModel in the constructor and don&rsquo;t use setter injection at all</li>
 </ul>
 
-            
-             
-            
 
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline">
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2021/11/15/kmm_adoption_strategies/" data-toggle="tooltip" data-placement="top" title="KMM adoption strategies">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/07/27/standalone_kmm_images/" data-toggle="tooltip" data-placement="top" title="Standalone KMM Images">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
+                
+
+                
+
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/ai" title="ai">
-                        ai
-                    </a>
-               
-            
-               
-            
-               
-                    <a href="/tags/android" title="android">
-                        android
-                    </a>
-               
-            
-               
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-                    <a href="/tags/firebase" title="firebase">
-                        firebase
-                    </a>
-               
-            
-               
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-               
-            
-               
-                    <a href="/tags/ios" title="ios">
-                        ios
-                    </a>
-               
-            
-               
-                    <a href="/tags/kmm" title="kmm">
-                        kmm
-                    </a>
-               
-            
-               
-                    <a href="/tags/kotlin" title="kotlin">
-                        kotlin
-                    </a>
-               
-            
-               
-                    <a href="/tags/ktor" title="ktor">
-                        ktor
-                    </a>
-               
-            
-               
-                    <a href="/tags/machine-learning" title="machine learning">
-                        machine learning
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>

@@ -177,14 +177,41 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/reflections.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/aws" title="AWS">
+                            AWS
+                        </a>
+                        
+                    </div>
+                    <h1>AWS tutorial: DynamoDB part 1</h1>
+                    <h2 class="subheading">AWS Lambda/Java, DynamoDB and Api gateway integration </h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Friday, December 2, 2016
+                            
+                            
+                            
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -197,14 +224,13 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
                 <p>In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.</p>
 <p>Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):</p>
 <ul>
@@ -353,197 +379,138 @@ AWS Lambda, DynamoDB and API Gateway is a powerful to provision functionality in
 <li><a href="/2016/12/12/aws_dynamo_db2/">Part 2</a></li>
 </ul>
 
-            
-             
-            
 
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline">
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/02/22/max_open_files_es/" data-toggle="tooltip" data-placement="top" title="Elastic Search max open files">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/12/12/aws_dynamo_db2/" data-toggle="tooltip" data-placement="top" title="AWS tutorial: DynamoDB part 2">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
+                
+
+                
+
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/ai" title="ai">
-                        ai
-                    </a>
-               
-            
-               
-            
-               
-                    <a href="/tags/android" title="android">
-                        android
-                    </a>
-               
-            
-               
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-                    <a href="/tags/firebase" title="firebase">
-                        firebase
-                    </a>
-               
-            
-               
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-               
-            
-               
-                    <a href="/tags/ios" title="ios">
-                        ios
-                    </a>
-               
-            
-               
-                    <a href="/tags/kmm" title="kmm">
-                        kmm
-                    </a>
-               
-            
-               
-                    <a href="/tags/kotlin" title="kotlin">
-                        kotlin
-                    </a>
-               
-            
-               
-                    <a href="/tags/ktor" title="ktor">
-                        ktor
-                    </a>
-               
-            
-               
-                    <a href="/tags/machine-learning" title="machine learning">
-                        machine learning
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>

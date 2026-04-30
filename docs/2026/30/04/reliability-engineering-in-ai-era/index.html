@@ -177,14 +177,57 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/ai-reliabiity.png')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/reliability" title="Reliability">
+                            Reliability
+                        </a>
+                        
+                        <a class="tag" href="/tags/devops" title="DevOps">
+                            DevOps
+                        </a>
+                        
+                        <a class="tag" href="/tags/security" title="Security">
+                            Security
+                        </a>
+                        
+                        <a class="tag" href="/tags/aws" title="AWS">
+                            AWS
+                        </a>
+                        
+                    </div>
+                    <h1>If an AI Agent Can Delete Your Production Database, That&#39;s on You</h1>
+                    <h2 class="subheading">Reliability Engineering in the AI Era</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Thursday, April 30, 2026
+                            
+                            
+                            
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -197,14 +240,13 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
                 <p>We&rsquo;ve all seen the viral stories circulating on X recently: an AI coding agent runs amok and deletes a production database. Immediately, the blame game begins: users point fingers at the agent framework, at coding assistants like Cursor, or at cloud platforms like Railway.</p>
 <p>My take? The operator carries the responsibility. Tool vendors absolutely should ship safer defaults — scoped tokens, confirmation prompts on destructive operations, dry-run modes — and I&rsquo;d happily criticize them for not doing so. But even with perfect vendor defaults, the buck stops with whoever wired the agent into production. Cursor and Railway are stand-ins here for <em>any</em> autonomous agent with tool access; the same arguments apply to whatever framework you&rsquo;re running.</p>
 <p>Blaming an AI agent for dropping a production database is like blaming your mechanical keyboard when you accidentally type <code>rm -rf /</code>. If an AI agent <em>can</em> delete your production database, your operational guardrails have already failed. As AI agents become more autonomous, the &ldquo;blast radius&rdquo; of their mistakes increases exponentially.</p>
@@ -282,197 +324,133 @@
 <li><a href="https://aws.amazon.com/blogs/mt/establishing-rpo-and-rto-targets-for-cloud-applications/">Establishing RPO and RTO Targets for Cloud Applications — AWS Cloud Operations Blog</a></li>
 </ul>
 
-            
-             
-            
 
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline">
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2025/13/10/aiguideline/" data-toggle="tooltip" data-placement="top" title="Bridging Human Intent and AI Code Generation with @AIGuideline">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
                 </ul>
+                
+
+                
+
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/ai" title="ai">
-                        ai
-                    </a>
-               
-            
-               
-            
-               
-                    <a href="/tags/android" title="android">
-                        android
-                    </a>
-               
-            
-               
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-                    <a href="/tags/firebase" title="firebase">
-                        firebase
-                    </a>
-               
-            
-               
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-               
-            
-               
-                    <a href="/tags/ios" title="ios">
-                        ios
-                    </a>
-               
-            
-               
-                    <a href="/tags/kmm" title="kmm">
-                        kmm
-                    </a>
-               
-            
-               
-                    <a href="/tags/kotlin" title="kotlin">
-                        kotlin
-                    </a>
-               
-            
-               
-                    <a href="/tags/ktor" title="ktor">
-                        ktor
-                    </a>
-               
-            
-               
-                    <a href="/tags/machine-learning" title="machine learning">
-                        machine learning
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>

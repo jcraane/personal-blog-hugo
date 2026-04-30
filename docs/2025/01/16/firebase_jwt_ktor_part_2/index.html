@@ -177,14 +177,49 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/part1-firebase-ktor.png')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/firebase" title="Firebase">
+                            Firebase
+                        </a>
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/ktor" title="Ktor">
+                            Ktor
+                        </a>
+                        
+                    </div>
+                    <h1>Integrating Firebase JWT token verification in Ktor - Part 2</h1>
+                    <h2 class="subheading">Using Firebase authentication with Ktor</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Wednesday, January 15, 2025
+                            
+                            
+                            
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -197,14 +232,13 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
                 <h1 id="part-2-integrating-firebase-users-into-your-database-with-ktor">Part 2: Integrating Firebase Users into Your Database with Ktor</h1>
 <p>In the first part of this blog series, we explored how to integrate Firebase JWT authentication into your Ktor application. Besides creating accounts and logging in, we also want to store a reference of the Firebase user in our own database. This way, data can be associated with a specific user.</p>
 <p>In this post, we will look at how to integrate your Firebase users in your own application database. This article will cover using <strong>custom tokens</strong>, <strong>context receivers</strong>, and the <strong>Exposed SQL library</strong> to implement this functionality.</p>
@@ -328,197 +362,138 @@
 <li><a href="https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/">https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/</a></li>
 </ul>
 
-            
-             
-            
 
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline">
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/12/11/ai-assistant-prompt-catalog/" data-toggle="tooltip" data-placement="top" title="AI Assistant Prompt Catalog">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
+                    <li class="next">
+                        <a href="/2025/06/12/firebase_auth_ktor_thymeleaf/" data-toggle="tooltip" data-placement="top" title="Integrating Firebase auth in server side Thymeleaf app">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
+                
+
+                
+
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/ai" title="ai">
-                        ai
-                    </a>
-               
-            
-               
-            
-               
-                    <a href="/tags/android" title="android">
-                        android
-                    </a>
-               
-            
-               
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-                    <a href="/tags/firebase" title="firebase">
-                        firebase
-                    </a>
-               
-            
-               
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-               
-            
-               
-                    <a href="/tags/ios" title="ios">
-                        ios
-                    </a>
-               
-            
-               
-                    <a href="/tags/kmm" title="kmm">
-                        kmm
-                    </a>
-               
-            
-               
-                    <a href="/tags/kotlin" title="kotlin">
-                        kotlin
-                    </a>
-               
-            
-               
-                    <a href="/tags/ktor" title="ktor">
-                        ktor
-                    </a>
-               
-            
-               
-                    <a href="/tags/machine-learning" title="machine learning">
-                        machine learning
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>

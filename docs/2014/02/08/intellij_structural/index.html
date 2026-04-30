@@ -177,14 +177,41 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-header-bokeh.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-header-bokeh.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Jamie Craane personal blog </h1>
-                    
-		    <span class="subheading">My views, thoughts and experiences about Fullstack software development.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/intellij" title="IntelliJ">
+                            IntelliJ
+                        </a>
+                        
+                    </div>
+                    <h1>IntelliJ structural search and replace</h1>
+                    <h2 class="subheading">IntelliJ: the power of structural search and replace</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Saturday, February 8, 2014
+                            
+                            
+                            
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -197,14 +224,13 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
                 <p>Sometimes you run into a situation where you want to refactor some code but cannot use the regular refactorings. For example, take the following code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>jQuery(<span style="color:#f1fa8c">&#34;body&#34;</span>).on(<span style="color:#f1fa8c">&#34;change&#34;</span>, <span style="color:#f1fa8c">&#34;#fontSelector&#34;</span>, <span style="color:#f1fa8c">&#34;change&#34;</span>, <span style="color:#8be9fd;font-style:italic">function</span> () {
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">var</span> selectedFont <span style="color:#ff79c6">=</span> jQuery(<span style="color:#f1fa8c">&#34;#fontSelector&#34;</span>).val();
@@ -219,197 +245,138 @@
 </span></span></code></pre></div><p>Sure, I could rewrite this manually. But this takes a long time with dozens of such event handling constructs, all with different selectors, events and functions. Structural search and replace to the rescue.</p>
 <p>But instead of writing how you could do this with structural search and replace, I recorded a little screencast which demonstrates the concept. The video can be found <a href="https://www.youtube.com/watch?v=Jb-YNgDClKg">here</a></p>
 
-            
-             
-            
 
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/profile-picture.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile</p>
-            
-           
-           <ul class="list-inline">
-               
-               
-               <li>
-                   <a href="https://www.twitter.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/jcraane">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-                    <li>
-                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2013/09/20/mybatis_mapping_map/" data-toggle="tooltip" data-placement="top" title="MyBatis">&larr;
+                            Previous Post</a>
                     </li>
-            
-            
-            
-               
-               
-               
-               
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/02/22/max_open_files_es/" data-toggle="tooltip" data-placement="top" title="Elastic Search max open files">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
+                
+
+                
+
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/ai" title="ai">
-                        ai
-                    </a>
-               
-            
-               
-            
-               
-                    <a href="/tags/android" title="android">
-                        android
-                    </a>
-               
-            
-               
-                    <a href="/tags/aws" title="aws">
-                        aws
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-               
-                    <a href="/tags/firebase" title="firebase">
-                        firebase
-                    </a>
-               
-            
-               
-                    <a href="/tags/intellij" title="intellij">
-                        intellij
-                    </a>
-               
-            
-               
-                    <a href="/tags/ios" title="ios">
-                        ios
-                    </a>
-               
-            
-               
-                    <a href="/tags/kmm" title="kmm">
-                        kmm
-                    </a>
-               
-            
-               
-                    <a href="/tags/kotlin" title="kotlin">
-                        kotlin
-                    </a>
-               
-            
-               
-                    <a href="/tags/ktor" title="ktor">
-                        ktor
-                    </a>
-               
-            
-               
-                    <a href="/tags/machine-learning" title="machine learning">
-                        machine learning
-                    </a>
-               
-            
-               
-            
-               
-            
-               
-            
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>
