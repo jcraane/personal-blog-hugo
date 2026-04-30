@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AWS on Jamie Craane personal blog</title>
-    <link>http://localhost:1313/tags/aws/</link>
+    <link>https://jamiecraane.dev/tags/aws/</link>
     <description>Recent content in AWS on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jamiecraane.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>If an AI Agent Can Delete Your Production Database, That&#39;s on You</title>
-      <link>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</link>
+      <title>Operational Guardrails for Autonomous AI Agents in Production</title>
+      <link>https://jamiecraane.dev/2026/30/04/reliability-engineering-in-ai-era/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</guid>
+      <guid>https://jamiecraane.dev/2026/30/04/reliability-engineering-in-ai-era/</guid>
       <description>&lt;p&gt;We&amp;rsquo;ve all seen the viral stories circulating on X recently: an AI coding agent runs amok and deletes a production database. Immediately, the blame game begins: users point fingers at the agent framework, at coding assistants like Cursor, or at cloud platforms like Railway.&lt;/p&gt;&#xA;&lt;p&gt;My take? The operator carries the responsibility. Tool vendors absolutely should ship safer defaults — scoped tokens, confirmation prompts on destructive operations, dry-run modes — and I&amp;rsquo;d happily criticize them for not doing so. But even with perfect vendor defaults, the buck stops with whoever wired the agent into production. Cursor and Railway are stand-ins here for &lt;em&gt;any&lt;/em&gt; autonomous agent with tool access; the same arguments apply to whatever framework you&amp;rsquo;re running.&lt;/p&gt;</description>
     </item>
     <item>
       <title>AWS tutorial: DynamoDB part 2</title>
-      <link>http://localhost:1313/2016/12/12/aws_dynamo_db2/</link>
+      <link>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</link>
       <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2016/12/12/aws_dynamo_db2/</guid>
+      <guid>https://jamiecraane.dev/2016/12/12/aws_dynamo_db2/</guid>
       <description>&lt;p&gt;In the previous tutorial I showed you how to use AWS Lambda and API Gateway to insert items in a DynamoDB table. The example implemented a function which stored the location of the user. In this tutorial we create a Lambda function which retrieves this data from the DynamoDB table and expose this functionality over HTTP using API Gateway.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Create a DynamoDB Global Secondary Index&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;The DeviceLocation DynamoDB table uses the id as partition key. To retrieve the locations for a given device, a global secondary index must be created to query on deviceId.&lt;/p&gt;</description>
     </item>
     <item>
       <title>AWS tutorial: DynamoDB part 1</title>
-      <link>http://localhost:1313/2016/12/02/aws_dynamo_db1/</link>
+      <link>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</link>
       <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2016/12/02/aws_dynamo_db1/</guid>
+      <guid>https://jamiecraane.dev/2016/12/02/aws_dynamo_db1/</guid>
       <description>&lt;p&gt;In this post I am going through a full (Java) example of integrating AWS Lambda, DynamoDb and Api Gateway to create a function and expose this function as a HTTP resource for other parties to consume.&lt;/p&gt;&#xA;&lt;p&gt;Before we dive into the details I will give a brief overview of the AWS services used in this example (as taken from the AWS documentation):&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;AWS Lambda. AWS Lambda is a compute service that runs developers&amp;rsquo; code in response to events and automatically manages the compute resources for them, making it easy to build applications that respond quickly to new information.&lt;/li&gt;&#xA;&lt;li&gt;DynamoDB: Fast and flexible, managed, NoSql database.&lt;/li&gt;&#xA;&lt;li&gt;Api Gateway: Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;In this example we are going to create a lambda function which tracks the location (latitude and longitude) of a specific mobile device. The data flow looks like this:&lt;/p&gt;</description>
     </item>
   </channel>

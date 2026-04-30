@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI on Jamie Craane personal blog</title>
-    <link>http://localhost:1313/tags/ai/</link>
+    <link>https://jamiecraane.dev/tags/ai/</link>
     <description>Recent content in AI on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jamiecraane.dev/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>If an AI Agent Can Delete Your Production Database, That&#39;s on You</title>
-      <link>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</link>
+      <title>Operational Guardrails for Autonomous AI Agents in Production</title>
+      <link>https://jamiecraane.dev/2026/30/04/reliability-engineering-in-ai-era/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2026/30/04/reliability-engineering-in-ai-era/</guid>
+      <guid>https://jamiecraane.dev/2026/30/04/reliability-engineering-in-ai-era/</guid>
       <description>&lt;p&gt;We&amp;rsquo;ve all seen the viral stories circulating on X recently: an AI coding agent runs amok and deletes a production database. Immediately, the blame game begins: users point fingers at the agent framework, at coding assistants like Cursor, or at cloud platforms like Railway.&lt;/p&gt;&#xA;&lt;p&gt;My take? The operator carries the responsibility. Tool vendors absolutely should ship safer defaults — scoped tokens, confirmation prompts on destructive operations, dry-run modes — and I&amp;rsquo;d happily criticize them for not doing so. But even with perfect vendor defaults, the buck stops with whoever wired the agent into production. Cursor and Railway are stand-ins here for &lt;em&gt;any&lt;/em&gt; autonomous agent with tool access; the same arguments apply to whatever framework you&amp;rsquo;re running.&lt;/p&gt;</description>
     </item>
     <item>
       <title>AI Assistant Prompt Catalog</title>
-      <link>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</link>
+      <link>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2024/12/11/ai-assistant-prompt-catalog/</guid>
+      <guid>https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/</guid>
       <description>&lt;h1 id=&#34;ai-assistant-prompt-catalog&#34;&gt;AI Assistant prompt catalog&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prompts&#34;&gt;Prompts&lt;/h2&gt;&#xA;&lt;h3 id=&#34;android-replace-kotlin-synthetic-view-viewbinding&#34;&gt;Android: Replace kotlin synthetic view viewBinding&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Kotlin synthetics are deprecated. This prompt replaces Kotlin synthetics in a file with viewBinding:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace kotlin synthetic with viewBinding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Prefix all Koltin synthetic views with binding.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Replace snake case view names with camel casing.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-kotest-and-behaviorspec&#34;&gt;Create a unit test using Kotest and BehaviorSpec&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;You are an expert AI programmer which uses unit tests to verify behavior.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Use Kotlin kotest BehaviorSpec&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the obvious cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- Write unit tests for the edge cases&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- DO NOT EXPLAIN THE TEST&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$SELECTION&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-a-unit-test-using-jest&#34;&gt;Create a unit test using Jest&lt;/h3&gt;&#xA;&lt;p&gt;@author: &lt;a href=&#34;https://x.com/jcraane&#34;&gt;https://x.com/jcraane&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>

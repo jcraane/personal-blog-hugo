@@ -2,150 +2,150 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jamie Craane personal blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://jamiecraane.dev/tags/</link>
     <description>Recent content in Tags on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jamiecraane.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
-      <link>http://localhost:1313/tags/ai/</link>
+      <link>https://jamiecraane.dev/tags/ai/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ai/</guid>
+      <guid>https://jamiecraane.dev/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>AWS</title>
-      <link>http://localhost:1313/tags/aws/</link>
+      <link>https://jamiecraane.dev/tags/aws/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/aws/</guid>
+      <guid>https://jamiecraane.dev/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>DevOps</title>
-      <link>http://localhost:1313/tags/devops/</link>
+      <link>https://jamiecraane.dev/tags/devops/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/devops/</guid>
+      <guid>https://jamiecraane.dev/tags/devops/</guid>
       <description></description>
     </item>
     <item>
       <title>Reliability</title>
-      <link>http://localhost:1313/tags/reliability/</link>
+      <link>https://jamiecraane.dev/tags/reliability/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/reliability/</guid>
+      <guid>https://jamiecraane.dev/tags/reliability/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:1313/tags/security/</link>
+      <link>https://jamiecraane.dev/tags/security/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/security/</guid>
+      <guid>https://jamiecraane.dev/tags/security/</guid>
       <description></description>
     </item>
     <item>
       <title>AI-Assisted Development</title>
-      <link>http://localhost:1313/tags/ai-assisted-development/</link>
+      <link>https://jamiecraane.dev/tags/ai-assisted-development/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ai-assisted-development/</guid>
+      <guid>https://jamiecraane.dev/tags/ai-assisted-development/</guid>
       <description></description>
     </item>
     <item>
       <title>Code Quality</title>
-      <link>http://localhost:1313/tags/code-quality/</link>
+      <link>https://jamiecraane.dev/tags/code-quality/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/code-quality/</guid>
+      <guid>https://jamiecraane.dev/tags/code-quality/</guid>
       <description></description>
     </item>
     <item>
       <title>Kotlin</title>
-      <link>http://localhost:1313/tags/kotlin/</link>
+      <link>https://jamiecraane.dev/tags/kotlin/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/kotlin/</guid>
+      <guid>https://jamiecraane.dev/tags/kotlin/</guid>
       <description></description>
     </item>
     <item>
       <title>Software Architecture</title>
-      <link>http://localhost:1313/tags/software-architecture/</link>
+      <link>https://jamiecraane.dev/tags/software-architecture/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/software-architecture/</guid>
+      <guid>https://jamiecraane.dev/tags/software-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Firebase</title>
-      <link>http://localhost:1313/tags/firebase/</link>
+      <link>https://jamiecraane.dev/tags/firebase/</link>
       <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/firebase/</guid>
+      <guid>https://jamiecraane.dev/tags/firebase/</guid>
       <description></description>
     </item>
     <item>
       <title>Ktor</title>
-      <link>http://localhost:1313/tags/ktor/</link>
+      <link>https://jamiecraane.dev/tags/ktor/</link>
       <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ktor/</guid>
+      <guid>https://jamiecraane.dev/tags/ktor/</guid>
       <description></description>
     </item>
     <item>
       <title>Android</title>
-      <link>http://localhost:1313/tags/android/</link>
+      <link>https://jamiecraane.dev/tags/android/</link>
       <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/android/</guid>
+      <guid>https://jamiecraane.dev/tags/android/</guid>
       <description></description>
     </item>
     <item>
       <title>Compose</title>
-      <link>http://localhost:1313/tags/compose/</link>
+      <link>https://jamiecraane.dev/tags/compose/</link>
       <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/compose/</guid>
+      <guid>https://jamiecraane.dev/tags/compose/</guid>
       <description></description>
     </item>
     <item>
       <title>KMM</title>
-      <link>http://localhost:1313/tags/kmm/</link>
+      <link>https://jamiecraane.dev/tags/kmm/</link>
       <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/kmm/</guid>
+      <guid>https://jamiecraane.dev/tags/kmm/</guid>
       <description></description>
     </item>
     <item>
       <title>IOS</title>
-      <link>http://localhost:1313/tags/ios/</link>
+      <link>https://jamiecraane.dev/tags/ios/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ios/</guid>
+      <guid>https://jamiecraane.dev/tags/ios/</guid>
       <description></description>
     </item>
     <item>
       <title>Chromecast</title>
-      <link>http://localhost:1313/tags/chromecast/</link>
+      <link>https://jamiecraane.dev/tags/chromecast/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/chromecast/</guid>
+      <guid>https://jamiecraane.dev/tags/chromecast/</guid>
       <description></description>
     </item>
     <item>
       <title>IntelliJ</title>
-      <link>http://localhost:1313/tags/intellij/</link>
+      <link>https://jamiecraane.dev/tags/intellij/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/intellij/</guid>
+      <guid>https://jamiecraane.dev/tags/intellij/</guid>
       <description></description>
     </item>
     <item>
       <title>ElasticSearch</title>
-      <link>http://localhost:1313/tags/elasticsearch/</link>
+      <link>https://jamiecraane.dev/tags/elasticsearch/</link>
       <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/elasticsearch/</guid>
+      <guid>https://jamiecraane.dev/tags/elasticsearch/</guid>
       <description></description>
     </item>
     <item>
       <title>Mybatis</title>
-      <link>http://localhost:1313/tags/mybatis/</link>
+      <link>https://jamiecraane.dev/tags/mybatis/</link>
       <pubDate>Fri, 20 Sep 2013 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/mybatis/</guid>
+      <guid>https://jamiecraane.dev/tags/mybatis/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <link>https://jamiecraane.dev/tags/machine-learning/</link>
       <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>https://jamiecraane.dev/tags/machine-learning/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,12 +1,12 @@
 ---
 layout:     post
 
-title:      "If an AI Agent Can Delete Your Production Database, That's on You"
+title:      "Operational Guardrails for Autonomous AI Agents in Production"
 subtitle:   "Reliability Engineering in the AI Era"
 author: Jamie Craane
 date: 2026-04-30
 description: "Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets."
-image: "/img/ai-reliabiity.png"
+image: "/img/posts/ai-reliability.png"
 showtoc: false
 tags:
 - AI

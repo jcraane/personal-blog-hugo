@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>_Wips on Jamie Craane personal blog</title>
-    <link>http://localhost:1313/_wip/</link>
+    <link>https://jamiecraane.dev/_wip/</link>
     <description>Recent content in _Wips on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Nov 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/_wip/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jamiecraane.dev/_wip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Code re-usability</title>
-      <link>http://localhost:1313/2022/06/16/code_reusability/</link>
+      <link>https://jamiecraane.dev/2022/06/16/code_reusability/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2022/06/16/code_reusability/</guid>
+      <guid>https://jamiecraane.dev/2022/06/16/code_reusability/</guid>
       <description>&lt;p&gt;Re-usability within software development means to reuse (part of) a solution in different products with the aim of:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;faster time to market&lt;/li&gt;&#xA;&lt;li&gt;lower costs&lt;/li&gt;&#xA;&lt;li&gt;less chance of introducing issues&lt;/li&gt;&#xA;&lt;li&gt;be able to use shared knowledge&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;re-usability-at-different-abstraction-levels&#34;&gt;Re-usability at different abstraction levels&lt;/h2&gt;&#xA;&lt;p&gt;Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;&#xA;Using infrastructure to distribute software. This can be a cloud solution, but also an app store, for example.&lt;/p&gt;</description>
     </item>
   </channel>

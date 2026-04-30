@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IOS on Jamie Craane personal blog</title>
-    <link>http://localhost:1313/tags/ios/</link>
+    <link>https://jamiecraane.dev/tags/ios/</link>
     <description>Recent content in IOS on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Nov 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jamiecraane.dev/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Code re-usability</title>
-      <link>http://localhost:1313/2022/06/16/code_reusability/</link>
+      <link>https://jamiecraane.dev/2022/06/16/code_reusability/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2022/06/16/code_reusability/</guid>
+      <guid>https://jamiecraane.dev/2022/06/16/code_reusability/</guid>
       <description>&lt;p&gt;Re-usability within software development means to reuse (part of) a solution in different products with the aim of:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;faster time to market&lt;/li&gt;&#xA;&lt;li&gt;lower costs&lt;/li&gt;&#xA;&lt;li&gt;less chance of introducing issues&lt;/li&gt;&#xA;&lt;li&gt;be able to use shared knowledge&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;re-usability-at-different-abstraction-levels&#34;&gt;Re-usability at different abstraction levels&lt;/h2&gt;&#xA;&lt;p&gt;Re-usability exists at many levels of abstraction in software development. Each abstraction offers some degree of advantages as well as disadvantages. Some examples, from high to low abstraction level:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;&#xA;Using infrastructure to distribute software. This can be a cloud solution, but also an app store, for example.&lt;/p&gt;</description>
     </item>
     <item>
       <title>KMM adoption strategies</title>
-      <link>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</link>
+      <link>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</link>
       <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2021/11/15/kmm_adoption_strategies/</guid>
+      <guid>https://jamiecraane.dev/2021/11/15/kmm_adoption_strategies/</guid>
       <description>&lt;h1 id=&#34;kmm-adoption-strategies&#34;&gt;KMM adoption strategies&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/docs/kmm-getting-started.html#start-kmm-from-scratch&#34;&gt;Kotlin multiplatform Mobile&lt;/a&gt;, in short KMM, lets you write native cross platform mobile applications. It lets you share logic across iOS and Android while still leveraging all of the native features of the platform.&lt;/p&gt;&#xA;&lt;p&gt;There are several advantages of sharing code between platforms:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Reduced development time&lt;/li&gt;&#xA;&lt;li&gt;More consistent logic across platforms&lt;/li&gt;&#xA;&lt;li&gt;More consistent behavior across platforms&lt;/li&gt;&#xA;&lt;li&gt;Less bugs&lt;/li&gt;&#xA;&lt;li&gt;Improved team communication&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;KMM gives the flexibility to decide what code is shared. Without going into the details about what to share, some common strategies are:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Localized resources and images in KMM</title>
-      <link>http://localhost:1313/2021/07/27/resource_images_kmm/</link>
+      <link>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/2021/07/27/resource_images_kmm/</guid>
+      <guid>https://jamiecraane.dev/2021/07/27/resource_images_kmm/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kotlinlang.org/lp/mobile/&#34;&gt;Kotlin Multiplatform Mobile&lt;/a&gt; (in short KMM) allows you to share a lot of code which is normally duplicated across iOS and Android native platforms. KMM does not mandate that certain type of code is shared, it is up to you. It also does not mandate any particular architecture.&lt;/p&gt;&#xA;&lt;p&gt;Although KMM enables sharing of code between platforms it does not provide the ability to share localized string resources and images out-of-the box between iOS and Android.&lt;/p&gt;</description>
     </item>
   </channel>
