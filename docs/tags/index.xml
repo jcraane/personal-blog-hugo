@@ -6,13 +6,41 @@
     <description>Recent content in Tags on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
       <link>https://jamiecraane.dev/tags/ai/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://jamiecraane.dev/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI-Assisted Development</title>
+      <link>https://jamiecraane.dev/tags/ai-assisted-development/</link>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/ai-assisted-development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Claude Code</title>
+      <link>https://jamiecraane.dev/tags/claude-code/</link>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/claude-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Observability</title>
+      <link>https://jamiecraane.dev/tags/observability/</link>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/observability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tooling</title>
+      <link>https://jamiecraane.dev/tags/tooling/</link>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/tooling/</guid>
       <description></description>
     </item>
     <item>
@@ -41,13 +69,6 @@
       <link>https://jamiecraane.dev/tags/security/</link>
       <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
       <guid>https://jamiecraane.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AI-Assisted Development</title>
-      <link>https://jamiecraane.dev/tags/ai-assisted-development/</link>
-      <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://jamiecraane.dev/tags/ai-assisted-development/</guid>
       <description></description>
     </item>
     <item>

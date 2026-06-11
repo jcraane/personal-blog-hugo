@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Claude Code on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/tags/claude-code/</link>
+    <description>Recent content in Claude Code on Jamie Craane personal blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://jamiecraane.dev/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Parsing, Visualizing and Analyzing Log Data with Claude Code</title>
+      <link>https://jamiecraane.dev/2026/11/06/analyzing-log-data/</link>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/11/06/analyzing-log-data/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;A production system feels sluggish, you suspect the database, and you have a log file full of slow query entries staring back at you. The data you need is right there. The hard part is turning a few thousand lines of text into answers.&lt;/p&gt;&#xA;&lt;p&gt;Recently I had exactly this situation: a log file from production containing slow database queries, and four questions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Which queries are slow?&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;What is the distribution of the execution time?&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;When are the queries slow?&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;What are the most frequently executed queries?&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;These are the bread-and-butter questions of database performance work. And yet, answering them well is surprisingly awkward with the tools we usually reach for.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

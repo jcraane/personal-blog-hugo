@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Parsing, Visualizing and Analyzing Log Data with Claude Code" />
+    <meta property="og:title" content="Parsing, Visualizing and Analyzing Log Data with Claude Code" />
+    <meta property="twitter:title" content="Parsing, Visualizing and Analyzing Log Data with Claude Code" />
+    
+
+    
+    <meta name="description" content="How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes.">
+    <meta property="og:description" content="How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes." />
+    <meta property="twitter:description" content="How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Parsing, Visualizing and Analyzing Log Data with Claude Code | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2026/11/06/analyzing-log-data/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ai">ai</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/posts/analyzing-log-data.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/claude-code" title="Claude Code">
+                            Claude Code
+                        </a>
+                        
+                        <a class="tag" href="/tags/ai-assisted-development" title="AI-Assisted Development">
+                            AI-Assisted Development
+                        </a>
+                        
+                        <a class="tag" href="/tags/observability" title="Observability">
+                            Observability
+                        </a>
+                        
+                        <a class="tag" href="/tags/tooling" title="Tooling">
+                            Tooling
+                        </a>
+                        
+                    </div>
+                    <h1>Parsing, Visualizing and Analyzing Log Data with Claude Code</h1>
+                    <h2 class="subheading">From a static log file to an interactive analysis tool—and beyond</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Thursday, June 11, 2026
+                            
+                            
+                            
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="introduction">Introduction</h3>
+<p>A production system feels sluggish, you suspect the database, and you have a log file full of slow query entries staring back at you. The data you need is right there. The hard part is turning a few thousand lines of text into answers.</p>
+<p>Recently I had exactly this situation: a log file from production containing slow database queries, and four questions:</p>
+<ul>
+<li><strong>Which queries are slow?</strong></li>
+<li><strong>What is the distribution of the execution time?</strong></li>
+<li><strong>When are the queries slow?</strong></li>
+<li><strong>What are the most frequently executed queries?</strong></li>
+</ul>
+<p>These are the bread-and-butter questions of database performance work. And yet, answering them well is surprisingly awkward with the tools we usually reach for.</p>
+<h3 id="the-problem-good-data-wrong-tools">The Problem: Good Data, Wrong Tools</h3>
+<p>I had two obvious options, and neither felt right.</p>
+<p><strong>Grafana.</strong> We already ship logs to Grafana, but a dashboard is a fixed lens. I am limited to the panels and queries I have pre-configured. The moment I want to ask a slightly different question—&ldquo;show me the execution-time distribution bucketed by query shape, but only for the evening peak&rdquo;—I am fighting the tool instead of exploring the data.</p>
+<p><strong>A script and a notebook.</strong> Flexible and powerful, but slow to set up, it lives on my machine, and it is not something I can hand to a colleague who just wants to drag in a log file and look.</p>
+<p>What I wanted was the flexibility of the notebook with the immediacy of a dashboard—reusable for <em>any</em> log file, not just this one.</p>
+<h3 id="the-solution-let-claude-build-the-tool">The Solution: Let Claude Build the Tool</h3>
+<p>Instead of choosing, I asked Claude Code to build an interactive HTML page. A single self-contained file that lets me <strong>drag in any log file</strong>, <strong>parses</strong> the entries client-side, and renders <strong>visualizations tailored to my exact questions</strong>. No server, no build step, no notebook kernel to keep alive.</p>
+<p>This is the key shift: the cost of building a custom, single-purpose tool has collapsed to almost nothing. When a bespoke analysis page takes minutes to generate, you stop bending your question to fit the dashboard and start building the dashboard to fit your question. The tool becomes disposable—you build a perfectly-fitted tool for <em>this</em> log and <em>these</em> questions, and regenerate it next time.</p>
+<h4 id="from-log-line-to-insight">From Log Line to Insight</h4>
+<p>Suppose the slow-query log looks like this:</p>
+<pre tabindex="0"><code>2026-06-10T19:42:11Z duration=1834ms rows=2 query=&#34;SELECT * FROM orders WHERE customer_id = $1&#34;
+2026-06-10T19:42:13Z duration=2203ms rows=0 query=&#34;SELECT * FROM orders WHERE customer_id = $1&#34;
+2026-06-10T19:42:15Z duration=87ms   rows=1 query=&#34;UPDATE sessions SET last_seen = now() WHERE id = $1&#34;
+2026-06-10T20:11:48Z duration=4120ms rows=512 query=&#34;SELECT * FROM line_items WHERE order_id IN (...)&#34;
+</code></pre><p>The prompt to Claude Code is essentially the four questions plus the log format. The resulting page gives me, in one view:</p>
+<ol>
+<li><strong>A ranked table of slow queries</strong>—normalized by <em>query shape</em> (parameters stripped) so the same query with different bind values is grouped together.</li>
+<li><strong>A histogram of execution times</strong>—do I have a long tail of occasional 4-second outliers, or a broad smear of consistently-slow queries? This is the question dashboards usually answer worst.</li>
+<li><strong>A timeline of slow queries over time</strong>—in the sample above the pain clusters around the evening peak, which is a very different problem from uniform slowness.</li>
+<li><strong>A frequency table</strong>—so I can weigh a query that is slow-but-rare against one that is moderately-slow-but-runs-constantly. The second is almost always the better thing to fix first.</li>
+</ol>
+<h3 id="going-further-three-stages-of-leverage">Going Further: Three Stages of Leverage</h3>
+<p>The HTML page is useful on its own, but it is really just the first stage. Each stage hands Claude more context and asks it to do more of the thinking.</p>
+<h4 id="stage-1--visualize">Stage 1 — Visualize</h4>
+<p>Claude writes the interactive page; I do the interpreting. This is where most people stop, and it is already a big win over a static dashboard.</p>
+<h4 id="stage-2--analyze-the-rendered-page">Stage 2 — Analyze the Rendered Page</h4>
+<p>Next, let Claude analyze the parsed data behind the page and reason about what it sees:</p>
+<blockquote>
+<p>What are the top 3 problems worth tackling, ranked by impact? For each, suggest a likely cause and a concrete fix.</p>
+</blockquote>
+<p>Now Claude is doing the triage. It can notice that one query shape accounts for 60% of total time despite being only 5% of executions, or that the slowness correlates with the evening peak—suggesting a load or locking issue rather than a missing index. I move from <em>reading charts</em> to <em>reviewing recommendations</em>.</p>
+<h4 id="stage-3--point-claude-at-the-code-and-the-database">Stage 3 — Point Claude at the Code and the Database</h4>
+<p>The final stage closes the loop: point Claude Code at the application code and the database schema. Now it can connect a slow query back to the function that issues it, check whether the relevant column is indexed, and propose a real change:</p>
+<ul>
+<li>&ldquo;This <code>SELECT * FROM orders WHERE customer_id = $1</code> has no index on <code>customer_id</code>; here is the migration.&rdquo;</li>
+<li>&ldquo;This query is issued in a loop in <code>OrderService.kt</code>; it is an N+1 and should be a single batched query.&rdquo;</li>
+</ul>
+<p>At this point the log was just the entry point that told Claude where to look. The real value is Claude reasoning across the log, the code, and the schema together to produce actionable fixes.</p>
+<h3 id="caveats">Caveats</h3>
+<p>A few things keep this honest:</p>
+<ul>
+<li><strong>Verify the parser.</strong> An AI-generated parser can silently mis-handle an edge case in your log format and skew every chart downstream. Spot-check the parsed output against the raw lines.</li>
+<li><strong>Keep production data in mind.</strong> Logs can contain sensitive values. Dragging a file into a local HTML page is fine; be careful about what you paste into any hosted context.</li>
+<li><strong>Treat recommendations as hypotheses.</strong> Stage 2 and 3 suggestions are starting points for investigation, not conclusions. Confirm with <code>EXPLAIN ANALYZE</code> before you ship an index.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>I started with a log file and four questions, and the conventional answers—a dashboard or a notebook—each forced a compromise. By letting Claude Code build a throwaway, custom analysis page, I got exactly the visualizations I wanted. And by escalating from <em>visualize</em> to <em>analyze the page</em> to <em>analyze the code and database</em>, the same workflow grows from a charting tool into something closer to a junior performance engineer that triages the problem and proposes fixes.</p>
+<p>The log was never really the point. It was the doorway. Once Claude is looking through it, the interesting work is everything it can reason about on the other side.</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/30/04/reliability-engineering-in-ai-era/" data-toggle="tooltip" data-placement="top" title="Operational Guardrails for Autonomous AI Agents in Production">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ai-assisted-development" title="ai-assisted development">
+                            ai-assisted development
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
