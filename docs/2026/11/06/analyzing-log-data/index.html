@@ -214,7 +214,7 @@
                         
                     </div>
                     <h1>Parsing, Visualizing and Analyzing Log Data with Claude Code</h1>
-                    <h2 class="subheading">From a static log file to an interactive analysis tool—and beyond</h2>
+                    <h2 class="subheading">From a static log file to an interactive analysis tool, and beyond</h2>
                     <span class="meta">
                         
                             Posted by
@@ -259,12 +259,12 @@
 <p>These are the bread-and-butter questions of database performance work. And yet, answering them well is surprisingly awkward with the tools we usually reach for.</p>
 <h3 id="the-problem-good-data-wrong-tools">The Problem: Good Data, Wrong Tools</h3>
 <p>I had two obvious options, and neither felt right.</p>
-<p><strong>Grafana.</strong> We already ship logs to Grafana, but a dashboard is a fixed lens. I am limited to the panels and queries I have pre-configured. The moment I want to ask a slightly different question—&ldquo;show me the execution-time distribution bucketed by query shape, but only for the evening peak&rdquo;—I am fighting the tool instead of exploring the data.</p>
+<p><strong>Grafana.</strong> We already ship logs to Grafana, but a dashboard is a fixed lens. I am limited to the panels and queries I have pre-configured. The moment I want to ask a slightly different question, like &ldquo;show me the execution-time distribution bucketed by query shape, but only for the evening peak&rdquo;, I am fighting the tool instead of exploring the data.</p>
 <p><strong>A script and a notebook.</strong> Flexible and powerful, but slow to set up, it lives on my machine, and it is not something I can hand to a colleague who just wants to drag in a log file and look.</p>
-<p>What I wanted was the flexibility of the notebook with the immediacy of a dashboard—reusable for <em>any</em> log file, not just this one.</p>
+<p>What I wanted was the flexibility of the notebook with the immediacy of a dashboard, reusable for <em>any</em> log file, not just this one.</p>
 <h3 id="the-solution-let-claude-build-the-tool">The Solution: Let Claude Build the Tool</h3>
 <p>Instead of choosing, I asked Claude Code to build an interactive HTML page. A single self-contained file that lets me <strong>drag in any log file</strong>, <strong>parses</strong> the entries client-side, and renders <strong>visualizations tailored to my exact questions</strong>. No server, no build step, no notebook kernel to keep alive.</p>
-<p>This is the key shift: the cost of building a custom, single-purpose tool has collapsed to almost nothing. When a bespoke analysis page takes minutes to generate, you stop bending your question to fit the dashboard and start building the dashboard to fit your question. The tool becomes disposable—you build a perfectly-fitted tool for <em>this</em> log and <em>these</em> questions, and regenerate it next time.</p>
+<p>This is the key shift: the cost of building a custom, single-purpose tool has collapsed to almost nothing. When a bespoke analysis page takes minutes to generate, you stop bending your question to fit the dashboard and start building the dashboard to fit your question. The tool becomes disposable: you build a perfectly-fitted tool for <em>this</em> log and <em>these</em> questions, and regenerate it next time.</p>
 <h4 id="from-log-line-to-insight">From Log Line to Insight</h4>
 <p>Suppose the slow-query log looks like this:</p>
 <pre tabindex="0"><code>2026-06-10T19:42:11Z duration=1834ms rows=2 query=&#34;SELECT * FROM orders WHERE customer_id = $1&#34;
@@ -273,22 +273,22 @@
 2026-06-10T20:11:48Z duration=4120ms rows=512 query=&#34;SELECT * FROM line_items WHERE order_id IN (...)&#34;
 </code></pre><p>The prompt to Claude Code is essentially the four questions plus the log format. The resulting page gives me, in one view:</p>
 <ol>
-<li><strong>A ranked table of slow queries</strong>—normalized by <em>query shape</em> (parameters stripped) so the same query with different bind values is grouped together.</li>
-<li><strong>A histogram of execution times</strong>—do I have a long tail of occasional 4-second outliers, or a broad smear of consistently-slow queries? This is the question dashboards usually answer worst.</li>
-<li><strong>A timeline of slow queries over time</strong>—in the sample above the pain clusters around the evening peak, which is a very different problem from uniform slowness.</li>
-<li><strong>A frequency table</strong>—so I can weigh a query that is slow-but-rare against one that is moderately-slow-but-runs-constantly. The second is almost always the better thing to fix first.</li>
+<li><strong>A ranked table of slow queries</strong>, normalized by <em>query shape</em> (parameters stripped) so the same query with different bind values is grouped together.</li>
+<li><strong>A histogram of execution times</strong>: do I have a long tail of occasional 4-second outliers, or a broad smear of consistently-slow queries? This is the question dashboards usually answer worst.</li>
+<li><strong>A timeline of slow queries over time</strong>: in the sample above the pain clusters around the evening peak, which is a very different problem from uniform slowness.</li>
+<li><strong>A frequency table</strong>, so I can weigh a query that is slow-but-rare against one that is moderately-slow-but-runs-constantly. The second is almost always the better thing to fix first.</li>
 </ol>
 <h3 id="going-further-three-stages-of-leverage">Going Further: Three Stages of Leverage</h3>
 <p>The HTML page is useful on its own, but it is really just the first stage. Each stage hands Claude more context and asks it to do more of the thinking.</p>
-<h4 id="stage-1--visualize">Stage 1 — Visualize</h4>
+<h4 id="stage-1-visualize">Stage 1: Visualize</h4>
 <p>Claude writes the interactive page; I do the interpreting. This is where most people stop, and it is already a big win over a static dashboard.</p>
-<h4 id="stage-2--analyze-the-rendered-page">Stage 2 — Analyze the Rendered Page</h4>
+<h4 id="stage-2-analyze-the-rendered-page">Stage 2: Analyze the Rendered Page</h4>
 <p>Next, let Claude analyze the parsed data behind the page and reason about what it sees:</p>
 <blockquote>
 <p>What are the top 3 problems worth tackling, ranked by impact? For each, suggest a likely cause and a concrete fix.</p>
 </blockquote>
-<p>Now Claude is doing the triage. It can notice that one query shape accounts for 60% of total time despite being only 5% of executions, or that the slowness correlates with the evening peak—suggesting a load or locking issue rather than a missing index. I move from <em>reading charts</em> to <em>reviewing recommendations</em>.</p>
-<h4 id="stage-3--point-claude-at-the-code-and-the-database">Stage 3 — Point Claude at the Code and the Database</h4>
+<p>Now Claude is doing the triage. It can notice that one query shape accounts for 60% of total time despite being only 5% of executions, or that the slowness correlates with the evening peak, suggesting a load or locking issue rather than a missing index. I move from <em>reading charts</em> to <em>reviewing recommendations</em>.</p>
+<h4 id="stage-3-point-claude-at-the-code-and-the-database">Stage 3: Point Claude at the Code and the Database</h4>
 <p>The final stage closes the loop: point Claude Code at the application code and the database schema. Now it can connect a slow query back to the function that issues it, check whether the relevant column is indexed, and propose a real change:</p>
 <ul>
 <li>&ldquo;This <code>SELECT * FROM orders WHERE customer_id = $1</code> has no index on <code>customer_id</code>; here is the migration.&rdquo;</li>
@@ -303,7 +303,7 @@
 <li><strong>Treat recommendations as hypotheses.</strong> Stage 2 and 3 suggestions are starting points for investigation, not conclusions. Confirm with <code>EXPLAIN ANALYZE</code> before you ship an index.</li>
 </ul>
 <h3 id="conclusion">Conclusion</h3>
-<p>I started with a log file and four questions, and the conventional answers—a dashboard or a notebook—each forced a compromise. By letting Claude Code build a throwaway, custom analysis page, I got exactly the visualizations I wanted. And by escalating from <em>visualize</em> to <em>analyze the page</em> to <em>analyze the code and database</em>, the same workflow grows from a charting tool into something closer to a junior performance engineer that triages the problem and proposes fixes.</p>
+<p>I started with a log file and four questions, and the conventional answers (a dashboard or a notebook) each forced a compromise. By letting Claude Code build a throwaway, custom analysis page, I got exactly the visualizations I wanted. And by escalating from <em>visualize</em> to <em>analyze the page</em> to <em>analyze the code and database</em>, the same workflow grows from a charting tool into something closer to a junior performance engineer that triages the problem and proposes fixes.</p>
 <p>The log was never really the point. It was the doorway. Once Claude is looking through it, the interesting work is everything it can reason about on the other side.</p>
 
 
