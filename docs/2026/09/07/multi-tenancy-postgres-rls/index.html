@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Multi-Tenancy With Postgres Row-Level Security in Ktor" />
+    <meta property="og:title" content="Multi-Tenancy With Postgres Row-Level Security in Ktor" />
+    <meta property="twitter:title" content="Multi-Tenancy With Postgres Row-Level Security in Ktor" />
+    
+
+    
+    <meta name="description" content="How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application.">
+    <meta property="og:description" content="How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application." />
+    <meta property="twitter:description" content="How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Multi-Tenancy With Postgres Row-Level Security in Ktor | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2026/09/07/multi-tenancy-postgres-rls/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ai">ai</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/posts/multi-tenancy-postgres-rls.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/ktor" title="Ktor">
+                            Ktor
+                        </a>
+                        
+                        <a class="tag" href="/tags/postgresql" title="PostgreSQL">
+                            PostgreSQL
+                        </a>
+                        
+                        <a class="tag" href="/tags/multi-tenancy" title="Multi-Tenancy">
+                            Multi-Tenancy
+                        </a>
+                        
+                        <a class="tag" href="/tags/exposed" title="Exposed">
+                            Exposed
+                        </a>
+                        
+                        <a class="tag" href="/tags/security" title="Security">
+                            Security
+                        </a>
+                        
+                    </div>
+                    <h1>Multi-Tenancy With Postgres Row-Level Security in Ktor</h1>
+                    <h2 class="subheading">Enforcing tenant isolation in the database instead of in every query</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Thursday, July 9, 2026
+                            
+                            
+                            
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="introduction">Introduction</h3>
+<p>Moxie IT (the company I co-own) developmed a time tracking and invoicing tool called MinuteMint as an alternative to Harvest. It runs in production and supports multi-tenancy from the first migration: every client, project, time entry and invoice belongs to exactly one tenant.</p>
+<p>That raises a question you have to answer on day one, because it is expensive to answer later:</p>
+<ul>
+<li>Where does tenant isolation actually live?</li>
+<li>What happens when a developer forgets to apply it?</li>
+<li>How do you prove, in a test, that a tenant cannot see another tenant&rsquo;s rows?</li>
+</ul>
+<p>The default answer in most codebases is &ldquo;in the query&rdquo;. I think that is the wrong place.</p>
+<h3 id="the-problem-where-tenant_id---is-a-promise-you-have-to-keep">The Problem: <code>WHERE tenant_id = ?</code> Is a Promise You Have to Keep</h3>
+<p>The obvious approach is to add <code>tenant_id</code> to every table and filter on it in every query:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#50fa7b">ClientsTable</span>.selectAll().<span style="color:#ff79c6">where</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#50fa7b">ClientsTable</span>.tenantId eq tenantId) and (<span style="color:#50fa7b">ClientsTable</span>.active eq <span style="color:#ff79c6">true</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This works right up until it does not. The properties of this approach are worth stating plainly:</p>
+<ul>
+<li><strong>It is unenforceable.</strong> Nothing in the type system, the ORM, or the database stops you from writing a query without the filter.</li>
+<li><strong>It fails open.</strong> A forgotten <code>tenant_id</code> predicate does not throw. It quietly returns <em>more</em> rows, which is precisely the failure mode you least want.</li>
+<li><strong>It scales with surface area.</strong> Every new query, every new report, every ad-hoc join is another chance to leak. Code review is the only guardrail, and code review gets tired.</li>
+</ul>
+<p>A cross-tenant leak in an invoicing product is not a bug, it is an incident. We need the guarantee that it cannot be forgotten.</p>
+<h3 id="the-solution-push-isolation-into-postgres">The Solution: Push Isolation Into Postgres</h3>
+<p>Postgres has had Row-Level Security since 9.5. You enable it per table and attach a policy that decides which rows a query may see. The policy reads a session variable that the application sets per transaction:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">ALTER</span> <span style="color:#ff79c6">TABLE</span> clients ENABLE <span style="color:#ff79c6">ROW</span> <span style="color:#ff79c6">LEVEL</span> <span style="color:#ff79c6">SECURITY</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">ALTER</span> <span style="color:#ff79c6">TABLE</span> clients <span style="color:#ff79c6">FORCE</span> <span style="color:#ff79c6">ROW</span> <span style="color:#ff79c6">LEVEL</span> <span style="color:#ff79c6">SECURITY</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> POLICY tenant_isolation <span style="color:#ff79c6">ON</span> clients
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">USING</span> (tenant_id <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">NULLIF</span>(current_setting(<span style="color:#f1fa8c">&#39;app.tenant_id&#39;</span>, <span style="color:#ff79c6">true</span>), <span style="color:#f1fa8c">&#39;&#39;</span>)::UUID);
+</span></span></code></pre></div><p>Each of those three statements does something distinct, and it is worth being precise about which.</p>
+<p><strong><code>ENABLE ROW LEVEL SECURITY</code></strong> switches the feature on for the table. From that point on, Postgres silently appends the <code>USING</code> expression of every applicable policy to each <code>SELECT</code>, <code>UPDATE</code> and <code>DELETE</code> that touches <code>clients</code>. Rows for which the expression is not <code>true</code> simply do not exist as far as the query is concerned: not returned, not updated, not deleted, not counted. Inserts (and the new version of an updated row) are checked against the policy&rsquo;s <code>WITH CHECK</code> expression instead, which defaults to the <code>USING</code> expression when you omit it, so a row with the wrong <code>tenant_id</code> cannot be written either. A table with RLS enabled and no policy at all is a deny-all: it looks empty.</p>
+<p><strong><code>FORCE ROW LEVEL SECURITY</code></strong> removes the one built-in exemption. By default a table&rsquo;s owner bypasses that table&rsquo;s own policies, on the reasoning that the owner could drop the table anyway. <code>FORCE</code> says the owner gets filtered like everybody else. Superusers, and any role granted <code>BYPASSRLS</code>, still ignore policies entirely, and no statement you write on the table changes that.</p>
+<p><strong><code>CREATE POLICY</code></strong> supplies the predicate. Two details in it carry the safety property.</p>
+<p><strong><code>current_setting('app.tenant_id', true)</code>.</strong> The second argument is <code>missing_ok</code>. Without it, a query that runs before the variable is set raises an error instead of returning nothing.</p>
+<p><strong><code>NULLIF(..., '')::UUID</code>.</strong> When the setting is absent, <code>current_setting</code> returns an empty string, which is not a valid UUID and would blow up the cast. <code>NULLIF</code> turns it into <code>NULL</code>, and <code>tenant_id = NULL</code> is <code>NULL</code>, which is not <code>true</code>, so <strong>no rows match</strong>. The policy fails <em>closed</em>. That is the entire safety property, and it is worth writing a test for (I do, below).</p>
+<h4 id="the-owner-bypass">The Owner Bypass</h4>
+<p>That owner exemption is the part people miss, and it is the one that bites. If your Ktor app connects to Postgres as the same user that ran the migrations, and you wrote only <code>ENABLE</code>, you have turned RLS on and changed nothing at all. Every policy is skipped and every query returns every tenant&rsquo;s rows. Nothing errors, nothing warns, and the tests you run over that connection pass happily.</p>
+<p>There are two ways out, and I use both, because the local and production environments differ:</p>
+<ol>
+<li><code>FORCE ROW LEVEL SECURITY</code> makes the policies apply to the table owner too. This covers production, where the app connects as a dedicated, non-superuser database user.</li>
+<li>A <strong>non-login application role</strong> that the connection switches into for the duration of a transaction. This covers local development, where it is convenient to connect as <code>postgres</code>, and superusers ignore even <code>FORCE</code>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#6272a4">-- V4__App_role.sql
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">DO</span> $$
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">BEGIN</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">IF</span> <span style="color:#ff79c6">NOT</span> <span style="color:#ff79c6">EXISTS</span> (<span style="color:#ff79c6">SELECT</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">FROM</span> pg_roles <span style="color:#ff79c6">WHERE</span> rolname <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;minutemint_app&#39;</span>) <span style="color:#ff79c6">THEN</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">ROLE</span> minutemint_app NOLOGIN;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">END</span> <span style="color:#ff79c6">IF</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">END</span> $$;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">GRANT</span> <span style="color:#ff79c6">USAGE</span> <span style="color:#ff79c6">ON</span> <span style="color:#ff79c6">SCHEMA</span> <span style="color:#ff79c6">public</span> <span style="color:#ff79c6">TO</span> minutemint_app;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">GRANT</span> <span style="color:#ff79c6">SELECT</span>, <span style="color:#ff79c6">INSERT</span>, <span style="color:#ff79c6">UPDATE</span>, <span style="color:#ff79c6">DELETE</span> <span style="color:#ff79c6">ON</span> <span style="color:#ff79c6">ALL</span> TABLES <span style="color:#ff79c6">IN</span> <span style="color:#ff79c6">SCHEMA</span> <span style="color:#ff79c6">public</span> <span style="color:#ff79c6">TO</span> minutemint_app;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">GRANT</span> <span style="color:#ff79c6">USAGE</span>, <span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">ON</span> <span style="color:#ff79c6">ALL</span> SEQUENCES <span style="color:#ff79c6">IN</span> <span style="color:#ff79c6">SCHEMA</span> <span style="color:#ff79c6">public</span> <span style="color:#ff79c6">TO</span> minutemint_app;
+</span></span></code></pre></div><p>The role has no password and cannot log in. It exists only to be switched into.</p>
+<h4 id="setting-the-tenant-context-per-transaction">Setting the Tenant Context Per Transaction</h4>
+<p>The application side is one function. It opens an Exposed transaction, drops into the <code>minutemint_app</code> role, sets the tenant, and runs your block:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">Database</span>.withTenant(tenantId: TenantId, block: <span style="color:#ff79c6">suspend</span> () <span style="color:#ff79c6">-&gt;</span> T): T =
+</span></span><span style="display:flex;"><span>    newSuspendedTransaction(db = <span style="color:#ff79c6">this</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> safeUuid = <span style="color:#50fa7b">UUID</span>.fromString(tenantId.uuid.toString()).toString()
+</span></span><span style="display:flex;"><span>        exec(<span style="color:#f1fa8c">&#34;SET LOCAL ROLE minutemint_app&#34;</span>)
+</span></span><span style="display:flex;"><span>        exec(<span style="color:#f1fa8c">&#34;SET LOCAL app.tenant_id = &#39;</span><span style="color:#f1fa8c">$safeUuid</span><span style="color:#f1fa8c">&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>        block()
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p><code>SET LOCAL</code> is the critical keyword. It scopes both settings to the current transaction, so they revert automatically on commit or rollback. That matters enormously with a connection pool: a plain <code>SET</code> would persist on the pooled connection and hand the next request, possibly for a different tenant, a live tenant context. <code>SET LOCAL</code> makes the leak structurally impossible.</p>
+<p>The awkward <code>UUID.fromString(...).toString()</code> round-trip is not decoration. <code>SET LOCAL</code> does not accept bind parameters, so the value has to be interpolated into the statement text. Re-parsing it as a UUID guarantees that whatever reaches the string is a UUID and nothing else.</p>
+<p>With this in place, repository code stops mentioning tenants entirely:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>db.withTenant(tenantId) {
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">ClientsTable</span>.selectAll().<span style="color:#ff79c6">where</span> { <span style="color:#50fa7b">ClientsTable</span>.active eq <span style="color:#ff79c6">true</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That query looks single-tenant. It <em>is</em> single-tenant, because the database says so.</p>
+<h4 id="composability-nesting-without-losing-atomicity">Composability: Nesting Without Losing Atomicity</h4>
+<p>A real business operation touches several repositories. Creating an invoice reads projects, reads time entries, writes invoice lines, and marks entries as invoiced. If each repository opened its own <code>withTenant</code> transaction, the operation would not be atomic, and each call would pay for a connection checkout and two <code>SET LOCAL</code> statements.</p>
+<p>So <code>withTenant</code> joins an already-open transaction when it is for the same tenant, and refuses when it is not:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> TENANT_MARKER = Key&lt;UUID&gt;()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">Database</span>.withTenant(tenantId: TenantId, block: <span style="color:#ff79c6">suspend</span> () <span style="color:#ff79c6">-&gt;</span> T): T {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> openTenant = <span style="color:#50fa7b">TransactionManager</span>.currentOrNull()<span style="color:#ff79c6">?.</span>getUserData(TENANT_MARKER)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (openTenant <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (openTenant <span style="color:#ff79c6">!=</span> tenantId.uuid) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> IllegalStateException(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;Nested withTenant requested tenant </span><span style="color:#f1fa8c">${tenantId.uuid}</span><span style="color:#f1fa8c"> but the open transaction &#34;</span> +
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;is bound to tenant </span><span style="color:#f1fa8c">$openTenant</span><span style="color:#f1fa8c">, refusing to cross tenant boundaries.&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> block()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> newSuspendedTransaction(db = <span style="color:#ff79c6">this</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// set role + tenant, then:
+</span></span></span><span style="display:flex;"><span>        putUserData(TENANT_MARKER, tenantId.uuid)
+</span></span><span style="display:flex;"><span>        block()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Nesting for the same tenant is free and atomic. Nesting for a <em>different</em> tenant throws before any context is established. Isolation only ever gets stronger as you nest, never weaker.</p>
+<h4 id="the-escape-hatch-global-access">The Escape Hatch: Global Access</h4>
+<p>Login breaks the model. Someone posts an email address and a password, and at that moment there is no tenant to set: working out which tenant they belong to is the <em>point</em> of the lookup. A policy keyed on <code>app.tenant_id</code> matches nothing, the user row stays invisible, and nobody logs in.</p>
+<p>So <code>users</code> carries a second policy, gated on a different setting:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> POLICY global_access <span style="color:#ff79c6">ON</span> users
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">USING</span> (current_setting(<span style="color:#f1fa8c">&#39;app.global_access&#39;</span>, <span style="color:#ff79c6">true</span>) <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;true&#39;</span>);
+</span></span></code></pre></div><p>Permissive policies are ORed together. A transaction that sets <code>app.global_access</code> sees every row in <code>users</code>; one that does not still falls back to <code>tenant_isolation</code>. Only one function sets it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#50fa7b">T</span>&gt; <span style="color:#50fa7b">Database</span>.withGlobalAccess(block: <span style="color:#ff79c6">suspend</span> () <span style="color:#ff79c6">-&gt;</span> T): T =
+</span></span><span style="display:flex;"><span>    newSuspendedTransaction(db = <span style="color:#ff79c6">this</span>) {
+</span></span><span style="display:flex;"><span>        exec(<span style="color:#f1fa8c">&#34;SET LOCAL ROLE minutemint_app&#34;</span>)
+</span></span><span style="display:flex;"><span>        exec(<span style="color:#f1fa8c">&#34;SET LOCAL app.global_access = &#39;true&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>        block()
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Four call sites use it: login, password reset, email verification, and the cross-tenant numbers on our admin dashboard. Inside the block, RLS is off. The name is long and awkward to type on purpose, so that a fifth call site is hard to add without someone noticing it in the diff.</p>
+<h3 id="testing-that-it-actually-works">Testing That It Actually Works</h3>
+<p>How do you test Row Level Security within unit test and actually verify that it works?. The trap here is that RLS does not exist on H2, so tests against an in-memory database will happily pass while proving nothing.</p>
+<p>MinuteMint&rsquo;s tests run against real Postgres via Testcontainers, and the setup deliberately mirrors production: migrations run as the owner, then a <strong>separate non-owner user</strong> is created for the application connection pool.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>transaction(ownerDb) {
+</span></span><span style="display:flex;"><span>    exec(<span style="color:#f1fa8c">&#34;CREATE USER app_user WITH PASSWORD &#39;app_pass&#39;&#34;</span>)
+</span></span><span style="display:flex;"><span>    exec(<span style="color:#f1fa8c">&#34;GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO app_user&#34;</span>)
+</span></span><span style="display:flex;"><span>    exec(<span style="color:#f1fa8c">&#34;GRANT minutemint_app TO app_user&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That lets me assert the property directly, including the one that matters most:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>@Test
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">`given a transaction without tenant context when querying an RLS table then it fails closed returning zero rows`</span>() =
+</span></span><span style="display:flex;"><span>    runBlocking {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> tenantA = insertTenant(<span style="color:#f1fa8c">&#34;Tenant Fail Closed&#34;</span>)
+</span></span><span style="display:flex;"><span>        clientRepo.save(buildClient(tenantA, <span style="color:#f1fa8c">&#34;Hidden Client&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// No SET LOCAL app.tenant_id, so the tenant_isolation policy matches nothing.
+</span></span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> rows = newSuspendedTransaction(db = db) {
+</span></span><span style="display:flex;"><span>            exec(<span style="color:#f1fa8c">&#34;SET LOCAL ROLE minutemint_app&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#50fa7b">ClientsTable</span>.selectAll().count()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        assertEquals(<span style="color:#bd93f9">0L</span>, rows)
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Forget the tenant context and you get zero rows, not everybody&rsquo;s rows. Sibling tests cover the rollback of joined transactions and the rejection of cross-tenant nesting.</p>
+<h3 id="a-few-caveats-keep-it-honest">A Few Caveats Keep It Honest</h3>
+<p><strong>RLS is not free.</strong> Every policy is a predicate appended to every query on that table. It is cheap, but it is not nothing, and it can affect plans. Index your <code>tenant_id</code> columns.</p>
+<p><strong>New tables are opt-in.</strong> A migration that creates a table without <code>ENABLE</code>, <code>FORCE</code>, and a policy has created an unprotected table. Nothing warns you. This is the weakest link in the whole design, and the honest mitigation is a checklist plus a test that enumerates tables and asserts each one has RLS enabled.</p>
+<p><strong><code>SET LOCAL</code> cannot be parameterized.</strong> You are interpolating a string into SQL. Validate the type first, as above, and never let a raw request value near it.</p>
+<p><strong>Global access is a real bypass.</strong> Every <code>withGlobalAccess</code> call site deserves scrutiny, because inside that block RLS is off.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Where should tenant isolation live? Not in a filter you have to remember, but in the layer that cannot be talked out of it.</p>
+<p>The pieces are small: a <code>tenant_id</code> column, a policy that fails closed, <code>FORCE ROW LEVEL SECURITY</code>, a non-login role, and one Kotlin function called <code>withTenant</code>. Together they change the failure mode from &ldquo;a forgotten <code>WHERE</code> clause leaks another tenant&rsquo;s invoices&rdquo; to &ldquo;a forgotten <code>withTenant</code> returns nothing and the feature is visibly broken in development&rdquo;.</p>
+<p>I would rather debug an empty list than explain a data breach.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/ddl-rowsecurity.html">PostgreSQL: Row Security Policies</a></li>
+<li><a href="https://www.postgresql.org/docs/current/sql-set.html">PostgreSQL: SET</a></li>
+<li><a href="https://github.com/JetBrains/Exposed">Exposed</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/11/06/analyzing-log-data/" data-toggle="tooltip" data-placement="top" title="Parsing, Visualizing and Analyzing Log Data with Claude Code">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ai-assisted-development" title="ai-assisted development">
+                            ai-assisted development
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/security" title="security">
+                            security
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

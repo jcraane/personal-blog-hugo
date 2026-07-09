@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Correctness on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/tags/correctness/</link>
+    <description>Recent content in Correctness on Jamie Craane personal blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://jamiecraane.dev/tags/correctness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Where Money Bugs Actually Live</title>
+      <link>https://jamiecraane.dev/2026/16/07/money-bugs-in-invoicing/</link>
+      <pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/16/07/money-bugs-in-invoicing/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;MinuteMint, the time tracking and invoicing tool I run for my own company, sends real invoices to real clients. A while back I sat down to review every line of code that touches money, because a rounding bug in an invoicing product is not a style nit. It is a client being asked to pay the wrong amount.&lt;/p&gt;&#xA;&lt;p&gt;The review found something I did not expect. The arithmetic in the domain layer was correct. Rounding was uniform, no bare &lt;code&gt;divide()&lt;/code&gt; calls, everything in &lt;code&gt;BigDecimal&lt;/code&gt;. The bugs were somewhere else entirely:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

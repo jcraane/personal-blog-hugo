@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jamiecraane.dev/categories/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/exposed/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/categories/kotlin/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/kotlin/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/ktor/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/multi-tenancy/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/2026/09/07/multi-tenancy-postgres-rls/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/postgresql/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/post/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/security/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jamiecraane.dev/categories/ai/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,25 +47,13 @@
     <loc>https://jamiecraane.dev/tags/ai-assisted-development/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jamiecraane.dev/categories/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://jamiecraane.dev/tags/claude-code/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/observability/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2026/11/06/analyzing-log-data/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/post/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/tooling/</loc>
@@ -50,19 +74,10 @@
     <loc>https://jamiecraane.dev/tags/reliability/</loc>
     <lastmod>2026-04-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jamiecraane.dev/tags/security/</loc>
-    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://jamiecraane.dev/2025/13/10/aiguideline/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/code-quality/</loc>
-    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/categories/kotlin/</loc>
-    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/kotlin/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/software-architecture/</loc>
@@ -72,9 +87,6 @@
     <lastmod>2025-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/</loc>
-    <lastmod>2025-06-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/ktor/</loc>
     <lastmod>2025-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/</loc>

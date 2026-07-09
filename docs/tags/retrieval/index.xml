@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Retrieval on Jamie Craane personal blog</title>
+    <link>https://jamiecraane.dev/tags/retrieval/</link>
+    <description>Recent content in Retrieval on Jamie Craane personal blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://jamiecraane.dev/tags/retrieval/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chunk Overlap Is the Wrong Fix</title>
+      <link>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;I run a local-first knowledge base over my own notes. Markdown files and PDFs in a folder get chunked, embedded with OpenAI, and stored in PostgreSQL with pgvector. Semantic search and a RAG chat sit on top.&lt;/p&gt;&#xA;&lt;p&gt;If you read anything about building one of these, you will be told to overlap your chunks. Ten to twenty percent is the usual number, so that an idea sitting on a chunk boundary is not cut in half. My own improvement notes for the project say exactly this, filed under &amp;ldquo;Impact: High&amp;rdquo;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

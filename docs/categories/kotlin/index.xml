@@ -6,8 +6,15 @@
     <description>Recent content in Kotlin on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/categories/kotlin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Multi-Tenancy With Postgres Row-Level Security in Ktor</title>
+      <link>https://jamiecraane.dev/2026/09/07/multi-tenancy-postgres-rls/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/09/07/multi-tenancy-postgres-rls/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;Moxie IT (the company I co-own) developmed a time tracking and invoicing tool called MinuteMint as an alternative to Harvest. It runs in production and supports multi-tenancy from the first migration: every client, project, time entry and invoice belongs to exactly one tenant.&lt;/p&gt;&#xA;&lt;p&gt;That raises a question you have to answer on day one, because it is expensive to answer later:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Where does tenant isolation actually live?&lt;/li&gt;&#xA;&lt;li&gt;What happens when a developer forgets to apply it?&lt;/li&gt;&#xA;&lt;li&gt;How do you prove, in a test, that a tenant cannot see another tenant&amp;rsquo;s rows?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The default answer in most codebases is &amp;ldquo;in the query&amp;rdquo;. I think that is the wrong place.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Bridging Human Intent and AI Code Generation with @AIGuideline</title>
       <link>https://jamiecraane.dev/2025/13/10/aiguideline/</link>
