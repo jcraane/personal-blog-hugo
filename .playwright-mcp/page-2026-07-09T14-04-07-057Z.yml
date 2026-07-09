@@ -1,0 +1,238 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Jamie Craane personal blog" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "All Posts" [ref=e10] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e11]:
+          - link "ai" [ref=e12] [cursor=pointer]:
+            - /url: /categories/ai
+        - listitem [ref=e13]:
+          - link "android" [ref=e14] [cursor=pointer]:
+            - /url: /categories/android
+        - listitem [ref=e15]:
+          - link "aws" [ref=e16] [cursor=pointer]:
+            - /url: /categories/aws
+        - listitem [ref=e17]:
+          - link "intellij" [ref=e18] [cursor=pointer]:
+            - /url: /categories/intellij
+        - listitem [ref=e19]:
+          - link "kmm" [ref=e20] [cursor=pointer]:
+            - /url: /categories/kmm
+        - listitem [ref=e21]:
+          - link "kotlin" [ref=e22] [cursor=pointer]:
+            - /url: /categories/kotlin
+        - listitem [ref=e23]:
+          - link "machine learning" [ref=e24] [cursor=pointer]:
+            - /url: /categories/machine-learning
+        - listitem [ref=e25]:
+          - link "process" [ref=e26] [cursor=pointer]:
+            - /url: /categories/process
+        - listitem [ref=e27]:
+          - link "reliability" [ref=e28] [cursor=pointer]:
+            - /url: /categories/reliability
+        - listitem [ref=e29]:
+          - link "ABOUT" [ref=e30] [cursor=pointer]:
+            - /url: /top/about/
+  - banner [ref=e31]:
+    - generic [ref=e35]:
+      - heading "Jamie Craane personal blog" [level=1] [ref=e36]
+      - generic [ref=e37]: My views, thoughts and experiences about Fullstack software development.
+  - generic [ref=e39]:
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - link "Multi-Tenancy With Postgres Row-Level Security in Ktor Enforcing tenant isolation in the database instead of in every query How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application." [ref=e42] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2026/09/07/multi-tenancy-postgres-rls/
+          - heading "Multi-Tenancy With Postgres Row-Level Security in Ktor" [level=2] [ref=e43]
+          - heading "Enforcing tenant isolation in the database instead of in every query" [level=3] [ref=e44]
+          - generic [ref=e45]: How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application.
+        - paragraph [ref=e46]: Posted by Jamie Craane on Thursday, July 9, 2026
+      - separator [ref=e47]
+      - generic [ref=e48]:
+        - link "Parsing, Visualizing and Analyzing Log Data with Claude Code From a static log file to an interactive analysis tool, and beyond How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes." [ref=e49] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2026/11/06/analyzing-log-data/
+          - heading "Parsing, Visualizing and Analyzing Log Data with Claude Code" [level=2] [ref=e50]
+          - heading "From a static log file to an interactive analysis tool, and beyond" [level=3] [ref=e51]
+          - generic [ref=e52]: How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes.
+        - paragraph [ref=e53]: Posted by Jamie Craane on Thursday, June 11, 2026
+      - separator [ref=e54]
+      - generic [ref=e55]:
+        - link "Operational Guardrails for Autonomous AI Agents in Production Reliability Engineering in the AI Era Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets." [ref=e56] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2026/30/04/reliability-engineering-in-ai-era/
+          - heading "Operational Guardrails for Autonomous AI Agents in Production" [level=2] [ref=e57]
+          - heading "Reliability Engineering in the AI Era" [level=3] [ref=e58]
+          - generic [ref=e59]: Defense in Depth practices for running autonomous AI agents safely — from least-privilege credentials and environment segregation to soft deletes, PITR, and RPO/RTO targets.
+        - paragraph [ref=e60]: Posted by Jamie Craane on Thursday, April 30, 2026
+      - separator [ref=e61]
+      - generic [ref=e62]:
+        - link "Bridging Human Intent and AI Code Generation with @AIGuideline A Novel Approach to Embedding Architectural Guidelines in Your Codebase Learn how the @AIGuideline annotation helps AI assistants understand and respect your project's architectural decisions and coding patterns." [ref=e63] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2025/13/10/aiguideline/
+          - heading "Bridging Human Intent and AI Code Generation with @AIGuideline" [level=2] [ref=e64]
+          - heading "A Novel Approach to Embedding Architectural Guidelines in Your Codebase" [level=3] [ref=e65]
+          - generic [ref=e66]: Learn how the @AIGuideline annotation helps AI assistants understand and respect your project's architectural decisions and coding patterns.
+        - paragraph [ref=e67]: Posted by Jamie Craane on Monday, October 13, 2025
+      - separator [ref=e68]
+      - generic [ref=e69]:
+        - link "Integrating Firebase auth in server side Thymeleaf app Using Firebase authentication with Ktor and Thymeleaf This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application" [ref=e70] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2025/06/12/firebase_auth_ktor_thymeleaf/
+          - heading "Integrating Firebase auth in server side Thymeleaf app" [level=2] [ref=e71]
+          - heading "Using Firebase authentication with Ktor and Thymeleaf" [level=3] [ref=e72]
+          - generic [ref=e73]: This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application
+        - paragraph [ref=e74]: Posted by Jamie Craane on Thursday, June 12, 2025
+      - separator [ref=e75]
+      - generic [ref=e76]:
+        - link "Integrating Firebase JWT token verification in Ktor - Part 2 Using Firebase authentication with Ktor This post, we will look at how to integrate your Firebase users in your own application database." [ref=e77] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2025/01/16/firebase_jwt_ktor_part_2/
+          - heading "Integrating Firebase JWT token verification in Ktor - Part 2" [level=2] [ref=e78]
+          - heading "Using Firebase authentication with Ktor" [level=3] [ref=e79]
+          - generic [ref=e80]: This post, we will look at how to integrate your Firebase users in your own application database.
+        - paragraph [ref=e81]: Posted by Jamie Craane on Wednesday, January 15, 2025
+      - separator [ref=e82]
+      - generic [ref=e83]:
+        - link "AI Assistant Prompt Catalog Collection of useful prompts for Jetbrains AI Assistant This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs." [ref=e84] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2024/12/11/ai-assistant-prompt-catalog/
+          - heading "AI Assistant Prompt Catalog" [level=2] [ref=e85]
+          - heading "Collection of useful prompts for Jetbrains AI Assistant" [level=3] [ref=e86]
+          - generic [ref=e87]: This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs.
+        - paragraph [ref=e88]: Posted by Jamie Craane on Wednesday, December 11, 2024
+      - separator [ref=e89]
+      - generic [ref=e90]:
+        - link "Integrating Firebase JWT token verification in Ktor - Part 1 Using Firebase authentication with Ktor This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase's authentication capabilities." [ref=e91] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2024/12/11/firebase_jwt_ktor_part_1/
+          - heading "Integrating Firebase JWT token verification in Ktor - Part 1" [level=2] [ref=e92]
+          - heading "Using Firebase authentication with Ktor" [level=3] [ref=e93]
+          - generic [ref=e94]: This blog post guides you through integrating Firebase JWT token verification in a Ktor server application, enhancing security by leveraging Firebase's authentication capabilities.
+        - paragraph [ref=e95]: Posted by Jamie Craane on Wednesday, December 11, 2024
+      - separator [ref=e96]
+      - generic [ref=e97]:
+        - link "Jetpack Compose - Recompositions Recompositions in Jetpack Compose This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions." [ref=e98] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2022/11/13/compose_recompositions/
+          - heading "Jetpack Compose - Recompositions" [level=2] [ref=e99]
+          - heading "Recompositions in Jetpack Compose" [level=3] [ref=e100]
+          - generic [ref=e101]: This post describes what Compose recomposition is and how to optimize your Compose code to minimize recompositions.
+        - paragraph [ref=e102]: Posted by Jamie Craane on Sunday, November 13, 2022
+      - separator [ref=e103]
+      - generic [ref=e104]:
+        - link "Standalone KMM Images Using KMM Images in a standalone Android project This post describes the benefits of using KMM Images in a standalone Android project." [ref=e105] [cursor=pointer]:
+          - /url: https://jamiecraane.dev/2022/07/27/standalone_kmm_images/
+          - heading "Standalone KMM Images" [level=2] [ref=e106]
+          - heading "Using KMM Images in a standalone Android project" [level=3] [ref=e107]
+          - generic [ref=e108]: This post describes the benefits of using KMM Images in a standalone Android project.
+        - paragraph [ref=e109]: Posted by Jamie Craane on Thursday, September 22, 2022
+      - separator [ref=e110]
+      - list [ref=e111]:
+        - listitem:
+          - link "Older Posts →" [ref=e112] [cursor=pointer]:
+            - /url: /page/2/
+    - generic [ref=e113]:
+      - generic [ref=e115]:
+        - link "avatar" [ref=e116] [cursor=pointer]:
+          - /url: /top/about
+          - img "avatar" [ref=e117]
+        - paragraph [ref=e118]: Fullstack software engineer with a passion for Android, Kotlin and Kotlin Multiplatform Mobile
+        - list [ref=e119]:
+          - listitem [ref=e120]:
+            - link " " [ref=e121] [cursor=pointer]:
+              - /url: https://www.twitter.com/jcraane
+              - generic [ref=e122]:
+                - generic [ref=e123]: 
+                - generic [ref=e124]: 
+          - listitem [ref=e125]:
+            - link " " [ref=e126] [cursor=pointer]:
+              - /url: https://github.com/jcraane
+              - generic [ref=e127]:
+                - generic [ref=e128]: 
+                - generic [ref=e129]: 
+          - listitem [ref=e130]:
+            - link " " [ref=e131] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/jcraane/
+              - generic [ref=e132]:
+                - generic [ref=e133]: 
+                - generic [ref=e134]: 
+          - listitem [ref=e135]:
+            - link " " [ref=e136] [cursor=pointer]:
+              - /url: https://stackoverflow.com/users/4383678/jamie-craane
+              - generic [ref=e137]:
+                - generic [ref=e138]: 
+                - generic [ref=e139]: 
+      - generic [ref=e140]:
+        - separator [ref=e141]
+        - heading "FEATURED TAGS" [level=5] [ref=e142]
+        - generic [ref=e143]:
+          - link "ai" [ref=e144] [cursor=pointer]:
+            - /url: /tags/ai
+          - link "ai-assisted development" [ref=e145] [cursor=pointer]:
+            - /url: /tags/ai-assisted-development
+          - link "android" [ref=e146] [cursor=pointer]:
+            - /url: /tags/android
+          - link "aws" [ref=e147] [cursor=pointer]:
+            - /url: /tags/aws
+          - link "firebase" [ref=e148] [cursor=pointer]:
+            - /url: /tags/firebase
+          - link "intellij" [ref=e149] [cursor=pointer]:
+            - /url: /tags/intellij
+          - link "ios" [ref=e150] [cursor=pointer]:
+            - /url: /tags/ios
+          - link "kmm" [ref=e151] [cursor=pointer]:
+            - /url: /tags/kmm
+          - link "kotlin" [ref=e152] [cursor=pointer]:
+            - /url: /tags/kotlin
+          - link "ktor" [ref=e153] [cursor=pointer]:
+            - /url: /tags/ktor
+          - link "machine learning" [ref=e154] [cursor=pointer]:
+            - /url: /tags/machine-learning
+          - link "security" [ref=e155] [cursor=pointer]:
+            - /url: /tags/security
+  - contentinfo [ref=e156]:
+    - generic [ref=e159]:
+      - list [ref=e160]:
+        - listitem [ref=e161]:
+          - link " " [ref=e162] [cursor=pointer]:
+            - /url: https://www.twitter.com/jcraane
+            - generic [ref=e163]:
+              - generic [ref=e164]: 
+              - generic [ref=e165]: 
+        - listitem [ref=e166]:
+          - link " " [ref=e167] [cursor=pointer]:
+            - /url: https://github.com/jcraane
+            - generic [ref=e168]:
+              - generic [ref=e169]: 
+              - generic [ref=e170]: 
+        - listitem [ref=e171]:
+          - link " " [ref=e172] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/jcraane/
+            - generic [ref=e173]:
+              - generic [ref=e174]: 
+              - generic [ref=e175]: 
+        - listitem [ref=e176]:
+          - link " " [ref=e177] [cursor=pointer]:
+            - /url: https://stackoverflow.com/users/4383678/jamie-craane
+            - generic [ref=e178]:
+              - generic [ref=e179]: 
+              - generic [ref=e180]: 
+        - listitem [ref=e181]:
+          - link " " [ref=e182] [cursor=pointer]:
+            - /url: /index.xml
+            - generic [ref=e183]:
+              - generic [ref=e184]: 
+              - generic [ref=e185]: 
+      - paragraph [ref=e186]:
+        - text: Copyright © Jamie Craane personal blog 2026
+        - link "CleanWhite Hugo Theme" [ref=e187] [cursor=pointer]:
+          - /url: https://themes.gohugo.io/hugo-theme-cleanwhite
+        - text: by
+        - link "Huabing" [ref=e188] [cursor=pointer]:
+          - /url: https://zhaohuabing.com
+        - text: "|"
+        - iframe [ref=e189]:
+          - generic [active]:
+            - generic:
+              - link "Star zhaohuabing/hugo-theme-cleanwhite on GitHub" [ref=f1e1] [cursor=pointer]:
+                - /url: https://github.com/zhaohuabing/hugo-theme-cleanwhite
+                - text: Star
+              - link "824 stargazers on GitHub" [ref=f1e3] [cursor=pointer]:
+                - /url: https://github.com/zhaohuabing/hugo-theme-cleanwhite/stargazers
+                - text: "824"
