@@ -6,7 +6,7 @@ subtitle:   "Using Firebase authentication with Ktor and Thymeleaf"
 author: Jamie Craane
 date: 2025-06-12
 description: "This post, we will look at how to integrate server side Firebase authentication with Ktor and a Thymeleaf application"
-image: "/img/part1-firebase-ktor.png"
+image: "/img/part1-firebase-ktor.jpg"
 showtoc: false
 tags:
 - Firebase

@@ -6,7 +6,7 @@ subtitle: "Enforcing tenant isolation in the database instead of in every query"
 author: Jamie Craane
 date: 2026-07-09
 description: "How I use Postgres Row-Level Security, a non-owner application role, and a small Kotlin transaction wrapper to guarantee tenant isolation in a production Ktor and Exposed application."
-image: "/img/posts/multi-tenancy-postgres-rls.png"
+image: "/img/posts/multi-tenancy-postgres-rls.jpg"
 showtoc: false
 tags:
 - Kotlin

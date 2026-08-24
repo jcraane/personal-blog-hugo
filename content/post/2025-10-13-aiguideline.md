@@ -5,7 +5,7 @@ subtitle: "A Novel Approach to Embedding Architectural Guidelines in Your Codeba
 author: Jamie Craane
 date: 2025-10-13
 description: "Learn how the @AIGuideline annotation helps AI assistants understand and respect your project's architectural decisions and coding patterns."
-image: "/img/posts/aiguideline.png"
+image: "/img/posts/aiguideline.jpg"
 showtoc: true
 tags:
 - Kotlin

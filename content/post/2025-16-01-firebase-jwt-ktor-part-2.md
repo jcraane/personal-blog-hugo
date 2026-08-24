@@ -6,7 +6,7 @@ subtitle:   "Using Firebase authentication with Ktor"
 author: Jamie Craane
 date: 2025-01-15
 description: "This post, we will look at how to integrate your Firebase users in your own application database."
-image: "/img/part1-firebase-ktor.png"
+image: "/img/part1-firebase-ktor.jpg"
 showtoc: false
 tags:
 - Firebase

@@ -7,7 +7,7 @@ subtitle:   "Collection of useful prompts for Jetbrains AI Assistant"
 author: Jamie Craane
 date: 2024-12-11
 description: "This blog post provides a collection of powerful prompts for JetBrains AI Assistant, designed to boost productivity and simplify development tasks. Perfect for Kotlin developers, it demonstrates how to leverage AI effectively within JetBrains IDEs."
-image: "/img/custom-prompts.png"
+image: "/img/custom-prompts.jpg"
 showtoc: false
 tags:
 - Kotlin

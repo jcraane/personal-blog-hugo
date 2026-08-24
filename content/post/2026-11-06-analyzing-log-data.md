@@ -6,7 +6,7 @@ subtitle: "From a static log file to an interactive analysis tool, and beyond"
 author: Jamie Craane
 date: 2026-06-11
 description: "How I used Claude Code to turn a production slow-query log into an interactive visualization, then let Claude analyze the result and propose fixes."
-image: "/img/posts/analyzing-log-data.png"
+image: "/img/posts/analyzing-log-data.jpg"
 showtoc: false
 tags:
 - AI
