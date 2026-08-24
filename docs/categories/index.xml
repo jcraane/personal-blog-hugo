@@ -6,20 +6,20 @@
     <description>Recent content in Categories on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI</title>
+      <link>https://jamiecraane.dev/categories/ai/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/categories/ai/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Kotlin</title>
       <link>https://jamiecraane.dev/categories/kotlin/</link>
       <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://jamiecraane.dev/categories/kotlin/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AI</title>
-      <link>https://jamiecraane.dev/categories/ai/</link>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://jamiecraane.dev/categories/ai/</guid>
       <description></description>
     </item>
     <item>

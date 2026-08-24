@@ -6,8 +6,15 @@
     <description>Recent content in AI on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chunk Overlap Solves the Right Problem at the Wrong Time</title>
+      <link>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;I run a local-first knowledge base over my own notes: markdown files and PDFs in a folder get chunked, embedded with OpenAI, and stored in PostgreSQL with pgvector. Semantic search and a RAG chat sit on top.&lt;/p&gt;&#xA;&lt;p&gt;Read anything about building one of these and you will be told to overlap your chunks. Ten to twenty percent is the usual number, so that an idea sitting on a chunk boundary is not cut in half. My own improvement notes for the project say exactly this, filed under &amp;ldquo;Impact: High&amp;rdquo;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Parsing, Visualizing and Analyzing Log Data with Claude Code</title>
       <link>https://jamiecraane.dev/2026/11/06/analyzing-log-data/</link>

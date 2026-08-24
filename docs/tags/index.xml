@@ -6,20 +6,48 @@
     <description>Recent content in Tags on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Exposed</title>
-      <link>https://jamiecraane.dev/tags/exposed/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://jamiecraane.dev/tags/exposed/</guid>
+      <title>AI</title>
+      <link>https://jamiecraane.dev/tags/ai/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Kotlin</title>
       <link>https://jamiecraane.dev/tags/kotlin/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://jamiecraane.dev/tags/kotlin/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://jamiecraane.dev/tags/postgresql/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RAG</title>
+      <link>https://jamiecraane.dev/tags/rag/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/rag/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Retrieval</title>
+      <link>https://jamiecraane.dev/tags/retrieval/</link>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/retrieval/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Exposed</title>
+      <link>https://jamiecraane.dev/tags/exposed/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/tags/exposed/</guid>
       <description></description>
     </item>
     <item>
@@ -37,24 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>PostgreSQL</title>
-      <link>https://jamiecraane.dev/tags/postgresql/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://jamiecraane.dev/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Security</title>
       <link>https://jamiecraane.dev/tags/security/</link>
       <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://jamiecraane.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AI</title>
-      <link>https://jamiecraane.dev/tags/ai/</link>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://jamiecraane.dev/tags/ai/</guid>
       <description></description>
     </item>
     <item>

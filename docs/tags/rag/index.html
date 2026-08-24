@@ -65,6 +65,22 @@
     <script src="/js/hux-blog.min.js"></script>
 
     
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZ49LBW0KM"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YZ49LBW0KM');
+        }
+      </script>
+
+    
     
 
 </head>
@@ -210,16 +226,16 @@
 <div class="post-preview">
     <a href="https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/">
         <h2 class="post-title">
-            Chunk Overlap Is the Wrong Fix
+            Chunk Overlap Solves the Right Problem at the Wrong Time
         </h2>
 	
         <h3 class="post-subtitle">
-            Recover context at retrieval time, where you know what matched, instead of duplicating it at ingest time, where you don&#39;t
+            Split on structure at ingest, and buy the context back at retrieval
         </h3>
 	
         <div class="post-content-preview">
 	
-            Standard RAG advice says to overlap your chunks by 10 to 20 percent. My knowledge base uses zero overlap and expands a matched chunk to its enclosing section at query time instead. Here is why, and where that approach breaks down.
+            Standard RAG advice says to overlap your chunks by 10 to 20 percent. My knowledge base uses zero overlap and expands a matched chunk to its enclosing section at query time instead. Here is why, and where it actually breaks down.
         
         </div>
     </a>
@@ -354,10 +370,6 @@
                     <a href="/tags/aws" title="aws">
                         aws
                     </a>
-               
-            
-               
-            
                
             
                
