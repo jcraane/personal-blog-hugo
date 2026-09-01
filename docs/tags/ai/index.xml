@@ -6,8 +6,15 @@
     <description>Recent content in AI on Jamie Craane personal blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jamiecraane.dev/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agentic Development Is Eating Low-Code</title>
+      <link>https://jamiecraane.dev/2026/31/08/low-code-vs-agentic-development/</link>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://jamiecraane.dev/2026/31/08/low-code-vs-agentic-development/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;Every couple of years I end up in the same conversation. A team needs an internal tool: a form, an approval flow, a few integrations. Someone proposes a low-code platform, because writing it &amp;ldquo;properly&amp;rdquo; means a repo, a build, a pipeline, and a sprint. The platform wins on time-to-first-demo, and it deserves to.&lt;/p&gt;&#xA;&lt;p&gt;Then the tool succeeds. A year later it has forty screens, a branching approval rule nobody can read, and a change request that takes two days of clicking because there is no way to find every place a field is referenced.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Chunk Overlap Solves the Right Problem at the Wrong Time</title>
       <link>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</link>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Chunk Overlap Solves the Right Problem at the Wrong Time" />
+    <meta property="og:title" content="Chunk Overlap Solves the Right Problem at the Wrong Time" />
+    <meta property="twitter:title" content="Chunk Overlap Solves the Right Problem at the Wrong Time" />
+    
+
+    
+    <meta name="description" content="Standard RAG advice says to overlap your chunks by 10 to 20 percent. My knowledge base uses zero overlap and expands a matched chunk to its enclosing section at query time instead. Here is why, and where it actually breaks down.">
+    <meta property="og:description" content="Standard RAG advice says to overlap your chunks by 10 to 20 percent. My knowledge base uses zero overlap and expands a matched chunk to its enclosing section at query time instead. Here is why, and where it actually breaks down." />
+    <meta property="twitter:description" content="Standard RAG advice says to overlap your chunks by 10 to 20 percent. My knowledge base uses zero overlap and expands a matched chunk to its enclosing section at query time instead. Here is why, and where it actually breaks down." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Chunk Overlap Solves the Right Problem at the Wrong Time | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2026/23/07/chunk-overlap-is-the-wrong-fix/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZ49LBW0KM"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YZ49LBW0KM');
+        }
+      </script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ai">ai</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/posts/chunk-overlap-is-the-wrong-fix.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/rag" title="RAG">
+                            RAG
+                        </a>
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                        <a class="tag" href="/tags/postgresql" title="PostgreSQL">
+                            PostgreSQL
+                        </a>
+                        
+                        <a class="tag" href="/tags/retrieval" title="Retrieval">
+                            Retrieval
+                        </a>
+                        
+                    </div>
+                    <h1>Chunk Overlap Solves the Right Problem at the Wrong Time</h1>
+                    <h2 class="subheading">Split on structure at ingest, and buy the context back at retrieval</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Thursday, July 23, 2026
+                            
+                            
+                            
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="introduction">Introduction</h3>
+<p>I run a local-first knowledge base over my own notes: markdown files and PDFs in a folder get chunked, embedded with OpenAI, and stored in PostgreSQL with pgvector. Semantic search and a RAG chat sit on top.</p>
+<p>Read anything about building one of these and you will be told to overlap your chunks. Ten to twenty percent is the usual number, so that an idea sitting on a chunk boundary is not cut in half. My own improvement notes for the project say exactly this, filed under &ldquo;Impact: High&rdquo;.</p>
+<p>The splitter takes an <code>overlap</code> parameter. Every call site leaves it at zero.</p>
+<p>Two questions are worth answering before turning that number up:</p>
+<ul>
+<li>What is overlap actually protecting you against?</li>
+<li>Is there a cheaper way to get the same protection?</li>
+</ul>
+<h3 id="what-overlap-buys-and-what-it-costs">What Overlap Buys, and What It Costs</h3>
+<p>Chunking cuts a document into pieces small enough to embed. The cut lands somewhere, and sometimes it lands badly: mid-sentence, or between a claim and the sentence that qualifies it. Retrieve a chunk from near that boundary and the model sees half a thought.</p>
+<p>Overlap hedges against that. Repeat the last 10 to 20 percent of each chunk at the start of the next one, and any idea near a boundary appears whole in at least one chunk. It works. It also costs three things, and only the first one gets talked about:</p>
+<ul>
+<li><strong>You embed the same text more than once.</strong> Every overlapping window is another API call and another row. On a large vault that is real money and real disk.</li>
+<li><strong>Near-duplicate chunks compete in the results.</strong> Top-k retrieval has a fixed budget. Two chunks sharing 20 percent of their text tend to score similarly, so one slot in your context window gets spent on text you already have. Overlap buys context by reducing the <em>diversity</em> of what you retrieve.</li>
+<li><strong>You pick the fraction at ingest time.</strong> At ingest you do not know what will be asked, so you cannot know how much surrounding context a future match will need. You are guessing one constant for every chunk in the corpus, at the moment you know the least about what matters.</li>
+</ul>
+<h3 id="the-alternative-expand-at-retrieval">The Alternative: Expand at Retrieval</h3>
+<p>At retrieval time you know something you did not know at ingest: which chunk matched. That is when you can afford to be generous with context, because you are dealing with a handful of chunks instead of a whole corpus.</p>
+<p>So the pipeline splits the job in two.</p>
+<p><strong>At ingest, split on structure rather than on length.</strong> For markdown that means splitting on headers, so each chunk is a section with its heading path kept as metadata. The chunks are already semantic units, which is most of what overlap was protecting against. A second pass caps anything pathologically long.</p>
+<p><strong>At retrieval, grow each matched chunk back out to the section it came from</strong>, by re-reading the original document. The database stores each chunk&rsquo;s <code>content_start_offset</code> and <code>content_end_offset</code> alongside the document body, so this is a substring operation, not a re-embedding.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">val</span> (sStart, sEnd) = <span style="color:#ff79c6">if</span> (headers.isEmpty()) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// No markdown structure, so use a neighbor window around the chunk.
+</span></span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> a = (chunk.startOffset - windowChars).coerceAtLeast(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> b = (chunk.endOffset + windowChars).coerceAtMost(text.length)
+</span></span><span style="display:flex;"><span>    a to b
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>    findSection(chunk.startOffset, headers, text.length)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The embedding is computed on the precise chunk, which keeps the vector focused. The text handed to the model is the surrounding section, which keeps the answer grounded. Those are two different jobs, and there is no reason the same span of text has to do both.</p>
+<h3 id="keeping-expansion-bounded">Keeping Expansion Bounded</h3>
+<p>Expansion without limits is a slow way to paste whole files into a prompt. Two constants apply the brakes, and both exist because of a failure I actually hit.</p>
+<p><strong>A section can be enormous.</strong> A long file with sparse headers has &ldquo;sections&rdquo; thousands of characters wide, and a two-line match in such a file would drag the entire document into the prompt. So a section wider than <code>DEFAULT_MAX_SECTION = 4000</code> characters is not used. The expander falls back to a <em>neighbor window</em> instead: the matched chunk plus the chunk before it and the chunk after it, reconstructed from the stored offsets.</p>
+<p><strong>Many chunks in one big file can all match.</strong> Think of a long table where every row resembles every other row. Expand each match to its neighbors and you stitch the file back together one window at a time. So a single document may contribute at most <code>MAX_TRIMMED_REGIONS_PER_DOC = 1</code> such trimmed region.</p>
+<p>Ordering makes that cap safe:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Highest-similarity matches first, so the per-document cap on trimmed regions keeps
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// the best one. A large file whose chunks all match (e.g. one long table) would
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// otherwise have every chunk neighbor-expanded and stitched back into the whole file.
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> (chunk <span style="color:#ff79c6">in</span> docChunks.sortedByDescending { <span style="color:#ff79c6">it</span>.similarity }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">..</span>.
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> oversized = sEnd - sStart &gt; maxSectionChars
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> (rStart, rEnd) = <span style="color:#ff79c6">if</span> (oversized) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (trimmedRegions <span style="color:#ff79c6">&gt;=</span> MAX_TRIMMED_REGIONS_PER_DOC) <span style="color:#ff79c6">continue</span>
+</span></span><span style="display:flex;"><span>        neighborWindow(chunk, bounds, text.length)
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>        sStart to sEnd
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (!seen.add(rStart)) <span style="color:#ff79c6">continue</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">..</span>.
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Best match first, cap the rest, and deduplicate by region start so two chunks in the same section produce one region instead of two copies of it. That deduplication is worth noting on its own: overlapping chunks hand the model the same paragraph twice, whereas expanded regions get merged.</p>
+<h3 id="the-pdf-path-is-not-the-counterargument">The PDF Path Is Not the Counterargument</h3>
+<p>The obvious objection is that this all depends on documents having structure, and that PDFs do not. My own code looks like it makes that case for me:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Text splitter specifically designed for PDF content.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Splits text by paragraphs and headings, preserving document structure.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">GenericTextSplitter</span> : TextSplitter {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">split</span>(content: String): List&lt;TextChunk&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (content.isBlank()) <span style="color:#ff79c6">return</span> emptyList()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> content.windowed(<span style="color:#bd93f9">4000</span>, <span style="color:#bd93f9">4000</span>, partialWindows = <span style="color:#ff79c6">true</span>).map { <span style="color:#ff79c6">..</span>. }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The doc comment describes the splitter I intended. The code is a blind fixed window of 4000 characters with a step of 4000: no structure and no overlap. When one of those chunks matches, the expander finds no markdown headers and falls back to a neighbor window.</p>
+<p>That is a gap in my implementation, not a limit of the approach. Extracted PDF text still has paragraph breaks, and usually heading-shaped lines too: short, title-cased, surrounded by blank lines. Split on those and PDFs get the same structural chunks markdown gets for free, and a match can be expanded back to its paragraph or its enclosing section. That is the fix, and it is the next thing on my list for this project. Turning overlap on would only paper over it.</p>
+<h3 id="where-this-actually-breaks-down">Where This Actually Breaks Down</h3>
+<p>There are two real limits, and neither is &ldquo;PDFs&rdquo;.</p>
+<p><strong>Some text genuinely has no structure to expand into.</strong> An OCR dump of a scanned page, an auto-generated transcript with no speaker turns, a wall of text with no paragraph breaks. There, a fixed window really is all you have, and there is no section to grow back to. The neighbor window is a partial substitute, but it guesses at a span the same way overlap guesses at a fraction. This is the case where overlap earns its keep.</p>
+<p><strong>Expansion is only cheap if you kept the original.</strong> You need the full document body and each chunk&rsquo;s offsets available at query time. If your pipeline throws the source away after embedding, or stores chunks without offsets, you cannot expand and overlap is your only option. Keeping the offsets is the one decision that made everything else possible, and it costs two integer columns.</p>
+<h3 id="a-few-caveats-keep-it-honest">A Few Caveats Keep It Honest</h3>
+<p><strong>This is an argument, not a benchmark.</strong> The project has no golden query set and no recall@k harness, so I cannot show you a number where expansion beats overlap. The failure modes the two constants prevent are real and observed, but the comparison itself is a judgment call.</p>
+<p><strong>4000 and 1 are judgment calls too.</strong> They are the values at which the failures I saw stopped happening, not numbers derived from anything.</p>
+<p><strong>Expansion inflates the prompt.</strong> You trade a small precise chunk for a larger region, and a handful of matches across a handful of documents adds up. The two caps are what keep the context window bounded.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Overlap is bought at ingest time, against a question nobody has asked yet, and paid for in duplicate embeddings and crowded results. Expansion is a decision you make once the question has arrived and the match is already in your hand.</p>
+<p>Three things I would keep in any pipeline:</p>
+<ul>
+<li><strong>Split on structure wherever structure exists.</strong> Headers and paragraphs are free semantic boundaries, and they beat any percentage you could pick. If your splitter is not finding them, fix the splitter.</li>
+<li><strong>Store the offsets and keep the source document.</strong> They are what let you buy context back later for the price of a substring.</li>
+<li><strong>Bound the expansion</strong>, per section and per document.</li>
+</ul>
+<p>The embedding and the context do not have to be the same text. Once you stop assuming they do, overlap stops being the default and becomes what it should have been all along: the fallback for text with no structure left to recover.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://github.com/pgvector/pgvector">pgvector</a></li>
+<li><a href="https://python.langchain.com/docs/concepts/text_splitters/">LangChain: Text splitters</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/09/07/multi-tenancy-postgres-rls/" data-toggle="tooltip" data-placement="top" title="Multi-Tenancy With Postgres Row-Level Security in Ktor">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/31/08/low-code-vs-agentic-development/" data-toggle="tooltip" data-placement="top" title="Agentic Development Is Eating Low-Code">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ai-assisted-development" title="ai-assisted development">
+                            ai-assisted development
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/postgresql" title="postgresql">
+                            postgresql
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/security" title="security">
+                            security
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

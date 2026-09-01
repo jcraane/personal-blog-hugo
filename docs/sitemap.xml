@@ -2,37 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jamiecraane.dev/2026/31/08/low-code-vs-agentic-development/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://jamiecraane.dev/categories/ai/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/ai/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/ai-assisted-development/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/architecture/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/categories/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/kotlin/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/low-code/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/post/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jamiecraane.dev/tags/</loc>
+    <lastmod>2026-08-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/2026/23/07/chunk-overlap-is-the-wrong-fix/</loc>
     <lastmod>2026-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jamiecraane.dev/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/kotlin/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://jamiecraane.dev/tags/postgresql/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/post/</loc>
     <lastmod>2026-07-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/rag/</loc>
     <lastmod>2026-07-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/retrieval/</loc>
-    <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/</loc>
     <lastmod>2026-07-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/exposed/</loc>
@@ -52,9 +64,6 @@
   </url><url>
     <loc>https://jamiecraane.dev/tags/security/</loc>
     <lastmod>2026-07-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jamiecraane.dev/tags/ai-assisted-development/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jamiecraane.dev/tags/claude-code/</loc>
     <lastmod>2026-06-11T00:00:00+00:00</lastmod>

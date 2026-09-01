@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jamie Craane personal blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg">
+    <meta property="twitter:image" content="https://jamiecraane.dev//img/home-header-bokeh.jpg" />
+    
+
+    
+    <meta name="title" content="Agentic Development Is Eating Low-Code" />
+    <meta property="og:title" content="Agentic Development Is Eating Low-Code" />
+    <meta property="twitter:title" content="Agentic Development Is Eating Low-Code" />
+    
+
+    
+    <meta name="description" content="Low-code traded boilerplate syntax for visual abstractions. Now that AI agents write the boilerplate, that trade no longer pays for itself. Here is where low-code breaks down, what changes with agents, and the narrow cases where low-code still wins.">
+    <meta property="og:description" content="Low-code traded boilerplate syntax for visual abstractions. Now that AI agents write the boilerplate, that trade no longer pays for itself. Here is where low-code breaks down, what changes with agents, and the narrow cases where low-code still wins." />
+    <meta property="twitter:description" content="Low-code traded boilerplate syntax for visual abstractions. Now that AI agents write the boilerplate, that trade no longer pays for itself. Here is where low-code breaks down, what changes with agents, and the narrow cases where low-code still wins." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Blog, Jamie Craane, Fullstack, Android, Kotlin, KMM, Kotlin Multiplatform Mobile, Microservice, AWS, mobile">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Agentic Development Is Eating Low-Code | Jamie Craane blog</title>
+
+    <link rel="canonical" href="/2026/31/08/low-code-vs-agentic-development/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZ49LBW0KM"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YZ49LBW0KM');
+        }
+      </script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jamie Craane personal blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ai">ai</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/android">android</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/aws">aws</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/intellij">intellij</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kmm">kmm</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/kotlin">kotlin</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/machine-learning">machine learning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/process">process</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/reliability">reliability</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/posts/low-code-vs-agentic-development.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/ai-assisted-development" title="AI-Assisted Development">
+                            AI-Assisted Development
+                        </a>
+                        
+                        <a class="tag" href="/tags/low-code" title="Low-Code">
+                            Low-Code
+                        </a>
+                        
+                        <a class="tag" href="/tags/architecture" title="Architecture">
+                            Architecture
+                        </a>
+                        
+                        <a class="tag" href="/tags/kotlin" title="Kotlin">
+                            Kotlin
+                        </a>
+                        
+                    </div>
+                    <h1>Agentic Development Is Eating Low-Code</h1>
+                    <h2 class="subheading">The friction low-code was invented to remove is the friction agents remove for free</h2>
+                    <span class="meta">
+                        
+                            Posted by
+                            
+                                Jamie Craane
+                            
+                            on
+                            Monday, August 31, 2026
+                            
+                            
+                            
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="introduction">Introduction</h3>
+<p>Every couple of years I end up in the same conversation. A team needs an internal tool: a form, an approval flow, a few integrations. Someone proposes a low-code platform, because writing it &ldquo;properly&rdquo; means a repo, a build, a pipeline, and a sprint. The platform wins on time-to-first-demo, and it deserves to.</p>
+<p>Then the tool succeeds. A year later it has forty screens, a branching approval rule nobody can read, and a change request that takes two days of clicking because there is no way to find every place a field is referenced.</p>
+<p>The core promise of low-code was democratizing software creation by trading boilerplate syntax for visual abstractions. That trade made sense when writing the first thousand lines was genuinely expensive. Two questions are worth asking now that it isn&rsquo;t:</p>
+<ul>
+<li>What was low-code actually charging you for?</li>
+<li>Does that charge still buy anything once an agent writes the boilerplate?</li>
+</ul>
+<h3 id="what-low-code-was-actually-solving">What Low-Code Was Actually Solving</h3>
+<p>Low-code never eliminated complexity. It moved it. The business rules, the state transitions, the error handling: all still there, just expressed in proprietary UI panels, clumsy JSON blobs, and rigid workflow engines instead of in a language with a type checker.</p>
+<p>What it genuinely removed was the <em>startup cost</em> of a codebase. No project scaffolding, no dependency management, no deployment story, no CRUD layer written by hand. You got a running thing on day one. Everything else about low-code, the constraints, the lock-in, the untestability, was the price of that day one.</p>
+<h3 id="where-low-code-breaks-down">Where Low-Code Breaks Down</h3>
+<p>The bill arrives later, and it arrives in four places.</p>
+<ul>
+<li><strong>The expressiveness ceiling.</strong> Visual logic builders are great for linear triggers, A to B to C. Expressing complex business rules, edge-case branching, or asynchronous concurrency visually becomes an unmaintainable web of spaghetti boxes. The escape hatch is always the same: a text field where you write a real expression, in a dialect nobody documents.</li>
+<li><strong>No software lifecycle parity.</strong> Testing is brittle or retrofitted. You rarely get true headless unit testing, mocking, or a deterministic CI pipeline. What you get is a staging tenant and a human clicking through it.</li>
+<li><strong>Environment drift and governance.</strong> Migrating across dev, staging, and production relies on platform-specific export and import tools, or on opaque database state, rather than clean diffable commits. &ldquo;What changed last Tuesday&rdquo; is a question the platform often cannot answer.</li>
+<li><strong>Vendor lock-in and portability.</strong> You do not own the runtime. If the platform alters pricing, deprecates a connector, or quietly changes the behavior of a node, you have no escape hatch. Your business logic is a row in someone else&rsquo;s database.</li>
+</ul>
+<h3 id="the-same-rule-twice">The Same Rule, Twice</h3>
+<p>Here is a discount rule as a workflow engine exports it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;nodes&#34;</span>: [
+</span></span><span style="display:flex;"><span>    { <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;n1&#34;</span>, <span style="color:#ff79c6">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;trigger.http&#34;</span>, <span style="color:#ff79c6">&#34;path&#34;</span>: <span style="color:#f1fa8c">&#34;/orders&#34;</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;n2&#34;</span>, <span style="color:#ff79c6">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;condition&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;expr&#34;</span>: <span style="color:#f1fa8c">&#34;{{ $node.n1.body.total }} &gt; 500 &amp;&amp; {{ $node.n1.body.customer.tier }} == &#39;gold&#39;&#34;</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;n3&#34;</span>, <span style="color:#ff79c6">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;action.setField&#34;</span>, <span style="color:#ff79c6">&#34;field&#34;</span>: <span style="color:#f1fa8c">&#34;discount&#34;</span>, <span style="color:#ff79c6">&#34;value&#34;</span>: <span style="color:#f1fa8c">&#34;0.15&#34;</span> }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;connections&#34;</span>: { <span style="color:#ff79c6">&#34;n1&#34;</span>: [<span style="color:#f1fa8c">&#34;n2&#34;</span>], <span style="color:#ff79c6">&#34;n2&#34;</span>: { <span style="color:#ff79c6">&#34;true&#34;</span>: [<span style="color:#f1fa8c">&#34;n3&#34;</span>] } }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That <code>expr</code> field is code. It has no type checker, no autocomplete, no reference to what <code>tier</code> may legally contain, and no test that fails when someone renames a field upstream. The <code>0.15</code> is a string. Reviewing a change to this file means reading node IDs.</p>
+<p>The same rule as code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">discountFor</span>(order: Order): Discount = <span style="color:#ff79c6">when</span> {
+</span></span><span style="display:flex;"><span>    order.customer.tier <span style="color:#ff79c6">==</span> <span style="color:#50fa7b">Tier</span>.GOLD <span style="color:#ff79c6">&amp;&amp;</span> order.total &gt; <span style="color:#50fa7b">Money</span>.eur(<span style="color:#bd93f9">500</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#50fa7b">Discount</span>.percent(<span style="color:#bd93f9">15</span>)
+</span></span><span style="display:flex;"><span>    order.customer.tier <span style="color:#ff79c6">==</span> <span style="color:#50fa7b">Tier</span>.GOLD <span style="color:#ff79c6">-&gt;</span> <span style="color:#50fa7b">Discount</span>.percent(<span style="color:#bd93f9">5</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">-&gt;</span> <span style="color:#50fa7b">Discount</span>.NONE
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Test
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">`gold customers below the threshold get the base discount`</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> order = order(tier = <span style="color:#50fa7b">Tier</span>.GOLD, total = <span style="color:#50fa7b">Money</span>.eur(<span style="color:#bd93f9">499</span>))
+</span></span><span style="display:flex;"><span>    assertEquals(<span style="color:#50fa7b">Discount</span>.percent(<span style="color:#bd93f9">5</span>), discountFor(order))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The interesting part is not that the second version is nicer to look at. It is that in 2020 the second version cost meaningfully more to produce than the first, and today it costs less. An agent writes the data classes, the branch, and the test in one pass, and the compiler checks the result. The boilerplate that made low-code attractive is exactly the work agents are best at.</p>
+<h3 id="what-changes-with-agents">What Changes With Agents</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>Low-code platforms</th>
+          <th>Agentic development</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Interface</td>
+          <td>Proprietary GUI, drag and drop</td>
+          <td>Natural language plus plain code in a standard IDE</td>
+      </tr>
+      <tr>
+          <td>Artifact</td>
+          <td>Platform-locked metadata and schemas</td>
+          <td>Portable source code, Git-native</td>
+      </tr>
+      <tr>
+          <td>Testing</td>
+          <td>Manual UI testing, bolted-on suites</td>
+          <td>Native unit, integration, and property-based tests</td>
+      </tr>
+      <tr>
+          <td>Extensibility</td>
+          <td>Constrained by platform plugins</td>
+          <td>Any library in the ecosystem</td>
+      </tr>
+      <tr>
+          <td>Refactoring</td>
+          <td>Manual clicks across dozens of screens</td>
+          <td>Automated diffs across the whole codebase</td>
+      </tr>
+  </tbody>
+</table>
+<p>Agentic workflows remove the primary friction low-code was invented to solve. Because agents produce standard, linted, testable code, you get something close to low-code prototyping speed without giving up version control, modular architecture, or a real test harness. Refactoring is the clearest win: renaming a concept across a codebase is a mechanical job an agent does in minutes, and the compiler tells you when it is wrong. There is no equivalent operation in a click-based builder.</p>
+<h3 id="where-low-code-still-wins">Where Low-Code Still Wins</h3>
+<p>Two constraints keep low-code alive, and neither is about developer productivity.</p>
+<p><strong>Non-technical stakeholder editing.</strong> When the requirement is that an operations manager changes the approval threshold on a Tuesday afternoon without involving engineering, a repo and a pipeline are the wrong shape. Note that the actual requirement here is a safe editing surface for a small number of parameters, not a general-purpose programming environment. Teams reach for a low-code platform and end up with a whole application in it, which is how the forty-screen situation happens. A configuration UI backed by your own code covers the real need without the rest.</p>
+<p><strong>Compliance and platform governance.</strong> Regulated environments often accept a vendor&rsquo;s certifications, audit logging, and access model as a package. Rebuilding that assurance around a custom codebase is real work, and &ldquo;the platform is SOC 2 certified and our auditor already knows it&rdquo; is a legitimate reason to stay. The same goes for organizations where a central IT function has standardized on one platform, and anything else needs an exception process longer than the project.</p>
+<p>Both of these are organizational constraints, not technical limits of code. Worth being honest about that when someone argues low-code is the better <em>engineering</em> choice.</p>
+<h3 id="a-few-caveats">A Few Caveats</h3>
+<p><strong>Agent-generated code is not free.</strong> You still own it. A codebase produced quickly is still a codebase to review, run, patch, and keep dependencies current on. Low-code at least outsources the runtime; with your own code, that operational burden is yours. It buys real optionality, but it is a cost, not a bonus.</p>
+<p><strong>&ldquo;Standard, testable code&rdquo; describes the good case.</strong> Agents happily produce plausible code with no tests and quietly wrong edge cases. The advantage over low-code is that the failure is <em>inspectable</em>: a compiler, a linter, and a test suite can catch it. That advantage is only worth something if you actually run them.</p>
+<p><strong>Existing low-code estates are not going anywhere.</strong> Migrating a mature platform application means recovering business rules encoded in node graphs that nobody has read in three years. The argument here is about what to build next, not a case for rewriting what is running.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Low-code was a rational answer to a real cost: writing the first version of everything by hand was slow. That cost has dropped sharply, and the compensations low-code demanded in return, the ceiling, the missing lifecycle, the lock-in, have not dropped at all.</p>
+<p>So the calculation has flipped. For actual application development, standard code with an agent doing the heavy lifting now wins on the dimension low-code used to own, which is speed, while keeping everything low-code never had. What is left for low-code is narrower and mostly organizational: simple internal forms wired to a spreadsheet, operational dashboards owned by non-technical teams, and environments where a vendor&rsquo;s compliance posture is the deliverable.</p>
+<p>If you are reaching for a low-code platform today, the question worth asking first is whether you are buying speed or buying an editing surface for people who do not write code. Only one of those is still a good deal.</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/23/07/chunk-overlap-is-the-wrong-fix/" data-toggle="tooltip" data-placement="top" title="Chunk Overlap Solves the Right Problem at the Wrong Time">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+            </div>
+
+            
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ai-assisted-development" title="ai-assisted development">
+                            ai-assisted development
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/android" title="android">
+                            android
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/aws" title="aws">
+                            aws
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/firebase" title="firebase">
+                            firebase
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/intellij" title="intellij">
+                            intellij
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kmm" title="kmm">
+                            kmm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/kotlin" title="kotlin">
+                            kotlin
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/ktor" title="ktor">
+                            ktor
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/machine-learning" title="machine learning">
+                            machine learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/postgresql" title="postgresql">
+                            postgresql
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/security" title="security">
+                            security
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    <li>
+                        <a href="https://www.twitter.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/jcraane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/jcraane/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/4383678/jamie-craane">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Jamie Craane personal blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jamie Craane personal blog 2026
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
